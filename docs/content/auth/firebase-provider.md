@@ -2,12 +2,12 @@ Firebase Authentication uses your Firebase project's service account to verify t
 
 ## Compose the plugin
 
-Add `@tspy/firebase` under the `auth` key in `tspy.config.ts`.
+Add `@bionicjs/firebase` under the `auth` key in `bionicjs.config.ts`.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { firebase } from "@tspy/firebase";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { firebase } from "@bionicjs/firebase";
 
 export default defineConfig({
   auth: firebase({
@@ -50,7 +50,7 @@ export const firebaseApp = initializeApp({
 Protected API routes read the session from the same `auth` boundary:
 
 ```ts
-import { auth } from "tspy/server";
+import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);

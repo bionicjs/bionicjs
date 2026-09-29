@@ -5,7 +5,7 @@ export function DatabaseAccess() {
     <>
       <H3 id="matrix">Matrix</H3>
       <P>
-        TSPY supports a matrix of database options: PostgreSQL or SQLite,
+        BionicJS supports a matrix of database options: PostgreSQL or SQLite,
         combined with ORMs like Prisma, Drizzle, or Kysely. Engine and access
         layer are chosen independently.
       </P>
@@ -20,11 +20,11 @@ export function DatabaseAccess() {
       />
       <P>
         The combination becomes a plugin package composed in{" "}
-        <Code>tspy.config.ts</Code> under the <Code>database</Code> key:
+        <Code>bionicjs.config.ts</Code> under the <Code>database</Code> key:
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { drizzle } from "@tspy/drizzle";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { drizzle } from "@bionicjs/drizzle";
 
 export default defineConfig({
   database: drizzle({ provider: "sqlite", url: "file:./db.sqlite" }),
@@ -35,7 +35,7 @@ export default defineConfig({
       <P>
         The database client is initialized in <Code>server/db/</Code> and is
         exposed at runtime as the <Code>db</Code> export of{" "}
-        <Code>tspy/server</Code>, making it easily accessible inside any API
+        <Code>@bionicjs/core/server</Code>, making it easily accessible inside any API
         route handler:
       </P>
       <CodeBlock file="server/db/client.ts" title="A Drizzle + SQLite client">
@@ -68,12 +68,12 @@ export const db = drizzle({ client, schema });`}
       <H3 id="loading">Connecting at startup</H3>
       <P>
         Server routes can import <Code>db</Code> directly from{" "}
-        <Code>tspy/server</Code>. The client initializes lazily from the
+        <Code>@bionicjs/core/server</Code>. The client initializes lazily from the
         environment, so a missing <Code>DATABASE_URL</Code> fails fast at the
         first query with a clear error rather than at process start:
       </P>
       <CodeBlock file="server/api/health.ts">
-{`import { db } from "tspy/server";
+{`import { db } from "@bionicjs/core/server";
 
 export default defineEventHandler(async () => {
   const row = await db.query.users.findFirst();
@@ -82,7 +82,7 @@ export default defineEventHandler(async () => {
       </CodeBlock>
       <Callout>
         The access layer (Prisma, Drizzle, Kysely) only changes the query code.
-        The boundary - <Code>db</Code> on <Code>tspy/server</Code> - stays the
+        The boundary - <Code>db</Code> on <Code>@bionicjs/core/server</Code> - stays the
         same. Swapping Drizzle for Prisma is a config change plus a rewrite of
         the query files, nothing else in the app moves.
       </Callout>

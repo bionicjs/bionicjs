@@ -1,6 +1,6 @@
 ## The pipeline
 
-Continuous integration and delivery for a tspy project follows the same
+Continuous integration and delivery for a bionicjs project follows the same
 shape as any Node + Python app: install dependencies, run checks, build,
 deploy. The build contract is standard — `npm run build` produces the
 `.output/` directory that every deployment target consumes.

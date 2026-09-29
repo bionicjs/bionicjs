@@ -2,12 +2,12 @@ Drizzle is a TypeScript-first ORM with a SQL-like query builder. Types are infer
 
 ## Compose the plugin
 
-Add `@tspy/drizzle` under the `database` key in `tspy.config.ts`.
+Add `@bionicjs/drizzle` under the `database` key in `bionicjs.config.ts`.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { drizzle } from "@tspy/drizzle";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { drizzle } from "@bionicjs/drizzle";
 
 export default defineConfig({
   database: drizzle({ provider: "sqlite", url: "file:./db.sqlite" }),
@@ -35,11 +35,11 @@ export const users = sqliteTable("users", {
 
 ## Using the client
 
-The plugin exposes the client as the `db` export on `tspy/server`:
+The plugin exposes the client as the `db` export on `@bionicjs/core/server`:
 
 ```ts
 // server/api/users.ts
-import { db } from "tspy/server";
+import { db } from "@bionicjs/core/server";
 
 export default defineEventHandler(async () => {
   return await db.select().from(users);
@@ -57,4 +57,4 @@ npx drizzle-kit push     # apply to the database in dev
 
 - No `generate` step — types are inferred straight from your `schema.ts` files.
 - The query builder stays close to SQL, which makes complex queries feel familiar.
-- Swap Drizzle for Prisma later by changing the config and rewriting query files; the `db` boundary on `tspy/server` stays the same.
+- Swap Drizzle for Prisma later by changing the config and rewriting query files; the `db` boundary on `@bionicjs/core/server` stays the same.

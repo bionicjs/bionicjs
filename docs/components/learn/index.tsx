@@ -8,7 +8,7 @@ import { ProjectGenerator } from "./project-generator";
 import { ViteAndNitro } from "./vite-and-nitro";
 import { TheDevServer } from "./the-dev-server";
 import { HmrAndWatchers } from "./hmr-and-watchers";
-import { TspyConfig } from "./tspy-config";
+import { BionicJSConfig } from "./bionicjs-config";
 import { BuildPipeline } from "./build-pipeline";
 import { ServerAndHono } from "./server-and-hono";
 import { ApiProxying } from "./api-proxying";
@@ -33,7 +33,7 @@ export const LEARN_CONTENT: Record<string, React.ReactNode> = {
   "vite-and-nitro": <ViteAndNitro />,
   "the-dev-server": <TheDevServer />,
   "hmr-and-watchers": <HmrAndWatchers />,
-  "tspy-config": <TspyConfig />,
+  "bionicjs-config": <BionicJSConfig />,
   "build-pipeline": <BuildPipeline />,
   "server-and-hono": <ServerAndHono />,
   "api-proxying": <ApiProxying />,

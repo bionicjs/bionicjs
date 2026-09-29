@@ -114,7 +114,7 @@ export function TableOfContents({
 
   function openInChat(name: string) {
     const title =
-      document.querySelector("h1")?.textContent?.trim() ?? "tspy docs";
+      document.querySelector("h1")?.textContent?.trim() ?? "bionicjs docs";
     const prompt = `Discuss this page: ${title}. ${location.href}`;
     navigator.clipboard
       .writeText(prompt)

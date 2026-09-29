@@ -635,7 +635,7 @@ export function DocsShell({
     const sidebar = sidebarRef.current;
     if (!sidebar) return;
 
-    const storageKey = "tspy-docs-sidebar-scroll";
+    const storageKey = "bionicjs-docs-sidebar-scroll";
 
     // Read saved position
     function readSaved(): { path: string; scrollTop: number } | null {
@@ -761,7 +761,7 @@ export function DocsShell({
           <Link href="/" className="flex shrink-0 items-center gap-2">
             <LogoIcon className="size-6" />
             <span className="text-label-16 font-semibold">
-              tspy
+              bionicjs
             </span>
           </Link>
 
@@ -777,8 +777,8 @@ export function DocsShell({
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              aria-label={`tspy on GitHub - ${stars ?? 0} stars`}
-              title="tspy on GitHub"
+              aria-label={`bionicjs on GitHub - ${stars ?? 0} stars`}
+              title="bionicjs on GitHub"
               className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
             >
               <GithubIcon className="size-[18px]" />
@@ -822,7 +822,7 @@ export function DocsShell({
               <Link href="/" className="flex shrink-0 items-center gap-2" onClick={() => setMobileOpen(false)}>
                 <LogoIcon className="size-6" />
                 <span className="text-[16px] font-semibold tracking-tight">
-                  tspy
+                  bionicjs
                 </span>
               </Link>
               <button

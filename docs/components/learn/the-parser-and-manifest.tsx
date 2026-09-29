@@ -5,7 +5,7 @@ export function TheParserAndManifest() {
     <>
       <H3 id="the-parser">The Parser</H3>
       <P>
-        The TSPY routing engine does not rely on the browser to discover routes.
+        The BionicJS routing engine does not rely on the browser to discover routes.
         Instead, a build-time parser reads the <Code>app/</Code> directory and
         constructs a pure data tree called the <Code>RouteManifestNode</Code>.
       </P>
@@ -18,7 +18,7 @@ export function TheParserAndManifest() {
         <Code>page</Code> and <Code>layout</Code> properties on the node they
         live in.
       </P>
-      <CodeBlock file="packages/tspy/src/router/parser.ts" title="parseRoutes input/output">
+      <CodeBlock file="packages/bionicjs/src/router/parser.ts" title="parseRoutes input/output">
 {`const files = [
   "/app/layout.tsx",
   "/app/page.tsx",
@@ -52,7 +52,7 @@ const manifest = parseRoutes(files);
       <P>
         The parser does not generate code. It produces a data structure. This
         separation means the tree can be inspected, validated, and transformed
-        independently of any output format - a key principle in the TSPY
+        independently of any output format - a key principle in the BionicJS
         architecture.
       </P>
 
@@ -77,7 +77,7 @@ const manifest = parseRoutes(files);
         wildcards that match the rest of the URL. Static segments pass through
         unchanged.
       </P>
-      <CodeBlock file="packages/tspy/src/router/conventions.ts" title="Segment formatting">
+      <CodeBlock file="packages/bionicjs/src/router/conventions.ts" title="Segment formatting">
 {`export function formatSegmentToRoutePath(segment: string): string {
   if (isCatchAllSegment(segment)) return "*";
   if (isDynamicSegment(segment)) return \`:\${segment.slice(1, -1)}\`;
@@ -87,7 +87,7 @@ const manifest = parseRoutes(files);
 
       <H3 id="conflicts">Conflict Detection</H3>
       <P>
-        Because parsing happens at build time, TSPY can detect routing conflicts
+        Because parsing happens at build time, BionicJS can detect routing conflicts
         before the code ever reaches the browser. If a developer accidentally
         creates both <Code>app/[id]/page.tsx</Code> and{" "}
         <Code>app/[userId]/page.tsx</Code> in the same directory, the parser
@@ -95,7 +95,7 @@ const manifest = parseRoutes(files);
         and pick one nondeterministically.
       </P>
       <CodeBlock title="Conflict thrown">
-{`TSPY Route Conflict: Conflicting segments "[id]" and "[userId]"
+{`BionicJS Route Conflict: Conflicting segments "[id]" and "[userId]"
 at the same directory level.`}
       </CodeBlock>
       <P>

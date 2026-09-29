@@ -1,0 +1,97 @@
+{
+  "name": "@bionicjs/core",
+  "version": "0.1.0",
+  "description": "The full-stack React framework for the AI era: React UI and Python intelligence in one codebase",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./server": "./src/server.ts",
+    "./router": "./src/router/index.ts",
+    "./entry-client": "./src/entry-client.tsx"
+  },
+  "files": [
+    "dist",
+    "src",
+    "bin",
+    "README.md",
+    "!src/**/*.test.ts"
+  ],
+  "imports": {
+    "#bionicjs-api": "./src/api-client.ts"
+  },
+  "bin": {
+    "bionicjs": "./bin/bionicjs.js"
+  },
+  "dependencies": {
+    "@bionicjs/dev": "workspace:*",
+    "jiti": "^2.7.0",
+    "react-router": "^7"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "vite": "^8.3.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "tsx": "^4.23.15",
+    "@types/node": "^22",
+    "react": "^19",
+    "react-dom": "^19",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  },
+  "license": "MIT",
+  "keywords": [
+    "bionicjs",
+    "framework",
+    "react",
+    "python",
+    "vite",
+    "nitro"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bionicjs/bionicjs.git",
+    "directory": "packages/bionicjs"
+  },
+  "bugs": {
+    "url": "https://github.com/bionicjs/bionicjs/issues"
+  },
+  "homepage": "https://github.com/bionicjs/bionicjs#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      },
+      "./server": {
+        "types": "./dist/server.d.ts",
+        "import": "./dist/server.js",
+        "default": "./dist/server.js"
+      },
+      "./router": {
+        "types": "./dist/router/index.d.ts",
+        "import": "./dist/router/index.js",
+        "default": "./dist/router/index.js"
+      },
+      "./entry-client": "./src/entry-client.tsx",
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/router/index.ts --format esm --dts --out-dir dist/router && tsup src/index.ts src/server.ts --format esm --target node20 --dts --external virtual:bionicjs-routes",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx src/router/router.test.ts && tsx src/router/integration.test.ts && tsx src/router/vite-e2e.test.ts",
+    "prepublishOnly": "pnpm build"
+  }
+}

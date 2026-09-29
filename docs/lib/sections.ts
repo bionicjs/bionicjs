@@ -1,4 +1,4 @@
-export const GITHUB_URL = "https://github.com/Atnatewoss/tspy";
+export const GITHUB_URL = "https://github.com/bionicjs/bionicjs";
 
 export type TocItem = { id: string; title: string; isChild?: boolean; children?: TocItem[] };
 
@@ -15,7 +15,7 @@ export type SectionDef = {
 };
 
 export const DOCS_GROUPS = [
-  { title: "Get Started", intro: "What tspy is, how to install it, and your first project built in one command." },
+  { title: "Get Started", intro: "What bionicjs is, how to install it, and your first project built in one command." },
   { title: "Concepts", intro: "The core ideas: routing, rendering, data flow, and the stack." },
   { title: "Integrations", intro: "Auth, database, and the composable provider packages." },
   { title: "Runtime", intro: "Cache, observability, cron, and deployment output." },
@@ -28,11 +28,11 @@ export const DOCS_GROUPS = [
 export const DOCS_SECTION_DEFS: SectionDef[] = [
   // ── Get Started ──
   {
-    slug: "why-tspy",
+    slug: "why-bionicjs",
     title: "Why?",
     group: "Get Started",
     intro:
-      "The honest baseline is the glued pair - Next.js plus FastAPI in a monorepo. This page compares tspy against the field of fullstack frameworks so you can decide what the boundary is worth.",
+      "The honest baseline is the glued pair - Next.js plus FastAPI in a monorepo. This page compares bionicjs against the field of fullstack frameworks so you can decide what the boundary is worth.",
     subsections: [
       { id: "the-field", title: "The field at a glance" },
       { id: "vs-next-remix", title: "vs Next.js, Remix, Nuxt, SvelteKit" },
@@ -90,11 +90,11 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     group: "Concepts",
     subcategory: "Core",
     intro:
-      "Routes are files. tspy scans app/ at build time, builds a route tree, and compiles it into a virtual module that React Router consumes. No manual registration.",
+      "Routes are files. bionicjs scans app/ at build time, builds a route tree, and compiles it into a virtual module that React Router consumes. No manual registration.",
     subsections: [
       { id: "the-convention", title: "The convention" },
       { id: "discovery", title: "Build-time discovery" },
-      { id: "react-router", title: "virtual:tspy-routes & React Router" },
+      { id: "react-router", title: "virtual:bionicjs-routes & React Router" },
     ],
   },
   {
@@ -203,10 +203,10 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
   },
 
   {
-    slug: "tspy-config",
+    slug: "bionicjs-config",
     title: "Configuration",
     group: "Get Started",
-    intro: "One config file for the whole framework. This chapter covers the plugin-based config - defineConfig composes auth, database, ai, and jobs plugins into the project, and TSPY turns each into runtime exports (`api` on the client, `auth`/`db`/`ai`/`jobs` on the server).",
+    intro: "One config file for the whole framework. This chapter covers the plugin-based config - defineConfig composes auth, database, ai, and jobs plugins into the project, and BionicJS turns each into runtime exports (`api` on the client, `auth`/`db`/`ai`/`jobs` on the server).",
     subsections: [
       { id: "the-file", title: "The file" },
       { id: "plugins", title: "Plugins" },
@@ -221,7 +221,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Overview",
     group: "Integrations",
     intro:
-      "Register services once, get typed callers, providers, middleware, and database models. tspy integrations are plugin packages composed in tspy.config.ts.",
+      "Register services once, get typed callers, providers, middleware, and database models. bionicjs integrations are plugin packages composed in bionicjs.config.ts.",
     subsections: [],
   },
   {
@@ -229,7 +229,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Auth",
     group: "Integrations",
     intro:
-      "Authentication is TypeScript, under server/auth/. Each provider is a plugin package (@tspy/better-auth, @tspy/clerk, @tspy/firebase, @tspy/supabase, @tspy/workos) composed in tspy.config.ts - pick one.",
+      "Authentication is TypeScript, under server/auth/. Each provider is a plugin package (@bionicjs/better-auth, @bionicjs/clerk, @bionicjs/firebase, @bionicjs/supabase, @bionicjs/workos) composed in bionicjs.config.ts - pick one.",
     subsections: [
       { id: "providers", title: "Providers" },
       { id: "server-side", title: "Server-side verification" },
@@ -250,7 +250,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Database",
     group: "Integrations",
     intro:
-      "The database layer is a plugin package composed in tspy.config.ts. Engine and access layer are chosen independently — Prisma, Drizzle, Kysely, or raw SQL, with SQLite or PostgreSQL.",
+      "The database layer is a plugin package composed in bionicjs.config.ts. Engine and access layer are chosen independently — Prisma, Drizzle, Kysely, or raw SQL, with SQLite or PostgreSQL.",
     subsections: [
       { id: "matrix", title: "The matrix" },
       { id: "client", title: "The client" },
@@ -269,7 +269,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "AI",
     group: "Integrations",
     intro:
-      "AI capabilities are Python, under ai/. LLM providers are plugin packages (@tspy/anthropic, @tspy/openai, @tspy/google, @tspy/ollama) composed in tspy.config.ts; agents, RAG, tools, prompts, and MCP are thin, composable starting points.",
+      "AI capabilities are Python, under ai/. LLM providers are plugin packages (@bionicjs/anthropic, @bionicjs/openai, @bionicjs/google, @bionicjs/ollama) composed in bionicjs.config.ts; agents, RAG, tools, prompts, and MCP are thin, composable starting points.",
     subsections: [
       { id: "llm", title: "LLM providers" },
       { id: "capabilities", title: "Capabilities" },
@@ -287,7 +287,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Jobs",
     group: "Integrations",
     intro:
-      "Background jobs are Python. Each system is a plugin package (@tspy/celery, @tspy/rq, @tspy/dramatiq) composed in tspy.config.ts, with a broker: Redis or RabbitMQ.",
+      "Background jobs are Python. Each system is a plugin package (@bionicjs/celery, @bionicjs/rq, @bionicjs/dramatiq) composed in bionicjs.config.ts, with a broker: Redis or RabbitMQ.",
     subsections: [
       { id: "systems", title: "Job systems" },
       {
@@ -342,7 +342,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Overview",
     group: "Deployment",
     intro:
-      "tspy projects build to a standard .output/ directory via Nitro. One build, deploy anywhere — Node.js, Cloudflare Workers, Vercel, Deno, or Bun. Nitro presets carry over unchanged.",
+      "bionicjs projects build to a standard .output/ directory via Nitro. One build, deploy anywhere — Node.js, Cloudflare Workers, Vercel, Deno, or Bun. Nitro presets carry over unchanged.",
     subsections: [
       { id: "build-output", title: "Build output" },
       { id: "nitro-presets", title: "Nitro presets" },
@@ -376,7 +376,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Overview",
     group: "CI/CD",
     intro:
-      "Set up continuous integration and delivery for your tspy project. GitHub Actions, testing, and deployment pipelines.",
+      "Set up continuous integration and delivery for your bionicjs project. GitHub Actions, testing, and deployment pipelines.",
     subsections: [],
   },
 
@@ -396,7 +396,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "The stack",
     group: "Reference",
     intro:
-      "Established tools, no tspy abstractions: React and Vite for the client, Nitro for the server, and Python with the mature libraries for AI and jobs.",
+      "Established tools, no bionicjs abstractions: React and Vite for the client, Nitro for the server, and Python with the mature libraries for AI and jobs.",
     subsections: [
       { id: "client", title: "Client - React + Vite" },
       { id: "server", title: "Server - Nitro" },
@@ -408,7 +408,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Testing",
     group: "Reference",
     intro:
-      "Unit tests, integration tests, and end-to-end testing for your tspy project.",
+      "Unit tests, integration tests, and end-to-end testing for your bionicjs project.",
     subsections: [],
   },
   {
@@ -416,7 +416,7 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "CLI",
     group: "Reference",
     intro:
-      "The tspy CLI commands: dev, build, and more.",
+      "The bionicjs CLI commands: dev, build, and more.",
     subsections: [],
   },
   {

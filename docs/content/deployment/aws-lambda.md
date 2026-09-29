@@ -1,10 +1,10 @@
-Deploy your tspy project to AWS Lambda. The Lambda preset bundles the Nitro server into a handler that AWS Lambda invokes on demand — you own the whole AWS stack, from the API Gateway trigger to IAM and whatever database you choose.
+Deploy your bionicjs project to AWS Lambda. The Lambda preset bundles the Nitro server into a handler that AWS Lambda invokes on demand — you own the whole AWS stack, from the API Gateway trigger to IAM and whatever database you choose.
 
 ## Configure
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "aws_lambda" },

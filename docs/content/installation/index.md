@@ -1,7 +1,7 @@
 ## Quick start
 
 ```bash
-npx create-tspy-app@latest my-app
+npx create-bionicjs-app@latest my-app
 cd my-app
 npm run dev
 ```
@@ -17,14 +17,14 @@ If you prefer to start from scratch:
 ```bash
 mkdir my-app && cd my-app
 npm init -y
-npm install tspy @tspy/dev react react-dom
+npm install @bionicjs/core @bionicjs/dev react react-dom
 npm install -D typescript @types/react
 ```
 
-Create `tspy.config.ts`:
+Create `bionicjs.config.ts`:
 
-```ts tspy.config.ts
-import { defineConfig } from "tspy";
+```ts bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   // Add plugins as needed
@@ -35,14 +35,14 @@ Create `app/page.tsx`:
 
 ```tsx app/page.tsx
 export default function Home() {
-  return <h1>Hello from TSPY</h1>;
+  return <h1>Hello from BionicJS</h1>;
 }
 ```
 
 Run the dev server:
 
 ```bash
-npx tspy dev
+npx bionicjs dev
 ```
 
 ## What's included
@@ -64,13 +64,13 @@ my-app/
 │       └── page.tsx      # /about route
 ├── server/
 │   └── api/              # Nitro API routes
-├── tspy.config.ts        # Framework config
+├── bionicjs.config.ts        # Framework config
 ├── package.json
 └── tsconfig.json
 ```
 
 ## Next steps
 
-- Read about [why TSPY](/docs/why-tspy) and the philosophy
+- Read about [why BionicJS](/docs/why-bionicjs) and the philosophy
 - Understand the [project structure](/docs/structure)
 - Learn about [layouts and pages](/docs/layouts-pages)

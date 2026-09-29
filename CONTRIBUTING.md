@@ -1,6 +1,6 @@
-# Contributing to TSPY
+# Contributing to BionicJS
 
-First off, thank you for considering contributing to TSPY.
+First off, thank you for considering contributing to BionicJS.
 
 ## Prerequisites
 
@@ -18,10 +18,10 @@ pnpm install
 
 ## Repository Layout
 
-- packages/tspy: the core framework
+- packages/bionicjs: the core framework
 - packages/dev: the vite and nitro based dev server and build pipeline
-- packages/create-tspy-app: the CLI scaffolding tool
-- packages/tspy-*: integration plugins for auth, databases, ai providers, and background jobs
+- packages/create-bionicjs-app: the CLI scaffolding tool
+- packages/bionicjs-*: integration plugins for auth, databases, ai providers, and background jobs
 - docs: the documentation site
 
 ## Development Workflow

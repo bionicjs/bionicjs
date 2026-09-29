@@ -34,17 +34,17 @@ def get_client() -> Anthropic:
 
       <H3 id="providers">Providers</H3>
       <P>
-        The provider is chosen in <Code>tspy.config.ts</Code> under the{" "}
+        The provider is chosen in <Code>bionicjs.config.ts</Code> under the{" "}
         <Code>ai</Code> key, and becomes the <Code>ai</Code> export on{" "}
-        <Code>tspy/server</Code>:
+        <Code>@bionicjs/core/server</Code>:
       </P>
       <Table
         head={["Package", "Provider", "Client"]}
         rows={[
-          [<Code key="1">@tspy/anthropic</Code>, <Code key="2">Anthropic</Code>, <Code key="3">Anthropic SDK</Code>],
-          [<Code key="4">@tspy/openai</Code>, <Code key="5">OpenAI</Code>, <Code key="6">OpenAI SDK</Code>],
-          [<Code key="7">@tspy/google</Code>, <Code key="8">Google / Gemini</Code>, <Code key="9">Google Gemini SDK</Code>],
-          [<Code key="10">@tspy/ollama</Code>, <Code key="11">Ollama</Code>, <Code key="12">Ollama / local models</Code>],
+          [<Code key="1">@bionicjs/anthropic</Code>, <Code key="2">Anthropic</Code>, <Code key="3">Anthropic SDK</Code>],
+          [<Code key="4">@bionicjs/openai</Code>, <Code key="5">OpenAI</Code>, <Code key="6">OpenAI SDK</Code>],
+          [<Code key="7">@bionicjs/google</Code>, <Code key="8">Google / Gemini</Code>, <Code key="9">Google Gemini SDK</Code>],
+          [<Code key="10">@bionicjs/ollama</Code>, <Code key="11">Ollama</Code>, <Code key="12">Ollama / local models</Code>],
         ]}
       />
       <P>
@@ -56,7 +56,7 @@ def get_client() -> Anthropic:
 
       <H3 id="calling">Calling from the web</H3>
       <P>
-        TSPY does not reinvent AI abstractions; it provides a structured home for
+        BionicJS does not reinvent AI abstractions; it provides a structured home for
         them within the full-stack repository. The path from a React button to a
         Python agent:
       </P>

@@ -1,6 +1,6 @@
 ## Middleware {#middleware}
 
-TSPY middleware runs in the Nitro server using h3's middleware shape. It
+BionicJS middleware runs in the Nitro server using h3's middleware shape. It
 can intercept requests, check authentication tokens, and attach context
 before the request reaches the specific `server/api/` handler.
 
@@ -39,7 +39,7 @@ A single API request moves through the stack in a fixed order:
 ## Edge {#edge}
 
 Because both Nitro and h3 are built on standard Web APIs (`Request`,
-`Response`, `fetch`), the entire TSPY server layer is fully
+`Response`, `fetch`), the entire BionicJS server layer is fully
 edge-compatible. It can be deployed to Cloudflare Workers, Vercel Edge, or
 Deno Deploy without modification.
 

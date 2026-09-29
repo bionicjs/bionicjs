@@ -2,12 +2,12 @@ Prisma is a schema-first ORM. You define your data model in a single `schema.pri
 
 ## Compose the plugin
 
-Add `@tspy/prisma` under the `database` key in `tspy.config.ts`. Engine (SQLite or PostgreSQL) and access layer are independent choices.
+Add `@bionicjs/prisma` under the `database` key in `bionicjs.config.ts`. Engine (SQLite or PostgreSQL) and access layer are independent choices.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { prisma } from "@tspy/prisma";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { prisma } from "@bionicjs/prisma";
 
 export default defineConfig({
   database: prisma({ provider: "postgresql", url: env("DATABASE_URL") }),
@@ -29,11 +29,11 @@ npx prisma migrate dev  # create and apply migrations
 
 ## Using the client
 
-The plugin exposes the generated client as the `db` export on `tspy/server`. Server routes import it directly:
+The plugin exposes the generated client as the `db` export on `@bionicjs/core/server`. Server routes import it directly:
 
 ```ts
 // server/api/users.ts
-import { db } from "tspy/server";
+import { db } from "@bionicjs/core/server";
 
 export default defineEventHandler(async () => {
   return await db.user.findMany();
@@ -45,4 +45,4 @@ The client is constructed on the server and never imported into the client bundl
 ## Good to know
 
 - Prisma is best for teams that want a schema file as the single source of truth.
-- Because the boundary is always `db` on `tspy/server`, swapping Prisma for Drizzle or Kysely later is a config change plus a rewrite of the query files — nothing else moves.
+- Because the boundary is always `db` on `@bionicjs/core/server`, swapping Prisma for Drizzle or Kysely later is a config change plus a rewrite of the query files — nothing else moves.

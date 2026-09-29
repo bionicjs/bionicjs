@@ -11,9 +11,9 @@ amqps://user:pass@host:5671/          # TLS
 ## Compose a job system with RabbitMQ
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { dramatiq } from "@tspy/dramatiq";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { dramatiq } from "@bionicjs/dramatiq";
 
 export default defineConfig({
   jobs: dramatiq({ broker: "amqp://guest:guest@localhost:5672" }),

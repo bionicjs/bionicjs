@@ -1,0 +1,31 @@
+{
+  "name": "{{appName}}",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "bionicjs dev",
+    "dev:client": "vite dev",
+    "dev:server": "nitro dev",
+    "build": "vite build && nitro build",
+    "start": "node .output/server/index.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "h3": "2.0.1-rc.31",
+    "nitropack": "^2.13.4",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-router": "^7",
+    "@bionicjs/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vite": "^8"
+  }
+}

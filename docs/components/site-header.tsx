@@ -26,11 +26,11 @@ export function SiteHeader({ className = "" }: { className?: string }) {
       <div className={`relative flex h-14 items-center gap-2 px-4 sm:px-6 lg:px-8 ${className}`}>
         <Link
           href="/"
-          aria-label="tspy home"
+          aria-label="bionicjs home"
           className="flex shrink-0 items-center gap-2"
         >
           <LogoIcon className="size-6" />
-          <span className="text-label-16 font-semibold">tspy</span>
+          <span className="text-label-16 font-semibold">bionicjs</span>
         </Link>
 
         <HeaderNav className="ml-4 hidden items-center gap-5 md:flex" />
@@ -46,8 +46,8 @@ export function SiteHeader({ className = "" }: { className?: string }) {
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              aria-label={`tspy on GitHub - ${stars ?? 0} stars`}
-              title="tspy on GitHub"
+              aria-label={`bionicjs on GitHub - ${stars ?? 0} stars`}
+              title="bionicjs on GitHub"
               className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
             >
               <GithubIcon className="size-5" />
@@ -90,7 +90,7 @@ export function SiteHeader({ className = "" }: { className?: string }) {
           <div className="flex h-14 items-center justify-between px-4 sm:px-6">
             <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
               <LogoIcon className="size-6" />
-              <span className="text-label-16 font-semibold">tspy</span>
+              <span className="text-label-16 font-semibold">bionicjs</span>
             </Link>
             <button
               type="button"

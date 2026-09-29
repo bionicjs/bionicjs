@@ -1,4 +1,4 @@
-Redis is the default broker for all three job systems. Every tspy job plugin — Celery, RQ, and Dramatiq — accepts a Redis connection string, and RQ requires it by design.
+Redis is the default broker for all three job systems. Every bionicjs job plugin — Celery, RQ, and Dramatiq — accepts a Redis connection string, and RQ requires it by design.
 
 ## Broker URLs
 
@@ -11,9 +11,9 @@ redis://:password@host:6379/1     # with auth and a database number
 ## Compose a job system with Redis
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { celery } from "@tspy/celery";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { celery } from "@bionicjs/celery";
 
 export default defineConfig({
   jobs: celery({ broker: "redis://localhost:6379" }),

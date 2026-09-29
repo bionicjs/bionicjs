@@ -1,6 +1,6 @@
-# Releasing TSPY
+# Releasing BionicJS
 
-TSPY is a pnpm workspace that ships independent public packages from `packages/`. The workspace root (`tspy-workspace`) is private and is never published.
+BionicJS is a pnpm workspace that ships independent public packages from `packages/`. The workspace root (`bionicjs-workspace`) is private and is never published.
 
 ## Current status
 
@@ -11,12 +11,12 @@ TSPY is a pnpm workspace that ships independent public packages from `packages/`
 
 | Package | npm name | Notes |
 | --- | --- | --- |
-| Core | `tspy` | Unscoped, always public |
-| Dev server | `@tspy/dev` | Scoped, requires public access |
-| Generator | `create-tspy-app` | Unscoped, always public |
-| Integrations | `@tspy/anthropic`, `@tspy/better-auth`, `@tspy/celery`, `@tspy/clerk`, `@tspy/dramatiq`, `@tspy/drizzle`, `@tspy/firebase`, `@tspy/google`, `@tspy/kysely`, `@tspy/ollama`, `@tspy/openai`, `@tspy/prisma`, `@tspy/rq`, `@tspy/sql`, `@tspy/supabase`, `@tspy/workos` | Scoped, requires public access |
+| Core | `@bionicjs/core` | Unscoped, always public |
+| Dev server | `@bionicjs/dev` | Scoped, requires public access |
+| Generator | `create-bionicjs-app` | Unscoped, always public |
+| Integrations | `@bionicjs/anthropic`, `@bionicjs/better-auth`, `@bionicjs/celery`, `@bionicjs/clerk`, `@bionicjs/dramatiq`, `@bionicjs/drizzle`, `@bionicjs/firebase`, `@bionicjs/google`, `@bionicjs/kysely`, `@bionicjs/ollama`, `@bionicjs/openai`, `@bionicjs/prisma`, `@bionicjs/rq`, `@bionicjs/sql`, `@bionicjs/supabase`, `@bionicjs/workos` | Scoped, requires public access |
 
-Scoped `@tspy/*` packages publish to npm's restricted scope by default, so they must be published with `--access public`.
+Scoped `@bionicjs/*` packages publish to npm's restricted scope by default, so they must be published with `--access public`.
 
 ## Versioning policy
 
@@ -47,7 +47,7 @@ Until 1.0 all public packages share the same version and are bumped together. Th
    pnpm --dir docs build
    ```
 
-4. Set the next version in every `packages/*/package.json`. Keep versions aligned across core, dev, the generator, and all integrations. Integration packages depend on the core as `"tspy": "workspace:*"`; pnpm rewrites that range to the published version when publishing.
+4. Set the next version in every `packages/*/package.json`. Keep versions aligned across core, dev, the generator, and all integrations. Integration packages depend on the core as `"@bionicjs/core": "workspace:*"`; pnpm rewrites that range to the published version when publishing.
 
 5. Dry-run the publish to catch packaging mistakes. The pack output must contain the entry points, `bin`, and `files` declared by each manifest:
 
@@ -69,7 +69,7 @@ Until 1.0 all public packages share the same version and are bumped together. Th
    pnpm -r publish --access public
    ```
 
-8. Create and push a tag for the release. TSPY follows the `v<major>.<minor>.<patch>` convention:
+8. Create and push a tag for the release. BionicJS follows the `v<major>.<minor>.<patch>` convention:
 
    ```sh
    git tag -a v0.1.0 -m "v0.1.0"
@@ -79,8 +79,8 @@ Until 1.0 all public packages share the same version and are bumped together. Th
 9. Verify on the registry:
 
    ```sh
-   npm view tspy version
-   npm view @tspy/anthropic version
+   npm view bionicjs version
+   npm view @bionicjs/anthropic version
    ```
 
 ## Beta release
@@ -108,7 +108,7 @@ Canaries are meant for integration testing, not for users. Do not promote a cana
 If a publish fails partway through, do not bump versions again. Fix the cause, publish the failing package alone with its unchanged version, then continue the chain from the next package:
 
 ```sh
-pnpm --filter @tspy/<package> publish --access public
+pnpm --filter @bionicjs/<package> publish --access public
 ```
 
 If publishing completed but the Git tag step failed, create the tag without republishing.

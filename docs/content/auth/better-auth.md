@@ -1,13 +1,13 @@
-Better Auth is the open-source, self-hosted auth library that powers `@tspy/better-auth`. Sessions live in your own database, the whole stack runs on your server, and there are no external dependencies to configure.
+Better Auth is the open-source, self-hosted auth library that powers `@bionicjs/better-auth`. Sessions live in your own database, the whole stack runs on your server, and there are no external dependencies to configure.
 
 ## Compose the plugin
 
-Add the plugin under the `auth` key in `tspy.config.ts`. Enable the authentication methods you want — email/password, magic links, and social providers are all supported.
+Add the plugin under the `auth` key in `bionicjs.config.ts`. Enable the authentication methods you want — email/password, magic links, and social providers are all supported.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";
 
 export default defineConfig({
   auth: betterAuth({
@@ -28,7 +28,7 @@ The plugin writes its expected keys into `.env.example` so a fresh clone can be 
 
 ## Server-side handler
 
-The scaffolded handler lives under `server/auth/`. It reads credentials from the environment, initializes Better Auth, and is exposed as the `auth` export on `tspy/server`.
+The scaffolded handler lives under `server/auth/`. It reads credentials from the environment, initializes Better Auth, and is exposed as the `auth` export on `@bionicjs/core/server`.
 
 ```ts
 // server/auth/better-auth.ts
@@ -55,7 +55,7 @@ Middleware runs before route handlers and before the Python RPC boundary, so a p
 
 ```ts
 // server/api/me.ts
-import { auth } from "tspy/server";
+import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);
@@ -64,6 +64,6 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-## What TSPY handles
+## What BionicJS handles
 
-TSPY does not define its own auth protocol. The JWT format, session store, and verification rules belong to Better Auth — TSPY makes the wiring automatic and typed, and exposes the same `auth` object everywhere you need it.
+BionicJS does not define its own auth protocol. The JWT format, session store, and verification rules belong to Better Auth — BionicJS makes the wiring automatic and typed, and exposes the same `auth` object everywhere you need it.

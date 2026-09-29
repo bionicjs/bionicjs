@@ -11,7 +11,7 @@ signatures. Types flow from Python to TypeScript — no manual type
 definitions needed.
 
 ```python # ai/chat.py
-from tspy import ai
+from bionicjs import ai
 
 async def chat(message: str) -> str:
     """Send a message to the AI."""
@@ -26,7 +26,7 @@ async def chat(message: str) -> str:
 This generates a TypeScript client:
 
 ```ts
-import { chat } from "tspy/server/ai";
+import { chat } from "@bionicjs/core/server/ai";
 
 const reply = await chat("Hello!"); // typed as (message: string) => Promise<string>
 ```

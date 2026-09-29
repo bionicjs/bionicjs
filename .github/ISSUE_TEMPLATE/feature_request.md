@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea or capability for TSPY
+about: Suggest an idea or capability for BionicJS
 title: "feat: "
 labels: enhancement
 assignees: ""

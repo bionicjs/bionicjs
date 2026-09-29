@@ -1,4 +1,4 @@
-Agents are the composable Python starting point for autonomous workflows. A tspy agent wraps your LLM client with a loop over tool calls, so building an agent means defining the tools and letting the model drive.
+Agents are the composable Python starting point for autonomous workflows. A bionicjs agent wraps your LLM client with a loop over tool calls, so building an agent means defining the tools and letting the model drive.
 
 ## Structure
 
@@ -8,7 +8,7 @@ Agents live under the `ai/` folder at the top of your project. The folder only e
 
 ```python
 # ai/agents.py
-from tspy.agents import Agent
+from bionicjs.agents import Agent
 
 agent = Agent(
     instructions="You are a coding assistant.",
@@ -18,7 +18,7 @@ agent = Agent(
 
 ```ts
 // server/api/agent.ts
-import { ai } from "tspy/server";
+import { ai } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { message } = await readBody(event);

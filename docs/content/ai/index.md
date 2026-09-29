@@ -1,13 +1,13 @@
 ## Overview {#overview}
-tspy brings intelligent capabilities to your full-stack apps through an integrated Python layer for LLMs and agents.
+bionicjs brings intelligent capabilities to your full-stack apps through an integrated Python layer for LLMs and agents.
 
 ## LLM providers {#llm}
-Pick one provider plugin and get its official SDK client as the `ai` export on `tspy/server`:
+Pick one provider plugin and get its official SDK client as the `ai` export on `@bionicjs/core/server`:
 
-- **OpenAI** — `@tspy/openai`
-- **Anthropic** — `@tspy/anthropic`
-- **Gemini** — `@tspy/google`
-- **Ollama** — `@tspy/ollama` (local, no API key)
+- **OpenAI** — `@bionicjs/openai`
+- **Anthropic** — `@bionicjs/anthropic`
+- **Gemini** — `@bionicjs/google`
+- **Ollama** — `@bionicjs/ollama` (local, no API key)
 
 ## Capabilities {#capabilities}
 Composable Python starting points under `ai/`:
@@ -20,7 +20,7 @@ Composable Python starting points under `ai/`:
 
 ## Calling from the web {#calling}
 ```ts
-import { ai } from "tspy/server";
+import { ai } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { prompt } = await readBody(event);

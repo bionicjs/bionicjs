@@ -52,10 +52,10 @@ const client = hc<AppRouter>("/");
 export const api = client.api;
 `;
 
-  const tspyDir = path.join(cwd, ".tspy");
-  await mkdir(tspyDir, { recursive: true });
-  await writeFile(path.join(tspyDir, "hono.ts"), honoContent);
-  await writeFile(path.join(tspyDir, "api-client.ts"), apiClientContent);
+  const bionicjsDir = path.join(cwd, ".bionicjs");
+  await mkdir(bionicjsDir, { recursive: true });
+  await writeFile(path.join(bionicjsDir, "hono.ts"), honoContent);
+  await writeFile(path.join(bionicjsDir, "api-client.ts"), apiClientContent);
 }
 
 // Helper to generate server exports from config plugins
@@ -68,18 +68,18 @@ export async function generateServerExports(cwd: string, plugins: any[]) {
   }
 
   const serverContent = `// AUTO-GENERATED\\n` + exports.join("\\n\\n");
-  const tspyDir = path.join(cwd, ".tspy");
-  await mkdir(tspyDir, { recursive: true });
-  await writeFile(path.join(tspyDir, "server.ts"), serverContent);
+  const bionicjsDir = path.join(cwd, ".bionicjs");
+  await mkdir(bionicjsDir, { recursive: true });
+  await writeFile(path.join(bionicjsDir, "server.ts"), serverContent);
 }
 
 export async function loadConfig(cwd: string) {
-  const configPath = path.join(cwd, "tspy.config.ts");
+  const configPath = path.join(cwd, "bionicjs.config.ts");
   try {
     // using tsx or dynamic import requires some esbuild logic in dev,
     // but for now let's just dynamic import it (assuming Node can load it if compiled, 
     // or we can use jiti).
-    // In a real framework, we use jiti or c12 to load tspy.config.ts.
+    // In a real framework, we use jiti or c12 to load bionicjs.config.ts.
     const jiti = (await import("jiti")).default;
     const load = jiti(cwd, { interopDefault: true });
     const config = load(configPath);
@@ -87,7 +87,7 @@ export async function loadConfig(cwd: string) {
     // Convert config object values to array of plugins
     return Object.values(config) as any[];
   } catch (err) {
-    console.warn("No tspy.config.ts found or failed to load.", err);
+    console.warn("No bionicjs.config.ts found or failed to load.", err);
     return [];
   }
 }

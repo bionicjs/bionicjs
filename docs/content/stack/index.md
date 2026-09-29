@@ -2,7 +2,7 @@
 
 The stack is deliberately unoriginal: React and Vite for the client,
 Nitro for the server, and Python with its mature libraries for AI and
-jobs. tspy ties them together rather than replacing them.
+jobs. bionicjs ties them together rather than replacing them.
 
 ## Client — React + Vite
 

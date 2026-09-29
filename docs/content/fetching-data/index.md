@@ -22,7 +22,7 @@ Nitro handlers read and return typed data. They can call Python through
 the RPC boundary when the answer needs the intelligence layer.
 
 ```ts server/api/users.ts
-import { db } from "tspy/server";
+import { db } from "@bionicjs/core/server";
 
 export default defineEventHandler(async () => {
   return await db.query.users.findMany();
@@ -35,7 +35,7 @@ Python functions are exposed through generated RPC stubs, so fetching
 happens over the same typed contract from either side.
 
 ```python # ai/chat.py
-from tspy import ai
+from bionicjs import ai
 
 async def chat(message: str) -> str:
     client = ai.client()

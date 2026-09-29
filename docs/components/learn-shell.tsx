@@ -52,10 +52,10 @@ function ChapterList({ onNavigate }: { onNavigate?: () => void }) {
         </div>
       ))}
       <Link
-        href="/docs/why-tspy"
+        href="/docs/why-bionicjs"
         className="px-3 text-label-13 text-muted-foreground transition-colors hover:text-foreground"
       >
-        Using TSPY? Read the docs
+        Using BionicJS? Read the docs
       </Link>
     </nav>
   );

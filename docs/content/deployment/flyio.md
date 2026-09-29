@@ -1,4 +1,4 @@
-Deploy your tspy project to Fly.io. Fly runs your Nitro server in a container on their fleet of regions, with a real filesystem, long-lived processes, and opt-in edge routing — the best choice when you want persistent Node.js with a stable public IP.
+Deploy your bionicjs project to Fly.io. Fly runs your Nitro server in a container on their fleet of regions, with a real filesystem, long-lived processes, and opt-in edge routing — the best choice when you want persistent Node.js with a stable public IP.
 
 ## Configure
 
@@ -7,11 +7,11 @@ fly launch
 fly deploy
 ```
 
-tspy's default Nitro output is Node.js, so Fly needs no preset:
+bionicjs's default Nitro output is Node.js, so Fly needs no preset:
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "node_server" },

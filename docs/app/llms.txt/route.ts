@@ -2,9 +2,9 @@ import { DOCS_NAV } from "@/lib/sections";
 
 export async function GET() {
   const lines = [
-    "# tspy docs",
+    "# bionicjs docs",
     "",
-    "> tspy is a fullstack framework. One command builds a project where TypeScript owns the web (a React client and a Nitro server) and Python owns AI and background jobs. Everything is composed from small, independent template packages instead of baked-in boilerplate.",
+    "> bionicjs is a fullstack framework. One command builds a project where TypeScript owns the web (a React client and a Nitro server) and Python owns AI and background jobs. Everything is composed from small, independent template packages instead of baked-in boilerplate.",
     "",
     ...DOCS_NAV.flatMap((group) => [
       `### ${group.title}`,
@@ -25,5 +25,5 @@ export async function GET() {
 }
 
 function baseUrl(path: string): string {
-  return `https://tspy.dev${path}`;
+  return `https://bionicjs.dev${path}`;
 }

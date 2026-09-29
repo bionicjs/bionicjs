@@ -1,7 +1,7 @@
 ## Agents that act
 
 Agentic integration builds AI agents that act autonomously: they decide
-what to call, in what order, and whether to hand back to a human. tspy
+what to call, in what order, and whether to hand back to a human. bionicjs
 provides thin starting points on top of the LLM provider you chose.
 
 ## Tool calling

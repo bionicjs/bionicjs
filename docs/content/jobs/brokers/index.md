@@ -1,5 +1,5 @@
 ## Overview {#overview}
-The broker carries task messages between your app and the Python workers. The choice is a URL in `tspy.config.ts` — swapping brokers never touches task code.
+The broker carries task messages between your app and the Python workers. The choice is a URL in `bionicjs.config.ts` — swapping brokers never touches task code.
 
 | Broker | URL scheme | Celery | RQ | Dramatiq |
 | --- | --- | --- | --- | --- |
@@ -10,9 +10,9 @@ The broker carries task messages between your app and the Python workers. The ch
 The default broker — fast, in-memory, and already running in most stacks. RQ is Redis-only by design.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { rq } from "@tspy/rq";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { rq } from "@bionicjs/rq";
 
 export default defineConfig({
   jobs: rq({ broker: "redis://localhost:6379" }),
@@ -23,9 +23,9 @@ export default defineConfig({
 Full-featured message routing with exchanges and routing keys — the right pick for workload-heavy pipelines in production.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { dramatiq } from "@tspy/dramatiq";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { dramatiq } from "@bionicjs/dramatiq";
 
 export default defineConfig({
   jobs: dramatiq({ broker: "amqp://guest:guest@localhost:5672" }),

@@ -21,7 +21,7 @@ import {
 import { LandingFooter } from "@/components/landing-footer";
 import { Next as NextIcon, Nuxt as NuxtIcon, Svelte as SvelteIcon } from "@react-symbols/icons";
 
-const CREATE_COMMAND = "npx create-tspy-app@latest";
+const CREATE_COMMAND = "npx create-bionicjs-app@latest";
 
 const FEATURES: {
   index: string;
@@ -603,13 +603,13 @@ function escHtml(s: string): string {
 const COMPARISONS = [
   {
     feature: "Everything in one config",
-    tspy: {
-      file: "tspy.config.ts",
-      code: `import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";   // auth
-import { prisma } from "@tspy/prisma";             // database
-import { anthropic } from "@tspy/anthropic";        // ai
-import { celery } from "@tspy/celery";              // jobs
+    bionicjs: {
+      file: "bionicjs.config.ts",
+      code: `import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";   // auth
+import { prisma } from "@bionicjs/prisma";             // database
+import { anthropic } from "@bionicjs/anthropic";        // ai
+import { celery } from "@bionicjs/celery";              // jobs
 
 export default defineConfig({
   auth: betterAuth({ emailAndPassword: { enabled: true }, socialProviders: { github: { clientId, clientSecret } } }),
@@ -779,10 +779,18 @@ gem "openai"
   },
 ];
 
-function TspyLogo(props: SVGProps<SVGSVGElement>) {
+function BionicJSLogo(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <svg viewBox="18 18 46 40" fill="none" {...props}>
+      <path
+        d="M36 24 A14 14 0 0 0 36 52"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+      />
+      <path d="M36 24 H48 V52 H36" stroke="#0891B2" strokeWidth="6" strokeLinejoin="miter" />
+      <path d="M48 38 H54" stroke="#0891B2" strokeWidth="6" />
+      <circle cx="58" cy="38" r="4.5" fill="#0891B2" />
     </svg>
   );
 }
@@ -840,7 +848,7 @@ function WaspLogo(props: SVGProps<SVGSVGElement>) {
 }
 
 const FRAMEWORKS = [
-  { key: "tspy", label: "tspy", url: "https://tspy.vercel.app", Logo: TspyLogo },
+  { key: "bionicjs", label: "bionicjs", url: "https://bionicjs.vercel.app", Logo: BionicJSLogo },
   { key: "nextjs", label: "Next.js", url: "https://nextjs.org", Logo: NextjsLogo },
   { key: "nuxt", label: "Nuxt", url: "https://nuxt.com", Logo: NuxtLogo },
   { key: "sveltekit", label: "SvelteKit", url: "https://kit.svelte.dev", Logo: SvelteLogo },
@@ -858,8 +866,8 @@ function ComparisonBlock() {
 
   const comparison = COMPARISONS[0];
   const otherCode = comparison[activeFramework];
-  const tspyCode = comparison.tspy;
-  const tspyFramework = FRAMEWORKS.find((f) => f.key === "tspy")!;
+  const bionicjsCode = comparison.bionicjs;
+  const bionicjsFramework = FRAMEWORKS.find((f) => f.key === "bionicjs")!;
 
   return (
     <div className="w-full">
@@ -871,25 +879,25 @@ function ComparisonBlock() {
         borderRadius={12}
         className="rounded-xl"
       >
-        <Browser address="tspy.dev" url="https://tspy.dev">
+        <Browser address="bionicjs.dev" url="https://bionicjs.dev">
         <div className="grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-border" style={{ background: "var(--code-bg)" }}>
-          {/* Left Pane: TSPY */}
+          {/* Left Pane: BionicJS */}
           <div className="flex flex-col overflow-hidden">
-            {/* TSPY Tab Header */}
+            {/* BionicJS Tab Header */}
             <div className="flex items-center border-b px-4 py-2" style={{ borderColor: "var(--code-border)", minHeight: "45px" }}>
               <div className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium bg-muted text-foreground">
-                <tspyFramework.Logo className="size-3.5" />
-                {tspyFramework.label}
+                <bionicjsFramework.Logo className="size-3.5" />
+                {bionicjsFramework.label}
               </div>
             </div>
 
             {/* File Path */}
             <div className="flex items-center px-4 py-2 font-mono text-[11px]" style={{ backgroundColor: "rgba(0,0,0,0.15)", color: "var(--code-header-fg)" }}>
-              <span>{tspyCode.file}</span>
+              <span>{bionicjsCode.file}</span>
             </div>
 
             <pre className="overflow-x-auto px-5 py-5 font-mono text-[13px] leading-[1.7]" style={{ color: "var(--code-fg)", minHeight: "380px" }}>
-              <code dangerouslySetInnerHTML={{ __html: highlightVercel(tspyCode.code) }} />
+              <code dangerouslySetInnerHTML={{ __html: highlightVercel(bionicjsCode.code) }} />
             </pre>
           </div>
 
@@ -897,7 +905,7 @@ function ComparisonBlock() {
           <div className="flex flex-col overflow-hidden">
             {/* Framework Selector Header */}
             <div className="flex items-center gap-1 border-b px-4 py-2 overflow-x-auto" style={{ borderColor: "var(--code-border)", minHeight: "45px" }}>
-              {FRAMEWORKS.filter((f) => f.key !== "tspy").map((f) => {
+              {FRAMEWORKS.filter((f) => f.key !== "bionicjs").map((f) => {
                 const Logo = f.Logo;
                 return (
                   <button

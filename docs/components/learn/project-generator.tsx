@@ -5,12 +5,12 @@ export function ProjectGenerator() {
     <>
       <H3 id="the-scaffolder">The scaffolder</H3>
       <P>
-        <Code>create-tspy-app</Code> does not write a fixed project. It composes
+        <Code>create-bionicjs-app</Code> does not write a fixed project. It composes
         one from templates: a <Code>base</Code> template plus one template per
         capability you selected. The output is a directory tree that only
         contains the folders you asked for.
       </P>
-      <CodeBlock file="packages/create-tspy-app/src/generate.ts" title="Template order">
+      <CodeBlock file="packages/create-bionicjs-app/src/generate.ts" title="Template order">
 {`const templates = [BASE_TEMPLATE, ...options.templates];
 
 for (const template of templates) {
@@ -20,7 +20,7 @@ for (const template of templates) {
       </CodeBlock>
       <P>
         The base template always runs first. It owns the app skeleton -{" "}
-        <Code>app/</Code>, <Code>tspy.config.ts</Code>, the style entry - and
+        <Code>app/</Code>, <Code>bionicjs.config.ts</Code>, the style entry - and
         every additional template layers on top of it.
       </P>
 
@@ -94,13 +94,13 @@ for (const template of templates) {
       <H3 id="config-generation">Config generation</H3>
       <P>
         The scaffolder does not just copy files - afterwards it synthesizes{" "}
-        <Code>tspy.config.ts</Code> from your selections. Only the plugins you
+        <Code>bionicjs.config.ts</Code> from your selections. Only the plugins you
         chose are imported, and each one contributes its own block:
       </P>
-      <CodeBlock file="tspy.config.ts" title="Generated from selections">
-{`import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";
-import { drizzle } from "@tspy/drizzle";
+      <CodeBlock file="bionicjs.config.ts" title="Generated from selections">
+{`import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";
+import { drizzle } from "@bionicjs/drizzle";
 
 export default defineConfig({
   auth: betterAuth({ emailAndPassword: { enabled: true } }),
@@ -124,7 +124,7 @@ export default defineConfig({
         Generation is strictly ordered, so a full selection always composes the
         same way - and the scaffolder reports exactly what it did:
       </P>
-      <CodeBlock title="create-tspy-app --auth better-auth --database sqlite --toolkit drizzle --ai llm/anthropic --jobs celery">
+      <CodeBlock title="create-bionicjs-app --auth better-auth --database sqlite --toolkit drizzle --ai llm/anthropic --jobs celery">
 {`templates applied, in order:
   base
   + auth/better-auth
@@ -163,7 +163,7 @@ Created my-app/ with 6 template(s).
           <>Templates resolve onto the base in declaration order.</>,
           <>Conflicts merge by file type (or last writer wins).</>,
           <>
-            <Code>tspy.config.ts</Code> is generated from the same selections.
+            <Code>bionicjs.config.ts</Code> is generated from the same selections.
           </>,
         ]}
       />

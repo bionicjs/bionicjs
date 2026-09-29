@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { MoonIcon, SunIcon } from "@/components/icons";
 
-const THEME_EVENT = "tspy-theme";
+const THEME_EVENT = "bionicjs-theme";
 
 function subscribe(callback: () => void) {
   window.addEventListener(THEME_EVENT, callback);
@@ -29,7 +29,7 @@ export function ThemeToggle() {
     const next = !dark;
     document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("tspy-theme", next ? "dark" : "light");
+      localStorage.setItem("bionicjs-theme", next ? "dark" : "light");
     } catch {}
     window.dispatchEvent(new Event(THEME_EVENT));
   }

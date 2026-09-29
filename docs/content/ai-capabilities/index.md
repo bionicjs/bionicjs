@@ -21,14 +21,14 @@ ai/
 ## Providers {#providers}
 
 Each AI provider is a plugin package. The plugin hands you the official
-SDK client — you don't learn a TSPY-specific API.
+SDK client — you don't learn a BionicJS-specific API.
 
 | Plugin | Provider | Default Model |
 |--------|----------|---------------|
-| `@tspy/openai` | OpenAI | gpt-4o |
-| `@tspy/anthropic` | Anthropic | claude-sonnet-4-5 |
-| `@tspy/google` | Google Gemini | gemini-2.5-pro |
-| `@tspy/ollama` | Ollama (local) | llama3.2 |
+| `@bionicjs/openai` | OpenAI | gpt-4o |
+| `@bionicjs/anthropic` | Anthropic | claude-sonnet-4-5 |
+| `@bionicjs/google` | Google Gemini | gemini-2.5-pro |
+| `@bionicjs/ollama` | Ollama (local) | llama3.2 |
 
 ## Calling from the web {#calling}
 
@@ -37,7 +37,7 @@ boundary. The types flow automatically — Python defines them, TypeScript
 consumes them.
 
 ```ts server/api/chat.ts
-import { chat } from "tspy/server/ai";
+import { chat } from "@bionicjs/core/server/ai";
 
 export default defineEventHandler(async (event) => {
   const { message } = await readBody(event);

@@ -5,7 +5,7 @@ export function DataMutations() {
     <>
       <H3 id="forms">Forms</H3>
       <P>
-        TSPY recommends using standard React Server Functions (or equivalent
+        BionicJS recommends using standard React Server Functions (or equivalent
         mutation patterns like React Query) to send data from the client to the
         server.
       </P>

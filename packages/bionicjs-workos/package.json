@@ -1,0 +1,57 @@
+{
+  "name": "@bionicjs/workos",
+  "version": "0.1.0",
+  "description": "WorkOS authentication plugin for BionicJS",
+  "type": "module",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "keywords": [
+    "bionicjs",
+    "plugin",
+    "auth"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bionicjs/bionicjs.git",
+    "directory": "packages/bionicjs-workos"
+  },
+  "bugs": {
+    "url": "https://github.com/bionicjs/bionicjs/issues"
+  },
+  "homepage": "https://github.com/bionicjs/bionicjs#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@bionicjs/core": "workspace:*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "@types/node": "^22"
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node20 --dts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  }
+}

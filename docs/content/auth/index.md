@@ -1,5 +1,5 @@
 ## Overview
-Authentication in tspy is built using robust, proven providers that seamlessly integrate with our filesystem routing and middleware.
+Authentication in bionicjs is built using robust, proven providers that seamlessly integrate with our filesystem routing and middleware.
 
 ## Providers
 - **Better Auth**: The default, feature-rich authentication solution.

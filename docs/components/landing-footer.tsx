@@ -51,7 +51,7 @@ export function LandingFooter() {
           <div>
             <div className="flex items-center gap-2">
               <LogoIcon className="size-8" />
-              <span className="text-label-18">tspy</span>
+              <span className="text-label-18">bionicjs</span>
             </div>
             <p className="mt-4 max-w-xs text-copy-14 leading-6 text-muted-foreground">
               The fullstack framework for the web and its intelligence.
@@ -60,7 +60,7 @@ export function LandingFooter() {
           <FooterColumn
             title="Get started"
             links={[
-              { label: "Docs", href: "/docs/why-tspy" },
+              { label: "Docs", href: "/docs/why-bionicjs" },
               { label: "Quick start", href: "/docs/installation" },
             ]}
           />
@@ -82,9 +82,9 @@ export function LandingFooter() {
       </div>
       <div className="line-t relative">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-4 py-6 text-label-13 text-muted-foreground sm:flex-row sm:items-center sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} tspy · MIT License</p>
+          <p>© {new Date().getFullYear()} bionicjs · MIT License</p>
           <a
-            href="https://github.com/Atnatewoss"
+            href="https://github.com/bionicjs"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"

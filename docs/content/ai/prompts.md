@@ -18,12 +18,12 @@ Reply in a helpful, concise tone.
 
 ```ts
 // server/api/support.ts
-import { ai } from "tspy/server";
+import { ai } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { message } = await readBody(event);
   const prompt = ai.prompts.render("support", {
-    product: "tspy",
+    product: "bionicjs",
     message,
   });
   const response = await ai.messages.create({

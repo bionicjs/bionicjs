@@ -5,7 +5,7 @@ client, `server/` is the Nitro backend, and `ai/` and `jobs/` are Python.
 
 ## The client — React, CSR first
 
-Today tspy is client-side rendered: the browser fetches the bundle and
+Today bionicjs is client-side rendered: the browser fetches the bundle and
 React renders. SSR is planned — the architecture keeps the render boundary
 movable without a rewrite.
 
@@ -26,7 +26,7 @@ Python runs AI and jobs. It is reached through the generated typed RPC
 boundary — never an untyped JSON handshake.
 
 ```python # ai/chat.py
-from tspy import ai
+from bionicjs import ai
 
 async def chat(message: str) -> str:
     client = ai.client()

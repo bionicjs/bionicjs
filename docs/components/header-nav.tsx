@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { GITHUB_URL } from "@/lib/sections";
 
 const NAV: { label: string; href: string; match: string }[] = [
-  { label: "Docs", href: "/docs/why-tspy", match: "/docs" },
+  { label: "Docs", href: "/docs/why-bionicjs", match: "/docs" },
   { label: "Learn", href: "/learn/why-a-meta-framework", match: "/learn" },
   { label: "Changelog", href: "/changelog", match: "/changelog" },
 ];
@@ -44,7 +44,7 @@ export function HeaderNav({ className }: { className?: string }) {
 export function MobileNavLinks({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   const links = [
-    { label: "Docs", href: "/docs/why-tspy", match: "/docs", external: false },
+    { label: "Docs", href: "/docs/why-bionicjs", match: "/docs", external: false },
     { label: "Learn", href: "/learn/why-a-meta-framework", match: "/learn", external: false },
     { label: "Changelog", href: "/changelog", match: "/changelog", external: false },
     {

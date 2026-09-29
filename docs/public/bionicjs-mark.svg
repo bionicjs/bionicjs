@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 18 46 40" width="46" height="40" fill="none" role="img" aria-label="bionicjs">
+  <style>
+    .ink { stroke: #0F172A; }
+    @media (prefers-color-scheme: dark) {
+      .ink { stroke: #E9E9F0; }
+    }
+  </style>
+  <path class="ink" d="M36 24 A14 14 0 0 0 36 52" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M36 24 H48 V52 H36" stroke="#0891B2" stroke-width="6" stroke-linejoin="miter" fill="none"/>
+  <path d="M48 38 H54" stroke="#0891B2" stroke-width="6" fill="none"/>
+  <circle cx="58" cy="38" r="4.5" fill="#0891B2"/>
+</svg>

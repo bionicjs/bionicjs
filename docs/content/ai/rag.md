@@ -8,7 +8,7 @@ Instead of asking the model to answer from memory, RAG retrieves relevant docume
 
 ```python
 # ai/rag.py
-from tspy.rag import VectorStore
+from bionicjs.rag import VectorStore
 
 store = VectorStore()  # backed by your vector database
 
@@ -19,7 +19,7 @@ store.ingest("docs.txt", chunk_size=512)
 
 ```ts
 // server/api/search.ts
-import { ai } from "tspy/server";
+import { ai } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { question } = await readBody(event);

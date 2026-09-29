@@ -6,21 +6,21 @@ export function AuthFlow() {
       <H3 id="integration">Integration</H3>
       <P>
         Authentication is handled in the <Code>server/auth/</Code> directory.
-        TSPY templates support both managed providers (Clerk) and self-hosted
+        BionicJS templates support both managed providers (Clerk) and self-hosted
         solutions (Better Auth).
       </P>
       <P>
         Each provider is a plugin package composed under the <Code>auth</Code>{" "}
-        key in <Code>tspy.config.ts</Code>. Choose one:
+        key in <Code>bionicjs.config.ts</Code>. Choose one:
       </P>
       <Table
         head={["Package", "Provider", "Mount"]}
         rows={[
-          [<Code key="1">@tspy/better-auth</Code>, "Better Auth (self-hosted)", <Code key="3">/api/auth/[...auth]</Code>],
-          [<Code key="2">@tspy/clerk</Code>, "Clerk (managed)", "Client wrappers + server verify"],
-          [<Code key="3">@tspy/firebase</Code>, "Firebase", <Code key="5">server/auth/firebase.ts</Code>],
-          [<Code key="4">@tspy/supabase</Code>, "Supabase", <Code key="6">server/auth/supabase.ts</Code>],
-          [<Code key="5">@tspy/workos</Code>, "WorkOS", "SSO / directory sync"],
+          [<Code key="1">@bionicjs/better-auth</Code>, "Better Auth (self-hosted)", <Code key="3">/api/auth/[...auth]</Code>],
+          [<Code key="2">@bionicjs/clerk</Code>, "Clerk (managed)", "Client wrappers + server verify"],
+          [<Code key="3">@bionicjs/firebase</Code>, "Firebase", <Code key="5">server/auth/firebase.ts</Code>],
+          [<Code key="4">@bionicjs/supabase</Code>, "Supabase", <Code key="6">server/auth/supabase.ts</Code>],
+          [<Code key="5">@bionicjs/workos</Code>, "WorkOS", "SSO / directory sync"],
         ]}
       />
       <P>
@@ -34,7 +34,7 @@ export function AuthFlow() {
       <P>
         The handler in <Code>server/auth/</Code> is where tokens are verified.
         The scaffolded pattern reads credentials from the environment and
-        exposes an <Code>auth</Code> object on <Code>tspy/server</Code>:
+        exposes an <Code>auth</Code> object on <Code>@bionicjs/core/server</Code>:
       </P>
       <CodeBlock file="server/auth/better-auth.ts" title="A self-hosted handler">
 {`import { betterAuth } from "better-auth";
@@ -64,7 +64,7 @@ export const auth = betterAuth({
         session:
       </P>
       <CodeBlock file="server/api/me.ts">
-{`import { auth } from "tspy/server";
+{`import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);
@@ -80,9 +80,9 @@ export default defineEventHandler(async (event) => {
         ]}
       />
       <Callout>
-        TSPY does not define its own auth protocol. It wires the provider you
+        BionicJS does not define its own auth protocol. It wires the provider you
         chose - the JWT format, session store, and verification rules belong to
-        Better Auth, Clerk, Firebase, or Supabase. TSPY makes the wiring
+        Better Auth, Clerk, Firebase, or Supabase. BionicJS makes the wiring
         automatic and typed.
       </Callout>
     </>

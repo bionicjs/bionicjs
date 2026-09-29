@@ -57,14 +57,14 @@ Conventions    - invented by you`}
         presented. The developer interacts with the framework; the framework
         interacts with Vite, React Router, and Nitro.
       </P>
-      <CodeBlock title="What TSPY adds">
-{`TSPY
+      <CodeBlock title="What BionicJS adds">
+{`BionicJS
 |-- Filesystem routing          # app/page.tsx becomes /
 |-- Internal Vite config        # no vite.config.ts required
 |-- Internal Nitro config       # no nitro.config.ts required
-|-- TSPY dev runtime            # one public origin at localhost:3000
-|-- tspy.config.ts              # one config file
-\`-- TSPYRouter                  # routes wired from filesystem`}
+|-- BionicJS dev runtime            # one public origin at localhost:3000
+|-- bionicjs.config.ts              # one config file
+\`-- BionicJSRouter                  # routes wired from filesystem`}
       </CodeBlock>
       <P>
         The developer never configures Vite. They never configure Nitro. They
@@ -72,26 +72,26 @@ Conventions    - invented by you`}
         automatically. That is the meta-framework contract.
       </P>
 
-      <H3 id="tspy-vs-nextjs">TSPY vs Next.js</H3>
+      <H3 id="bionicjs-vs-nextjs">BionicJS vs Next.js</H3>
       <P>
         Next.js is the dominant React meta-framework. It is a useful reference
-        not because TSPY copies it, but because it defines what the category
+        not because BionicJS copies it, but because it defines what the category
         means.
       </P>
       <Table
-        head={["Concern", "Next.js", "TSPY"]}
+        head={["Concern", "Next.js", "BionicJS"]}
         rows={[
           ["Routing", "App Router (RSC, server components)", "Filesystem routing - React Router (client)"],
           ["Rendering", "SSR, SSG, streaming, RSC", "CSR first, SSR planned"],
           ["Server", "Node.js / Edge runtime", "Nitro (cross-platform) on h3"],
-          ["Config", "next.config.ts", "tspy.config.ts"],
+          ["Config", "next.config.ts", "bionicjs.config.ts"],
           ["Bundler", "Turbopack / Webpack", "Vite"],
           ["Font/Image", "next/font, next/image", "Standard web APIs (framework primitives planned)"],
           ["Python", "Not supported", "First-class, co-located"],
         ]}
       />
       <P>
-        TSPY's goal is not to out-feature Next.js. Its goal is to make the
+        BionicJS's goal is not to out-feature Next.js. Its goal is to make the
         TypeScript + Python pair native in a way that no other framework does -
         and to do it with better DX than bolting FastAPI onto a Next.js app.
       </P>

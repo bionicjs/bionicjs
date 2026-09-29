@@ -28,7 +28,7 @@ celery_app = Celery(
 celery_app.autodiscover_tasks()`}
       </CodeBlock>
       <P>
-        The system is chosen in <Code>tspy.config.ts</Code> under the{" "}
+        The system is chosen in <Code>bionicjs.config.ts</Code> under the{" "}
         <Code>jobs</Code> key. The system accepts a broker URL; RQ is Redis-only
         by design, while Celery and Dramatiq take Redis or RabbitMQ.
       </P>
@@ -58,10 +58,10 @@ React receives the result`}
       </CodeBlock>
       <P>
         The enqueue client becomes the <Code>jobs</Code> export on{" "}
-        <Code>tspy/server</Code>, so any Nitro handler can enqueue work:
+        <Code>@bionicjs/core/server</Code>, so any Nitro handler can enqueue work:
       </P>
       <CodeBlock file="server/api/generate.ts">
-{`import { jobs } from "tspy/server";
+{`import { jobs } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -72,7 +72,7 @@ export default defineEventHandler(async (event) => {
 
       <H3 id="why-python">Why Python workers</H3>
       <P>
-        Jobs exist because of the same honest baseline as the rest of TSPY: the
+        Jobs exist because of the same honest baseline as the rest of BionicJS: the
         mature workers are Python. Celery, RQ, and Dramatiq are battle-tested,
         and the AI work they run lives in the Python ecosystem.
       </P>
