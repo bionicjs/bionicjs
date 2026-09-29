@@ -3,9 +3,9 @@ import { SiteHeader } from "@/components/site-header";
 import { LandingFooter } from "@/components/landing-footer";
 
 export const metadata: Metadata = {
-  title: "Changelog · TSPY",
+  title: "Changelog · BionicJS",
   description:
-    "Every TSPY package queued for its first publish.",
+    "Every BionicJS package queued for its first publish.",
 };
 
 const VERSION = "0.1.0";
@@ -13,25 +13,25 @@ const VERSION = "0.1.0";
 type Pkg = { name: string; role: string; group: string };
 
 const PACKAGES: Pkg[] = [
-  { name: "tspy", role: "Framework core: config, routing, runtime exports", group: "Core" },
-  { name: "create-tspy-app", role: "Project generator and template composer", group: "Core" },
-  { name: "@tspy/dev", role: "Vite + Nitro development server and codegen", group: "Core" },
-  { name: "@tspy/better-auth", role: "Auth provider", group: "Auth" },
-  { name: "@tspy/clerk", role: "Auth provider", group: "Auth" },
-  { name: "@tspy/firebase", role: "Auth provider", group: "Auth" },
-  { name: "@tspy/supabase", role: "Auth provider", group: "Auth" },
-  { name: "@tspy/workos", role: "Auth provider", group: "Auth" },
-  { name: "@tspy/prisma", role: "Database client", group: "Database" },
-  { name: "@tspy/drizzle", role: "Database client", group: "Database" },
-  { name: "@tspy/kysely", role: "Database client", group: "Database" },
-  { name: "@tspy/sql", role: "Raw SQL client", group: "Database" },
-  { name: "@tspy/anthropic", role: "LLM provider", group: "AI" },
-  { name: "@tspy/openai", role: "LLM provider", group: "AI" },
-  { name: "@tspy/google", role: "LLM provider", group: "AI" },
-  { name: "@tspy/ollama", role: "LLM provider, local", group: "AI" },
-  { name: "@tspy/celery", role: "Job system", group: "Jobs" },
-  { name: "@tspy/rq", role: "Job system", group: "Jobs" },
-  { name: "@tspy/dramatiq", role: "Job system", group: "Jobs" },
+  { name: "bionicjs", role: "Framework core: config, routing, runtime exports", group: "Core" },
+  { name: "create-bionicjs-app", role: "Project generator and template composer", group: "Core" },
+  { name: "@bionicjs/dev", role: "Vite + Nitro development server and codegen", group: "Core" },
+  { name: "@bionicjs/better-auth", role: "Auth provider", group: "Auth" },
+  { name: "@bionicjs/clerk", role: "Auth provider", group: "Auth" },
+  { name: "@bionicjs/firebase", role: "Auth provider", group: "Auth" },
+  { name: "@bionicjs/supabase", role: "Auth provider", group: "Auth" },
+  { name: "@bionicjs/workos", role: "Auth provider", group: "Auth" },
+  { name: "@bionicjs/prisma", role: "Database client", group: "Database" },
+  { name: "@bionicjs/drizzle", role: "Database client", group: "Database" },
+  { name: "@bionicjs/kysely", role: "Database client", group: "Database" },
+  { name: "@bionicjs/sql", role: "Raw SQL client", group: "Database" },
+  { name: "@bionicjs/anthropic", role: "LLM provider", group: "AI" },
+  { name: "@bionicjs/openai", role: "LLM provider", group: "AI" },
+  { name: "@bionicjs/google", role: "LLM provider", group: "AI" },
+  { name: "@bionicjs/ollama", role: "LLM provider, local", group: "AI" },
+  { name: "@bionicjs/celery", role: "Job system", group: "Jobs" },
+  { name: "@bionicjs/rq", role: "Job system", group: "Jobs" },
+  { name: "@bionicjs/dramatiq", role: "Job system", group: "Jobs" },
 ];
 
 const GROUP_ORDER = ["Core", "Auth", "Database", "AI", "Jobs"];

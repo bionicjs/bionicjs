@@ -7,7 +7,7 @@ export function LayoutAdaptation() {
       <P>
         React Router renders nested routes using the <Code>{"<Outlet />"}</Code>{" "}
         component. A layout component must call <Code>{"<Outlet />"}</Code> where
-        its children should appear. But TSPY developers write standard React
+        its children should appear. But BionicJS developers write standard React
         layouts that accept <Code>children</Code>:
       </P>
       <CodeBlock title="What the developer writes">
@@ -24,21 +24,21 @@ export function LayoutAdaptation() {
         This is the idiomatic React pattern - every component library, every
         design system, every documentation page teaches layouts this way. But
         React Router expects <Code>{"<Outlet />"}</Code>, not{" "}
-        <Code>children</Code>. If TSPY required developers to use{" "}
+        <Code>children</Code>. If BionicJS required developers to use{" "}
         <Code>{"<Outlet />"}</Code>, it would break the mental model that layouts
         are just regular React components.
       </P>
 
-      <H3 id="adaptation">TSPYLayoutAdapter</H3>
+      <H3 id="adaptation">BionicJSLayoutAdapter</H3>
       <P>
-        To bridge this gap, the TSPY generator wraps every layout in a
-        higher-order component called <Code>TSPYLayoutAdapter</Code>. This
+        To bridge this gap, the BionicJS generator wraps every layout in a
+        higher-order component called <Code>BionicJSLayoutAdapter</Code>. This
         adapter takes the user&apos;s layout and automatically injects an{" "}
         <Code>{"<Outlet />"}</Code> as its child, completely hiding the React
         Router implementation detail:
       </P>
-      <CodeBlock file="packages/tspy/src/router/adapter.tsx" title="The adapter">
-{`export function TSPYLayoutAdapter({ Layout }) {
+      <CodeBlock file="packages/bionicjs/src/router/adapter.tsx" title="The adapter">
+{`export function BionicJSLayoutAdapter({ Layout }) {
   return (
     <Layout>
       <Outlet />
@@ -57,7 +57,7 @@ export function LayoutAdaptation() {
 {`lazy: async () => {
   const mod = await import("/app/dashboard/layout.tsx");
   return {
-    Component: () => React.createElement(TSPYLayoutAdapter, { Layout: mod.default })
+    Component: () => React.createElement(BionicJSLayoutAdapter, { Layout: mod.default })
   };
 }`}
       </CodeBlock>
@@ -69,8 +69,8 @@ export function LayoutAdaptation() {
         every layout. The adapter eliminates this coupling entirely.
       </P>
       <P>
-        This is a core principle of the TSPY design: React Router is an
-        internal detail. The developer writes <Code>{"<TSPYRouter />"}</Code> at
+        This is a core principle of the BionicJS design: React Router is an
+        internal detail. The developer writes <Code>{"<BionicJSRouter />"}</Code> at
         the root and standard <Code>{"{children}"}</Code> layouts everywhere
         else. The framework adapts between the two conventions so the developer
         never has to think about it.

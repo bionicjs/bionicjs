@@ -5,7 +5,7 @@ node_modules/
 dist/
 .output/
 .nitro/
-.tspy/
+.bionicjs/
 
 # next.js
 .next/
@@ -41,6 +41,7 @@ yarn-error.log*
 
 # testing
 coverage/
+scratch/
 
 # tooling
 .vercel
@@ -49,3 +50,6 @@ coverage/
 .idea/
 *.swp
 .freebuff/
+
+# plan
+plan.md

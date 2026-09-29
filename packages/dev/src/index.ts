@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { createNitro, createDevServer as createNitroDevServer, build, prepare } from "nitropack";
 import { networkInterfaces } from "node:os";
 
-import { tspyRoutesPlugin } from "./plugins/routes";
+import { bionicjsRoutesPlugin } from "./plugins/routes";
 import { generateAll } from "./generator";
 
 function getNetworkUrl(port: number) {
@@ -48,15 +48,15 @@ export async function runDevServer(options: { cwd?: string } = {}) {
     root: cwd,
     resolve: {
       alias: [
-        // Resolve #tspy-api to the generated .tspy/api-client.ts at dev time
+        // Resolve #bionicjs-api to the generated .bionicjs/api-client.ts at dev time
         {
-          find: /^#tspy-api$/,
-          replacement: `${cwd}/.tspy/api-client.ts`,
+          find: /^#bionicjs-api$/,
+          replacement: `${cwd}/.bionicjs/api-client.ts`,
         },
-        // Resolve tspy/server to the generated .tspy/server.ts
+        // Resolve @bionicjs/core/server to the generated .bionicjs/server.ts
         {
-          find: /^tspy\/server$/,
-          replacement: `${cwd}/.tspy/server.ts`,
+          find: /^@bionicjs\/core\/server$/,
+          replacement: `${cwd}/.bionicjs/server.ts`,
         },
       ],
     },
@@ -71,10 +71,10 @@ export async function runDevServer(options: { cwd?: string } = {}) {
       },
     },
     plugins: [
-      tspyRoutesPlugin(cwd),
+      bionicjsRoutesPlugin(cwd),
       react(),
       {
-        name: "tspy-html",
+        name: "bionicjs-html",
         configureServer(server) {
           server.middlewares.use(async (req, res, next) => {
             if (
@@ -87,14 +87,14 @@ export async function runDevServer(options: { cwd?: string } = {}) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TSPY App</title>
+    <title>BionicJS App</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/@id/tspy/entry-client"></script>
+    <script type="module" src="/@id/@bionicjs/core/entry-client"></script>
   </body>
 </html>`;
-                html = await server.transformIndexHtml(req.url, html);
+                html = await server.transformIndexHtml(req.url ?? "/", html);
                 res.statusCode = 200;
                 res.setHeader("Content-Type", "text/html");
                 res.end(html);
@@ -116,7 +116,7 @@ export async function runDevServer(options: { cwd?: string } = {}) {
   const readyMs = Math.round(performance.now() - startedAt);
 
   console.log("");
-  console.log("TSPY dev server");
+  console.log("BionicJS dev server");
   console.log(`- Local:   http://localhost:${publicPort}`);
   if (networkUrl) {
     console.log(`- Network: ${networkUrl}`);

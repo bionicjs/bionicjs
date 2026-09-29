@@ -2,17 +2,17 @@
 Background processing is handled efficiently through the Python layer. Heavy work — emails, webhooks, video processing, scheduled syncs — is enqueued from the server and executed by a Python worker, keeping the request path fast.
 
 ## Systems {#systems}
-Each job system is a plugin package composed in `tspy.config.ts`:
+Each job system is a plugin package composed in `bionicjs.config.ts`:
 
 - **Celery**: Distributed task queue with scheduling and chaining.
 - **RQ**: Simple Redis-backed queues for lightweight workloads.
 - **Dramatiq**: Fast and reliable background task processing.
 
-Enqueuing looks identical across all three — the `jobs` client on `tspy/server`:
+Enqueuing looks identical across all three — the `jobs` client on `@bionicjs/core/server`:
 
 ```ts
 // server/api/signup.ts
-import { jobs } from "tspy/server";
+import { jobs } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { email } = await readBody(event);
@@ -25,9 +25,9 @@ export default defineEventHandler(async (event) => {
 The broker transports messages between the app and the workers. The choice maps to a URL in your config — not to code.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { celery } from "@tspy/celery";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { celery } from "@bionicjs/celery";
 
 export default defineConfig({
   jobs: celery({ broker: "redis://localhost:6379" }),

@@ -3,9 +3,9 @@ Celery is the most widely used Python task queue. It supports Redis and RabbitMQ
 ## Compose the plugin
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { celery } from "@tspy/celery";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { celery } from "@bionicjs/celery";
 
 export default defineConfig({
   jobs: celery({ broker: "redis://localhost:6379" }),
@@ -20,7 +20,7 @@ Tasks live under `jobs/` in Python:
 
 ```python
 # jobs/tasks.py
-from tspy.jobs import task
+from bionicjs.jobs import task
 
 @task
 def send_welcome_email(user_email: str) -> None:
@@ -29,11 +29,11 @@ def send_welcome_email(user_email: str) -> None:
 
 ## Enqueue from the server
 
-The enqueue client is exposed as the `jobs` export on `tspy/server`:
+The enqueue client is exposed as the `jobs` export on `@bionicjs/core/server`:
 
 ```ts
 // server/api/signup.ts
-import { jobs } from "tspy/server";
+import { jobs } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { email } = await readBody(event);

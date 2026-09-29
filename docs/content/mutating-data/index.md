@@ -41,7 +41,7 @@ Mutations that need AI or background processing call Python through the
 RPC boundary. The same typed contract — no manual serialization.
 
 ```ts server/api/chat.ts
-import { chat } from "tspy/server/ai";
+import { chat } from "@bionicjs/core/server/ai";
 
 export default defineEventHandler(async (event) => {
   const { message } = await readBody(event);

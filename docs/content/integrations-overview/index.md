@@ -1,7 +1,7 @@
 ## One config, many services
 
-Integrations are plugin packages composed in `tspy.config.ts`. Each one
-registers a service once, and tspy generates the typed surface around it
+Integrations are plugin packages composed in `bionicjs.config.ts`. Each one
+registers a service once, and bionicjs generates the typed surface around it
 — callers, providers, middleware, and any database models the service
 needs.
 

@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in the TSPY project and its community a harassment-free experience for everyone, regardless of background, level of experience, or personal characteristics.
+We as members, contributors, and maintainers pledge to make participation in the BionicJS project and its community a harassment-free experience for everyone, regardless of background, level of experience, or personal characteristics.
 
 ## Our Standards
 

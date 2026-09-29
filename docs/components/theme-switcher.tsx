@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore, useState, useRef, useEffect } from "react";
 
-const THEME_EVENT = "tspy-theme";
+const THEME_EVENT = "bionicjs-theme";
 type Theme = "light" | "system" | "dark";
 
 function subscribe(callback: () => void) {
@@ -11,7 +11,7 @@ function subscribe(callback: () => void) {
 }
 
 function getSnapshot(): Theme {
-  const stored = localStorage.getItem("tspy-theme") as Theme | null;
+  const stored = localStorage.getItem("bionicjs-theme") as Theme | null;
   if (stored === "light" || stored === "dark") return stored;
   return "system";
 }
@@ -28,7 +28,7 @@ function applyTheme(theme: Theme) {
 
 function setTheme(theme: Theme) {
   try {
-    localStorage.setItem("tspy-theme", theme);
+    localStorage.setItem("bionicjs-theme", theme);
   } catch {}
   applyTheme(theme);
   window.dispatchEvent(new Event(THEME_EVENT));

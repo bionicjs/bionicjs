@@ -2,12 +2,12 @@ Clerk is a managed authentication service. It handles user management, sessions,
 
 ## Compose the plugin
 
-Add `@tspy/clerk` under the `auth` key in `tspy.config.ts`. The publishable key goes to the client (it wraps the app), while the secret key stays server-side.
+Add `@bionicjs/clerk` under the `auth` key in `bionicjs.config.ts`. The publishable key goes to the client (it wraps the app), while the secret key stays server-side.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { clerk } from "@tspy/clerk";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { clerk } from "@bionicjs/clerk";
 
 export default defineConfig({
   auth: clerk({
@@ -30,7 +30,7 @@ On the server, the handler under `server/auth/` verifies sessions before protect
 
 ```ts
 // server/api/me.ts
-import { auth } from "tspy/server";
+import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);

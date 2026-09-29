@@ -8,7 +8,7 @@ import { GITHUB_URL } from "@/lib/sections";
 export const metadata: Metadata = {
   title: "Learn",
   description:
-    "How TSPY works under the hood - the routing engine, the build, the server runtime, and the Python bridge. For people building and contributing to the framework.",
+    "How BionicJS works under the hood - the routing engine, the build, the server runtime, and the Python bridge. For people building and contributing to the framework.",
 };
 
 export default function LearnIntroPage() {
@@ -19,7 +19,7 @@ export default function LearnIntroPage() {
         Learn / Internals
       </div>
 
-      <h1 className="text-heading-48 mt-3">Build TSPY, not just with it</h1>
+      <h1 className="text-heading-48 mt-3">Build BionicJS, not just with it</h1>
 
       <p className="text-copy-18 mt-5 max-w-2xl text-muted-foreground">
         The docs teach you how to use the framework. This guide is the other
@@ -80,11 +80,11 @@ export default function LearnIntroPage() {
 
       <div className="mt-8 flex flex-col gap-3 rounded-xl border border-dashed border-border p-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-copy-14 text-muted-foreground">
-          Using TSPY in a project? The user guide is the place to start.
+          Using BionicJS in a project? The user guide is the place to start.
         </p>
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <Link
-            href="/docs/why-tspy"
+            href="/docs/why-bionicjs"
             className="text-label-14 text-foreground underline-offset-4 hover:underline"
           >
             Read the docs

@@ -1,12 +1,12 @@
 ## Build output {#build-output}
-tspy projects build to a standard `.output/` directory via Nitro. One build, deploy anywhere — the client is static assets and the server is a runnable bundle, with Nitro presets carrying over unchanged.
+bionicjs projects build to a standard `.output/` directory via Nitro. One build, deploy anywhere — the client is static assets and the server is a runnable bundle, with Nitro presets carrying over unchanged.
 
 ## Nitro presets {#nitro-presets}
 Each platform maps to a Nitro preset:
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "node_server" }, // or vercel, netlify, cloudflare_module, deno_deploy, aws_lambda

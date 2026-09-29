@@ -5,7 +5,7 @@ export function BuildPipeline() {
     <>
       <H3 id="the-build">The Build</H3>
       <P>
-        The <Code>tspy build</Code> command is a two-step process, mirrored on
+        The <Code>bionicjs build</Code> command is a two-step process, mirrored on
         the two engines the framework composes:
       </P>
       <Ol
@@ -22,8 +22,8 @@ export function BuildPipeline() {
           </>,
         ]}
       />
-      <CodeBlock title="tspy build">
-{`$ tspy build
+      <CodeBlock title="bionicjs build">
+{`$ bionicjs build
 
 ✓ Build complete in 1.8s`}
       </CodeBlock>
@@ -56,26 +56,26 @@ export function BuildPipeline() {
       <H3 id="generated">What gets generated</H3>
       <P>
         Alongside the client and server bundles, the build writes the generated
-        boundary into <Code>.tspy/</Code>. These are the same modules the dev
+        boundary into <Code>.bionicjs/</Code>. These are the same modules the dev
         server serves virtually - on disk during a build, in memory during dev:
       </P>
       <Table
         head={["File", "Contents"]}
         rows={[
-          [<Code key="h">.tspy/hono.ts</Code>, "The Hono router + AppRouter type built from server/api/*.ts"],
-          [<Code key="c">.tspy/api-client.ts</Code>, "The typed hc<AppRouter> client exported as api"],
-          [<Code key="s">.tspy/server.ts</Code>, "The generated auth / db / ai / jobs server exports"],
+          [<Code key="h">.bionicjs/hono.ts</Code>, "The Hono router + AppRouter type built from server/api/*.ts"],
+          [<Code key="c">.bionicjs/api-client.ts</Code>, "The typed hc<AppRouter> client exported as api"],
+          [<Code key="s">.bionicjs/server.ts</Code>, "The generated auth / db / ai / jobs server exports"],
         ]}
       />
 
       <H3 id="prerender">Prerendering and targets</H3>
       <P>
         Nitro&apos;s deployment targets carry over unchanged. Because the client
-        is static assets and the server is Web-Standards based, TSPY can emit
+        is static assets and the server is Web-Standards based, BionicJS can emit
         the same build for Node.js, Cloudflare Workers, Deno, or Bun preset.
       </P>
       <Callout>
-        The TSPY build does not compile Python. Python code is deployed
+        The BionicJS build does not compile Python. Python code is deployed
         alongside the server artifact - either in the same container for a
         single-unit deployment, or as a separate service for the microservices
         model.

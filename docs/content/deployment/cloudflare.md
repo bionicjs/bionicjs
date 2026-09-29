@@ -1,4 +1,4 @@
-Deploy your tspy project to Cloudflare Workers (now Cloudflare Workers + static assets). The worker preset bundles the Nitro server into a Worker that runs on Cloudflare's edge network, with static assets served from Workers Sites.
+Deploy your bionicjs project to Cloudflare Workers (now Cloudflare Workers + static assets). The worker preset bundles the Nitro server into a Worker that runs on Cloudflare's edge network, with static assets served from Workers Sites.
 
 ## Configure
 
@@ -9,8 +9,8 @@ wrangler deploy
 Or set the preset in config:
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "cloudflare_module" },

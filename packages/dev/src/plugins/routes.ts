@@ -1,10 +1,10 @@
 import { Plugin } from "vite";
 import fg from "fast-glob";
 import path from "node:path";
-import { parseRoutes, generateRouteModule } from "tspy/router";
+import { parseRoutes, generateRouteModule } from "@bionicjs/core/router";
 
-export function tspyRoutesPlugin(cwd: string): Plugin {
-  const virtualModuleId = "virtual:tspy-routes";
+export function bionicjsRoutesPlugin(cwd: string): Plugin {
+  const virtualModuleId = "virtual:bionicjs-routes";
   const resolvedVirtualModuleId = "\0" + virtualModuleId;
 
   const getAppFiles = (): string[] => {
@@ -18,7 +18,7 @@ export function tspyRoutesPlugin(cwd: string): Plugin {
   };
 
   return {
-    name: "tspy-routes",
+    name: "bionicjs-routes",
 
     resolveId(id) {
       if (id === virtualModuleId) {

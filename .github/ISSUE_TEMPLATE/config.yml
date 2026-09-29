@@ -2,8 +2,8 @@ blank_issues_enabled: false
 
 contact_links:
   - name: Documentation
-    url: https://github.com/Atnatewoss/tspy#readme
+    url: https://github.com/bionicjs/bionicjs#readme
     about: Start here for usage, routing conventions, and project structure.
   - name: Code of Conduct
-    url: https://github.com/Atnatewoss/tspy/blob/main/CODE_OF_CONDUCT.md
+    url: https://github.com/bionicjs/bionicjs/blob/main/CODE_OF_CONDUCT.md
     about: Read the community standards before opening an issue.

@@ -10,7 +10,7 @@ export function HeroDoodle() {
         <svg
           viewBox="16 155 384 424"
           aria-hidden
-          className="tspy-float relative mx-auto h-[20rem] w-full max-w-[18rem] text-foreground/70"
+          className="bionicjs-float relative mx-auto h-[20rem] w-full max-w-[18rem] text-foreground/70"
           style={{ animationDuration: "10s" }}
           fill="none"
         >

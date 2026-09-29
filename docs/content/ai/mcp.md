@@ -8,7 +8,7 @@ MCP is an open protocol for connecting AI models to tools, resources, and other 
 
 ```python
 # ai/mcp.py
-from tspy.mcp import mcp, tool
+from bionicjs.mcp import mcp, tool
 
 @tool
 def get_weather(city: str) -> str:
@@ -27,7 +27,7 @@ MCP servers run alongside your app in development and are wired into the agent l
 
 ```ts
 // server/api/weather.ts
-import { ai } from "tspy/server";
+import { ai } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { city } = await readBody(event);

@@ -2,12 +2,12 @@ Kysely is a type-safe SQL query builder. You write real SQL with full TypeScript
 
 ## Compose the plugin
 
-Add `@tspy/kysely` under the `database` key in `tspy.config.ts`.
+Add `@bionicjs/kysely` under the `database` key in `bionicjs.config.ts`.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { kysely } from "@tspy/kysely";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { kysely } from "@bionicjs/kysely";
 
 export default defineConfig({
   database: kysely({ provider: "postgres", url: env("DATABASE_URL") }),
@@ -37,11 +37,11 @@ export interface Database {
 
 ## Using the client
 
-The plugin exposes the client as the `db` export on `tspy/server`:
+The plugin exposes the client as the `db` export on `@bionicjs/core/server`:
 
 ```ts
 // server/api/users.ts
-import { db } from "tspy/server";
+import { db } from "@bionicjs/core/server";
 
 export default defineEventHandler(async () => {
   return await db.selectFrom("users").selectAll().execute();

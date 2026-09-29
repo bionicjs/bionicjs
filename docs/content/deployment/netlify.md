@@ -1,4 +1,4 @@
-Deploy your tspy project to Netlify. tspy's Nitro build output maps cleanly onto Netlify's static + functions model: the client ships as static files, and server routes become Netlify Functions.
+Deploy your bionicjs project to Netlify. bionicjs's Nitro build output maps cleanly onto Netlify's static + functions model: the client ships as static files, and server routes become Netlify Functions.
 
 ## Configure
 
@@ -11,8 +11,8 @@ netlify deploy --prod
 Or set the preset in config:
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "netlify" },

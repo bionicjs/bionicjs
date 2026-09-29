@@ -1,35 +1,35 @@
-# TSPY
+# BionicJS
 
 The full-stack React framework for the AI era: React UI and Python intelligence in one codebase.
 
-TSPY is an early-stage full-stack web framework. It owns the `app/` route directory, generates a typed client/server boundary at build time, and composes small plugin packages for AI providers, authentication, databases, and background jobs instead of baking combinations into a scaffold. React runs the UI, Nitro runs the server, and Python runs the intelligence.
+BionicJS is an early-stage full-stack web framework. It owns the `app/` route directory, generates a typed client/server boundary at build time, and composes small plugin packages for AI providers, authentication, databases, and background jobs instead of baking combinations into a scaffold. React runs the UI, Nitro runs the server, and Python runs the intelligence.
 
-> TSPY is in development. Public APIs may change before 1.0.
+> BionicJS is in development. Public APIs may change before 1.0.
 
-## Why TSPY?
+## Why BionicJS?
 
 - **Intelligence native.** Co-locate a React route with its Python AI model. Python capabilities live under `ai/` in the same project, and calling a model from a React component is as type-safe as a local function call.
 - **Decoupled filesystem routing.** Routes are discovered from `app/` by a build-time AST parser and compiled into a `RouteManifestNode` tree. No runtime filesystem scanning, no central route registry.
 - **Fast feedback.** Vite drives instant frontend HMR while Nitro provides the production server runtime, so development stays lightweight and production output stays portable.
 - **Type-safe boundaries.** Generated RPC contracts make server handlers, queries, and Python model calls fail at build or type-check time when they drift from the implementation.
 - **Zero-config ergonomics.** No `index.html`, no `nitro.config.ts`. The build environment is managed internally; a minimal `vite.config.ts` is only generated when Tailwind is enabled.
-- **Composable capabilities.** Auth, databases, background jobs, and LLM providers are opt-in plugins composed in `tspy.config.ts`. Capabilities you do not select add no runtime cost.
+- **Composable capabilities.** Auth, databases, background jobs, and LLM providers are opt-in plugins composed in `bionicjs.config.ts`. Capabilities you do not select add no runtime cost.
 
 ## Quick start
 
-Create a new TSPY application:
+Create a new BionicJS application:
 
 ```bash
-npx create-tspy-app my-app
+npx create-bionicjs-app my-app
 cd my-app
 npm run dev
 ```
 
-`tspy dev` starts the Vite frontend server and the Nitro API server together with full hot module replacement (HMR).
+`bionicjs dev` starts the Vite frontend server and the Nitro API server together with full hot module replacement (HMR).
 
 ## Documentation
 
-Guides and API reference live at [tspy.dev](https://tspy.dev):
+Guides and API reference live at [bionicjs.dev](https://bionicjs.dev):
 
 - Filesystem routing and the RPC boundary
 - AI capabilities and LLM providers
@@ -92,23 +92,23 @@ export default function UserPage() {
 
 ## Integrations
 
-Capability plugins ship as separate `@tspy/*` packages and are composed under keys in `tspy.config.ts`:
+Capability plugins ship as separate `@bionicjs/*` packages and are composed under keys in `bionicjs.config.ts`:
 
 | Category | Packages | Docs |
 | --- | --- | --- |
-| AI providers | `@tspy/anthropic`, `@tspy/google`, `@tspy/ollama`, `@tspy/openai` | [tspy.dev/docs/ai](https://tspy.dev/docs/ai) |
-| Authentication | `@tspy/better-auth`, `@tspy/clerk`, `@tspy/firebase`, `@tspy/supabase`, `@tspy/workos` | [tspy.dev/docs/auth](https://tspy.dev/docs/auth) |
-| Databases | `@tspy/drizzle`, `@tspy/kysely`, `@tspy/prisma`, `@tspy/sql` | [tspy.dev/docs/database](https://tspy.dev/docs/database) |
-| Background jobs | `@tspy/celery`, `@tspy/dramatiq`, `@tspy/rq` | [tspy.dev/docs/jobs](https://tspy.dev/docs/jobs) |
+| AI providers | `@bionicjs/anthropic`, `@bionicjs/google`, `@bionicjs/ollama`, `@bionicjs/openai` | [bionicjs.dev/docs/ai](https://bionicjs.dev/docs/ai) |
+| Authentication | `@bionicjs/better-auth`, `@bionicjs/clerk`, `@bionicjs/firebase`, `@bionicjs/supabase`, `@bionicjs/workos` | [bionicjs.dev/docs/auth](https://bionicjs.dev/docs/auth) |
+| Databases | `@bionicjs/drizzle`, `@bionicjs/kysely`, `@bionicjs/prisma`, `@bionicjs/sql` | [bionicjs.dev/docs/database](https://bionicjs.dev/docs/database) |
+| Background jobs | `@bionicjs/celery`, `@bionicjs/dramatiq`, `@bionicjs/rq` | [bionicjs.dev/docs/jobs](https://bionicjs.dev/docs/jobs) |
 
-Deployment is handled through Nitro presets for Node.js/Docker, Vercel, Netlify, Cloudflare Workers, Deno Deploy, Fly.io, Railway, Render, and AWS Lambda. See [tspy.dev/docs/deployment](https://tspy.dev/docs/deployment).
+Deployment is handled through Nitro presets for Node.js/Docker, Vercel, Netlify, Cloudflare Workers, Deno Deploy, Fly.io, Railway, Render, and AWS Lambda. See [bionicjs.dev/docs/deployment](https://bionicjs.dev/docs/deployment).
 
 ## Architecture
 
-TSPY isolates framework concerns so application code stays clean and standard. Routes are discovered from `app/` at build time and compiled into a React Router tree, while `server/api` handlers are compiled into a Hono router with a generated, type-safe RPC client.
+BionicJS isolates framework concerns so application code stays clean and standard. Routes are discovered from `app/` at build time and compiled into a React Router tree, while `server/api` handlers are compiled into a Hono router with a generated, type-safe RPC client.
 
 ```text
-app/ filesystem -> route scanner -> RouteManifestNode -> generator -> virtual:tspy-routes -> React Router -> React DOM
+app/ filesystem -> route scanner -> RouteManifestNode -> generator -> virtual:bionicjs-routes -> React Router -> React DOM
 ```
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the full package map, request flow, design principles, and key components.

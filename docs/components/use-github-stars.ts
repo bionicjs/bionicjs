@@ -6,7 +6,7 @@ export function useGitHubStars() {
   const [stars, setStars] = useState<number | null>(null);
 
   useEffect(() => {
-    const cacheKey = "tspy:gh-stars";
+    const cacheKey = "bionicjs:gh-stars";
     const cacheTtl = 60 * 60 * 1000; // 1 hour
     let cancelled = false;
 

@@ -1,4 +1,4 @@
-Deploy your tspy project to Vercel. Because tspy builds a standard Nitro `.output/` directory, the Vercel preset bundles your server into a set of serverless functions — the web client is served as static assets, the API runs on demand.
+Deploy your bionicjs project to Vercel. Because bionicjs builds a standard Nitro `.output/` directory, the Vercel preset bundles your server into a set of serverless functions — the web client is served as static assets, the API runs on demand.
 
 ## Configure
 
@@ -11,8 +11,8 @@ vercel deploy
 Or use the preset directly in your build:
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "vercel" },

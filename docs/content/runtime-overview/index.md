@@ -8,7 +8,7 @@ framework owns the boundary, but the platform owns the actual services.
 
 Caching lives where the ecosystem puts it. HTTP caching is Nitro's
 through `Cache-Control` headers on API routes; client caching is React
-Query's concern. tspy does not invent a third layer between them.
+Query's concern. bionicjs does not invent a third layer between them.
 
 ## Observability
 

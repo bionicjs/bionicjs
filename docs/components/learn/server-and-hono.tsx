@@ -5,13 +5,13 @@ export function ServerAndHono() {
     <>
       <H3 id="nitro-and-the-http-layer">Nitro and the HTTP layer</H3>
       <P>
-        Nitro is TSPY's server runtime. It owns the HTTP server, the
+        Nitro is BionicJS's server runtime. It owns the HTTP server, the
         server-side build, and the cross-platform deployment target system.
         Nitro is built on <Code>h3</Code>, so every request ultimately runs
         through an h3 event handler.
       </P>
       <P>
-        TSPY does not invent a second handler API on top of that. A route in{" "}
+        BionicJS does not invent a second handler API on top of that. A route in{" "}
         <Code>server/api/</Code> is an h3 event handler exported with{" "}
         <Code>defineEventHandler</Code>:
       </P>
@@ -30,13 +30,13 @@ export default defineEventHandler(() => ({
 
       <H3 id="the-typed-rpc-contract">The typed RPC contract</H3>
       <P>
-        Hono's role is the client boundary, not the server. TSPY reads the
+        Hono's role is the client boundary, not the server. BionicJS reads the
         handlers in <Code>server/api/</Code> and generates a typed RPC layer
-        into <Code>.tspy/</Code>:
+        into <Code>.bionicjs/</Code>:
       </P>
       <CodeBlock title="Generated artifacts">
-{`.tspy/hono.ts        Hono router typed from server/api/*
-.tspy/api-client.ts  hc<AppRouter>() from hono/client`}
+{`.bionicjs/hono.ts        Hono router typed from server/api/*
+.bionicjs/api-client.ts  hc<AppRouter>() from hono/client`}
       </CodeBlock>
       <P>
         The generated client uses <Code>hono/client</Code>&apos;s{" "}
@@ -46,7 +46,7 @@ export default defineEventHandler(() => ({
         import from <Code>hono</Code> yourself.
       </P>
       <CodeBlock title="Calling a route from the client">
-{`import { api } from "tspy";
+{`import { api } from "@bionicjs/core";
 
 const res = await api.health();`}
       </CodeBlock>

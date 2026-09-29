@@ -2,12 +2,12 @@ Supabase Auth runs on top of PostgreSQL inside your Supabase project. Users are 
 
 ## Compose the plugin
 
-Add `@tspy/supabase` under the `auth` key in `tspy.config.ts`.
+Add `@bionicjs/supabase` under the `auth` key in `bionicjs.config.ts`.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { supabase } from "@tspy/supabase";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { supabase } from "@bionicjs/supabase";
 
 export default defineConfig({
   auth: supabase({
@@ -43,7 +43,7 @@ export const supabase = createClient(url, anonKey);
 Protected API routes go through the same session boundary:
 
 ```ts
-import { auth } from "tspy/server";
+import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);
@@ -55,4 +55,4 @@ export default defineEventHandler(async (event) => {
 ## Good to know
 
 - Supabase is the open-source Firebase alternative — you get Postgres, auth, and storage in one product.
-- Session verification rules belong to Supabase. TSPY only wires the verification into middleware automatically.
+- Session verification rules belong to Supabase. BionicJS only wires the verification into middleware automatically.

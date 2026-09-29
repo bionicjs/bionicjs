@@ -5,7 +5,7 @@ export function ApiProxying() {
     <>
       <H3 id="interception">Interception</H3>
       <P>
-        In development, <Code>tspy dev</Code> exposes one public origin:{" "}
+        In development, <Code>bionicjs dev</Code> exposes one public origin:{" "}
         <Code>localhost:3000</Code>. Any request starting with <Code>/api</Code>{" "}
         is intercepted by the Vite dev server and forwarded to the internal
         Nitro server running on port 3001:

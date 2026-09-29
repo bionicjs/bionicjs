@@ -1,23 +1,23 @@
 ## Commands
 
-The tspy CLI is small by design. A project is created once and then
+The bionicjs CLI is small by design. A project is created once and then
 driven by two commands.
 
 | Command | What it does |
 |---|---|
-| `npx tspy init` | Scaffold a new project from the base and selected templates |
-| `npx tspy dev` | Start the Vite client and Nitro server together with HMR |
-| `npx tspy build` | Build the client, server, and Python layer into `.output/` |
+| `npx bionicjs init` | Scaffold a new project from the base and selected templates |
+| `npx bionicjs dev` | Start the Vite client and Nitro server together with HMR |
+| `npx bionicjs build` | Build the client, server, and Python layer into `.output/` |
 
 ## dev
 
-`tspy dev` starts both processes: Vite on the client for HMR, Nitro on
+`bionicjs dev` starts both processes: Vite on the client for HMR, Nitro on
 the server, with the `/api` proxy between them. One terminal, one
 origin, everything watched.
 
 ## build
 
-`tspy build` compiles the full application — client bundle, server
+`bionicjs build` compiles the full application — client bundle, server
 handlers, and Python runtime — into the standard `.output/` directory
 that every deployment target consumes.
 

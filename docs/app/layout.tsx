@@ -27,8 +27,8 @@ const pressStart2P = Press_Start_2P({
 
 export const metadata: Metadata = {
   title: {
-    default: "tspy · a fullstack framework for intelligence and web",
-    template: "%s · tspy docs",
+    default: "bionicjs · a fullstack framework for intelligence and web",
+    template: "%s · bionicjs docs",
   },
   description:
     "One project, both worlds. Python owns the intelligence layer, TypeScript owns the web surface, and the framework runs them together: typed contracts, generators, and one CLI.",

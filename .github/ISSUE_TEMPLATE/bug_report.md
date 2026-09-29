@@ -30,7 +30,7 @@ What actually happened, including the full error message or stack trace if avail
 - Operating system:
 - Node version:
 - pnpm version:
-- tspy package and version:
+- bionicjs package and version:
 - Package manager output (if relevant):
 
 ```

@@ -352,7 +352,7 @@ body {
   font-family: var(--font-sans);
 }
 
-@keyframes tspy-float {
+@keyframes bionicjs-float {
   0%,
   100% {
     transform: translateY(0);
@@ -363,8 +363,8 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .tspy-float {
-    animation: tspy-float ease-in-out 6s infinite;
+  .bionicjs-float {
+    animation: bionicjs-float ease-in-out 6s infinite;
   }
 }
 

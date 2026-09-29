@@ -1,5 +1,5 @@
 ## Overview
-tspy allows you to choose the best database tool for your workflow, providing type-safe clients directly to your server routes and API endpoints.
+bionicjs allows you to choose the best database tool for your workflow, providing type-safe clients directly to your server routes and API endpoints.
 
 ## Supported ORMs
 - **Prisma**: Next-generation Node.js and TypeScript ORM.

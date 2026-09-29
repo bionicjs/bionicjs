@@ -181,13 +181,13 @@ const CONTENT: Record<string, React.ReactNode> = {
         because the folder says one project while the architecture says two.
       </P>
       <P>
-        tspy is a fullstack framework that makes the pair native. TypeScript
+        bionicjs is a fullstack framework that makes the pair native. TypeScript
         owns the web surface: the React client, the routes, the Nitro server.
         Python owns the intelligence layer: AI, agents, RAG, and background
         jobs. One command builds both into a single project:
       </P>
       <CodeBlock>
-{`$ npx create-tspy-app@latest my-app`}
+{`$ npx create-bionicjs-app@latest my-app`}
       </CodeBlock>
       <P>
         The framework wires the two halves together with a typed contract. What
@@ -218,13 +218,13 @@ const CONTENT: Record<string, React.ReactNode> = {
         In a glued pair, the boundary is where everything degrades: stubs,
         duplicate types, drifting schemas, untyped JSON. In this framework the
         boundary is the thing being sold - a typed contract generated from one
-        definition, checked both ways, no hand-written glue. pyrpc already
+        definition, checked both ways, no hand-written glue. bionicjs already
         ships this layer.
       </P>
 
       <H3 id="generators">Generators</H3>
       <P>
-        <Code>tspy generate</Code> scaffolds a feature end to end: the route,
+        <Code>bionicjs generate</Code> scaffolds a feature end to end: the route,
         the Python behind it, the contract between them. One definition, both
         sides. The generator is the on-ramp that makes the co-located model as
         easy to start as it is to read.
@@ -236,17 +236,17 @@ const CONTENT: Record<string, React.ReactNode> = {
         &ldquo;Next.js plus FastAPI in a monorepo&rdquo;. A meta-framework earns
         its name by owning the boundary the glue only papered over - that is
         the whole project. Reaching for it,{" "}
-        <A href="/docs/why-tspy">see why tspy</A>.
+        <A href="/docs/why-bionicjs">see why bionicjs</A>.
       </P>
     </>
   ),
 
-  "why-tspy": (
+  "why-bionicjs": (
     <>
       <P>
-        A framework is only worth it if it raises the baseline. For tspy that
+        A framework is only worth it if it raises the baseline. For bionicjs that
         baseline is explicit: you could already wire React, a Nitro server, and
-        a FastAPI service together by hand. This page compares tspy against the
+        a FastAPI service together by hand. This page compares bionicjs against the
         fullstack field - and honestly, against the glued pair - so you can
         decide what the boundary is worth.
       </P>
@@ -255,7 +255,7 @@ const CONTENT: Record<string, React.ReactNode> = {
       <Table
         head={["", "Web surface", "Intelligence (AI)", "Jobs", "The seam"]}
         rows={[
-          [<Strong key="t">tspy</Strong>, <Code key="w">React · Vite · Nitro</Code>, <Code key="a">Python, native</Code>, <Code key="j">Python, native</Code>, <Code key="s">typed, generated</Code>],
+          [<Strong key="t">bionicjs</Strong>, <Code key="w">React · Vite · Nitro</Code>, <Code key="a">Python, native</Code>, <Code key="j">Python, native</Code>, <Code key="s">typed, generated</Code>],
           [<Strong key="n">Next.js</Strong>, "React · App Router (RSC)", "SDK add-ons", "Vercel cron / platform", "one TS runtime"],
           [<Strong key="r">Remix</Strong>, "React · full-stack loaders", "SDK add-ons", "server functions", "one TS runtime"],
           [<Strong key="nu">Nuxt</Strong>, "Vue · Nitro", "modules", "scheduled tasks", "one TS runtime"],
@@ -272,7 +272,7 @@ const CONTENT: Record<string, React.ReactNode> = {
         Two observations fall out. First, the field splits into two camps:
         single-runtime fullstack frameworks, and everything else. Second, every
         one of them treats the intelligence layer - AI, agents, workers - as an
-        add-on for a single language. tspy is the one framework that starts
+        add-on for a single language. bionicjs is the one framework that starts
         from the other world and makes it first class instead of optional.
       </P>
 
@@ -288,26 +288,26 @@ const CONTENT: Record<string, React.ReactNode> = {
         For all of them, the intelligence story is an add-on. Your agent is a
         library call inside a single-language app, and when the job needs to
         run Python, you are back to glue: a service, an HTTP endpoint, untyped
-        JSON. tspy does not compete on the web wiring - a React + Vite +
+        JSON. bionicjs does not compete on the web wiring - a React + Vite +
         Nitro base is a fair, modern stack - it competes on making{" "}
         <Strong>Python a first-class citizen</Strong> from the first command.
         AI and jobs are not a package you bolt on; they are the reason the
         framework exists.
       </P>
       <P>
-        That is also why these compete in a different place than tspy. If your
+        That is also why these compete in a different place than bionicjs. If your
         product is a form and a database, Next.js is genuinely excellent and
         you should use it. If your product is the intelligence - anything an
-        agent produces - tspy is the one where that is the native model.
+        agent produces - bionicjs is the one where that is the native model.
       </P>
 
       <H3 id="vs-wasp">vs Wasp & AdonisJS</H3>
       <P>
         Wasp is the closest sibling: a TypeScript meta-framework that configures
         React + Node + Prisma with auth and jobs built in, driven by a config
-        file. It borrows the Rails idea of batteries included - and tspy borrows
+        file. It borrows the Rails idea of batteries included - and bionicjs borrows
         it back from them in turn. The difference is the boundary again: Wasp is
-        single-runtime, so its jobs are TypeScript jobs. tspy&#8217;s jobs and AI
+        single-runtime, so its jobs are TypeScript jobs. bionicjs&#8217;s jobs and AI
         are Python, with the full Python ecosystem behind them - not a port of a
         few of its ideas.
       </P>
@@ -315,7 +315,7 @@ const CONTENT: Record<string, React.ReactNode> = {
         AdonisJS is Node&#8217;s Rails: a batteries-included, opinionated TS
         framework with queues and an excellent CLI. It is a great choice for a
         pure TypeScript product. Neither Wasp nor AdonisJS owns the
-        Python/intelligence side, and that is exactly the one tspy was built
+        Python/intelligence side, and that is exactly the one bionicjs was built
         for.
       </P>
 
@@ -323,7 +323,7 @@ const CONTENT: Record<string, React.ReactNode> = {
       <P>
         The batteries-included trio proved the model long before the TS
         frameworks copied it: one command, one project, everything wired. And
-        Django is the closest thing to tspy&#8217;s history - it is the Python
+        Django is the closest thing to bionicjs&#8217;s history - it is the Python
         framework most AI teams reach for, and it runs jobs with Celery in the
         same language it runs the app in.
       </P>
@@ -332,7 +332,7 @@ const CONTENT: Record<string, React.ReactNode> = {
         thing: templates, forms, or DRF for APIs. Modern AI products ship a
         rich, stateful React client and a typed API, and imposing Django&#8217;s
         web model on top of that is why teams end up abstracting it behind a
-        JS frontend anyway. tspy starts from the web half that already owns the
+        JS frontend anyway. bionicjs starts from the web half that already owns the
         client - TypeScript, React, Vite, Nitro - and makes the Python half
         native on the other side, instead of starting in Python and fighting to
         speak TypeScript later.
@@ -341,7 +341,7 @@ const CONTENT: Record<string, React.ReactNode> = {
         And tasteless as the comparison table looks, it is honest: Rails and
         Laravel are superb when the whole product lives in one language. The
         moment "intelligence" and "web" are both mandatory, the seam they never
-        designed for is the whole product - which is exactly what tspy makes
+        designed for is the whole product - which is exactly what bionicjs makes
         first-class.
       </P>
 
@@ -372,13 +372,13 @@ const CONTENT: Record<string, React.ReactNode> = {
         ]}
       />
       <P>
-        tspy makes the boundary a typed contract instead of a JSON handshake,
+        bionicjs makes the boundary a typed contract instead of a JSON handshake,
         generates the feature so both sides stay in one folder, and runs one
-        dev command and one build. The pair is powerful; tspy removes the part
+        dev command and one build. The pair is powerful; bionicjs removes the part
         of it that is paperwork.
       </P>
       <Callout>
-        What tspy does not claim: it is not a shared runtime. TypeScript and
+        What bionicjs does not claim: it is not a shared runtime. TypeScript and
         Python still run in their own worlds - the framework owns the seam
         between them so you do not have to.
       </Callout>
@@ -391,7 +391,7 @@ const CONTENT: Record<string, React.ReactNode> = {
         wiring and the drift is tolerable.
       </P>
       <P>
-        Reach for tspy when your product needs both worlds - a rich web surface
+        Reach for bionicjs when your product needs both worlds - a rich web surface
         and the intelligence behind it - and you want the boundary to be a
         product, not a liability.
       </P>
@@ -402,7 +402,7 @@ const CONTENT: Record<string, React.ReactNode> = {
     <>
       <H3 id="prerequisites">Prerequisites</H3>
       <P>
-        tspy needs Node 20+ and, only if you select AI or jobs, Python 3.11+.
+        bionicjs needs Node 20+ and, only if you select AI or jobs, Python 3.11+.
         There are no global installs - the CLI runs through{" "}
         <Code>npx</Code>, so node is the only hard requirement.
       </P>
@@ -413,7 +413,7 @@ const CONTENT: Record<string, React.ReactNode> = {
         written:
       </P>
       <CodeBlock>
-{`$ npx create-tspy-app@latest my-app
+{`$ npx create-bionicjs-app@latest my-app
 
 ? Auth provider -- None
 ? Database -- None
@@ -427,7 +427,7 @@ Created my-app/ using template(s): base`}
         line - auth, database, toolkit, AI, brokers, everything:
       </P>
       <CodeBlock>
-{`$ npx create-tspy-app@latest my-app \\
+{`$ npx create-bionicjs-app@latest my-app \\
     --auth better-auth \\
     --database sqlite --toolkit drizzle \\
     --ai llm/anthropic --jobs celery --broker redis`}
@@ -443,7 +443,7 @@ Created my-app/ using template(s): base`}
 $ npm install
 $ npm run dev
 
-TSPY dev server
+BionicJS dev server
 - Local:   http://localhost:3000
 ✓ Ready in XXXms`}
       </CodeBlock>
@@ -499,7 +499,7 @@ TSPY dev server
       </P>
       <H3 id="client">The client - React, CSR first</H3>
       <P>
-        Today tspy is client-side rendered: the browser fetches the bundle and
+        Today bionicjs is client-side rendered: the browser fetches the bundle and
         React renders. SSR is planned - the architecture keeps the render
         boundary movable without a rewrite.
       </P>
@@ -562,7 +562,7 @@ TSPY dev server
     <>
       <H3 id="honest">The honest baseline</H3>
       <P>
-        tspy does not invent a cache layer. Caching lives where the ecosystem
+        bionicjs does not invent a cache layer. Caching lives where the ecosystem
         puts it - HTTP caching in Nitro, client caching in React Query - until
         the framework earns one of its own.
       </P>
@@ -584,11 +584,11 @@ TSPY dev server
       <H3 id="providers">Providers</H3>
       <P>
         Every auth provider is a small plugin package that composes itself into{" "}
-        <Code>tspy.config.ts</Code> under the <Code>auth</Code> key. Pick one:
+        <Code>bionicjs.config.ts</Code> under the <Code>auth</Code> key. Pick one:
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";
 
 export default defineConfig({
   auth: betterAuth({
@@ -602,25 +602,25 @@ export default defineConfig({
       <Table
         head={["Package", "Provider", "Notes"]}
         rows={[
-          [<Code key="p">@tspy/better-auth</Code>, <Code key="n">Better Auth</Code>, "Self-hosted, mounts at /api/auth/[...auth]"],
-          [<Code key="p">@tspy/clerk</Code>, <Code key="n">Clerk</Code>, "Managed, wires the client"],
-          [<Code key="p">@tspy/firebase</Code>, <Code key="n">Firebase</Code>, "Google account stack"],
-          [<Code key="p">@tspy/supabase</Code>, <Code key="n">Supabase</Code>, "URL + anon key"],
-          [<Code key="p">@tspy/workos</Code>, <Code key="n">WorkOS</Code>, "SSO / directory sync"],
+          [<Code key="p">@bionicjs/better-auth</Code>, <Code key="n">Better Auth</Code>, "Self-hosted, mounts at /api/auth/[...auth]"],
+          [<Code key="p">@bionicjs/clerk</Code>, <Code key="n">Clerk</Code>, "Managed, wires the client"],
+          [<Code key="p">@bionicjs/firebase</Code>, <Code key="n">Firebase</Code>, "Google account stack"],
+          [<Code key="p">@bionicjs/supabase</Code>, <Code key="n">Supabase</Code>, "URL + anon key"],
+          [<Code key="p">@bionicjs/workos</Code>, <Code key="n">WorkOS</Code>, "SSO / directory sync"],
         ]}
       />
       <P>
         The generated project also carries the matching <Code>server/auth/</Code>{" "}
         handler, so the same choice is scaffolded end-to-end. Whichever provider
         you compose becomes the <Code>auth</Code> export on{" "}
-        <Code>tspy/server</Code>.
+        <Code>@bionicjs/core/server</Code>.
       </P>
 
       <H3 id="server-side">Server-side verification</H3>
       <P>
         The handler in <Code>server/auth/</Code> is where tokens are verified.
         The scaffolded pattern reads credentials from the environment and
-        exposes an <Code>auth</Code> object on <Code>tspy/server</Code>:
+        exposes an <Code>auth</Code> object on <Code>@bionicjs/core/server</Code>:
       </P>
       <CodeBlock file="server/auth/better-auth.ts" title="A self-hosted handler">
 {`import { betterAuth } from "better-auth";
@@ -650,7 +650,7 @@ export const auth = betterAuth({
         session:
       </P>
       <CodeBlock file="server/api/me.ts">
-{`import { auth } from "tspy/server";
+{`import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);
@@ -670,7 +670,7 @@ export default defineEventHandler(async (event) => {
       <P>
         Clerk is the one provider that spans the client side: a publishable key
         frontend mounts its session wrappers around the app, while the secret key
-        stays server-side. Compose <Code>@tspy/clerk</Code> and the handler under{" "}
+        stays server-side. Compose <Code>@bionicjs/clerk</Code> and the handler under{" "}
         <Code>server/auth/</Code> verifies sessions before protected routes run.
       </P>
 
@@ -684,9 +684,9 @@ export default defineEventHandler(async (event) => {
         guessing names.
       </P>
       <Callout>
-        TSPY does not define its own auth protocol. It wires the provider you
+        BionicJS does not define its own auth protocol. It wires the provider you
         chose — the JWT format, session store, and verification rules belong to
-        Better Auth, Clerk, Firebase, or Supabase. TSPY makes the wiring
+        Better Auth, Clerk, Firebase, or Supabase. BionicJS makes the wiring
         automatic and typed.
       </Callout>
 
@@ -696,9 +696,9 @@ export default defineEventHandler(async (event) => {
         external dependencies. Supports email/password, magic links, and social
         providers (GitHub, Google, etc.). Sessions are stored in your database.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";
 
 export default defineConfig({
   auth: betterAuth({
@@ -721,9 +721,9 @@ export default defineConfig({
         multi-factor authentication. The publishable key goes to the client
         (wraps the app), the secret key stays server-side.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { clerk } from "@tspy/clerk";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { clerk } from "@bionicjs/clerk";
 
 export default defineConfig({
   auth: clerk({
@@ -743,9 +743,9 @@ export default defineConfig({
         (service account) to verify tokens. Supports email/password, Google
         Sign-In, phone auth, and anonymous auth.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { firebase } from "@tspy/firebase";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { firebase } from "@bionicjs/firebase";
 
 export default defineConfig({
   auth: firebase({
@@ -767,9 +767,9 @@ export default defineConfig({
         anon key. Sessions are managed by Supabase; your server verifies JWTs
         against the Supabase API.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { supabase } from "@tspy/supabase";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { supabase } from "@bionicjs/supabase";
 
 export default defineConfig({
   auth: supabase({
@@ -788,9 +788,9 @@ export default defineConfig({
         social logins. Ideal for B2B apps that need to connect to customer
         identity providers.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { workos } from "@tspy/workos";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { workos } from "@bionicjs/workos";
 
 export default defineConfig({
   auth: workos({
@@ -812,7 +812,7 @@ export default defineConfig({
       <H3 id="matrix">The matrix</H3>
       <P>
         A database client is a plugin package composed in{" "}
-        <Code>tspy.config.ts</Code> under the <Code>database</Code> key. Engine
+        <Code>bionicjs.config.ts</Code> under the <Code>database</Code> key. Engine
         and access layer are chosen independently:
       </P>
       <Table
@@ -824,9 +824,9 @@ export default defineConfig({
           [<Strong key="sql">raw sql</Strong>, "direct driver", "direct driver"],
         ]}
       />
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { drizzle } from "@tspy/drizzle";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { drizzle } from "@bionicjs/drizzle";
 
 export default defineConfig({
   database: drizzle({ provider: "sqlite", url: "file:./db.sqlite" }),
@@ -837,7 +837,7 @@ export default defineConfig({
       <P>
         The database client is initialized in <Code>server/db/</Code> and is
         exposed at runtime as the <Code>db</Code> export of{" "}
-        <Code>tspy/server</Code> — injected into Hono&apos;s context, making it
+        <Code>@bionicjs/core/server</Code> — injected into Hono&apos;s context, making it
         easily accessible inside any API route handler:
       </P>
       <CodeBlock file="server/db/client.ts" title="A Drizzle + SQLite client">
@@ -881,12 +881,12 @@ export const db = drizzle({ client, schema });`}
       <H3 id="loading">Connecting at startup</H3>
       <P>
         Server routes can import <Code>db</Code> directly from{" "}
-        <Code>tspy/server</Code>. The client initializes lazily from the
+        <Code>@bionicjs/core/server</Code>. The client initializes lazily from the
         environment, so a missing <Code>DATABASE_URL</Code> fails fast at the
         first query with a clear error rather than at process start:
       </P>
       <CodeBlock file="server/api/health.ts">
-{`import { db } from "tspy/server";
+{`import { db } from "@bionicjs/core/server";
 
 export default defineEventHandler(async () => {
   const row = await db.query.users.findFirst();
@@ -895,7 +895,7 @@ export default defineEventHandler(async () => {
       </CodeBlock>
       <Callout>
         The access layer (Prisma, Drizzle, Kysely) only changes the query code.
-        The boundary — <Code>db</Code> on <Code>tspy/server</Code> — stays the
+        The boundary — <Code>db</Code> on <Code>@bionicjs/core/server</Code> — stays the
         same. Swapping Drizzle for Prisma is a config change plus a rewrite of
         the query files, nothing else in the app moves.
       </Callout>
@@ -906,16 +906,16 @@ export default defineEventHandler(async () => {
         define your data model, then generates a type-safe client. Best for
         teams that want a single source of truth for their database schema.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { prisma } from "@tspy/prisma";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { prisma } from "@bionicjs/prisma";
 
 export default defineConfig({
   database: prisma({ provider: "postgresql", url: env("DATABASE_URL") }),
 });`}
       </CodeBlock>
       <P>
-        Generates <Code>db</Code> on <Code>tspy/server</Code> with full
+        Generates <Code>db</Code> on <Code>@bionicjs/core/server</Code> with full
         Prisma Client types. Run <Code>npx prisma migrate dev</Code> to manage
         schema migrations.
       </P>
@@ -926,16 +926,16 @@ export default defineConfig({
         types from your schema definitions — no code generation step. Lightweight
         and fast, with first-class SQLite and PostgreSQL support.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { drizzle } from "@tspy/drizzle";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { drizzle } from "@bionicjs/drizzle";
 
 export default defineConfig({
   database: drizzle({ provider: "sqlite", url: "file:./db.sqlite" }),
 });`}
       </CodeBlock>
       <P>
-        Generates <Code>db</Code> on <Code>tspy/server</Code> with Drizzle's
+        Generates <Code>db</Code> on <Code>@bionicjs/core/server</Code> with Drizzle's
         query builder. Use <Code>drizzle-kit</Code> for migrations.
       </P>
 
@@ -945,16 +945,16 @@ export default defineConfig({
         TypeScript autocompletion. No ORM overhead — you write SQL, Kysely
         makes it type-safe.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { kysely } from "@tspy/kysely";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { kysely } from "@bionicjs/kysely";
 
 export default defineConfig({
   database: kysely({ provider: "postgres", url: env("DATABASE_URL") }),
 });`}
       </CodeBlock>
       <P>
-        Generates <Code>db</Code> on <Code>tspy/server</Code> with Kysely's
+        Generates <Code>db</Code> on <Code>@bionicjs/core/server</Code> with Kysely's
         query builder. Write raw SQL with full type inference.
       </P>
 
@@ -963,16 +963,16 @@ export default defineConfig({
         No abstraction. Use the database driver directly — pg, better-sqlite3,
         or mysql2. Full control over queries, connections, and pooling.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { sql } from "@tspy/sql";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { sql } from "@bionicjs/sql";
 
 export default defineConfig({
   database: sql({ provider: "sqlite", url: "file:./db.sqlite" }),
 });`}
       </CodeBlock>
       <P>
-        Generates <Code>db</Code> on <Code>tspy/server</Code> as a raw driver
+        Generates <Code>db</Code> on <Code>@bionicjs/core/server</Code> as a raw driver
         instance. You write the queries, you manage the connection.
       </P>
     </>
@@ -983,14 +983,14 @@ export default defineConfig({
       <H3 id="llm">LLM providers</H3>
       <P>
         An AI provider is a plugin package composed in{" "}
-        <Code>tspy.config.ts</Code> under the <Code>ai</Code> key. The package
+        <Code>bionicjs.config.ts</Code> under the <Code>ai</Code> key. The package
         stays thin - it records which model and API key to use and hands you an
         official SDK client as the <Code>ai</Code> export on{" "}
-        <Code>tspy/server</Code>.
+        <Code>@bionicjs/core/server</Code>.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { anthropic } from "@tspy/anthropic";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { anthropic } from "@bionicjs/anthropic";
 
 export default defineConfig({
   ai: anthropic({
@@ -1002,9 +1002,9 @@ export default defineConfig({
       <Table
         head={["Package", "SDK", "Default model"]}
         rows={[
-          [<Code key="p">@tspy/anthropic</Code>, <Code key="s">Anthropic SDK</Code>, <Code key="m">claude-sonnet-4-5</Code>],
-          [<Code key="p">@tspy/openai</Code>, <Code key="s">OpenAI SDK</Code>, <Code key="m">gpt-4o</Code>],
-          [<Code key="p">@tspy/google</Code>, <Code key="s">Google Gemini SDK</Code>, <Code key="m">gemini-2.5-pro</Code>],
+          [<Code key="p">@bionicjs/anthropic</Code>, <Code key="s">Anthropic SDK</Code>, <Code key="m">claude-sonnet-4-5</Code>],
+          [<Code key="p">@bionicjs/openai</Code>, <Code key="s">OpenAI SDK</Code>, <Code key="m">gpt-4o</Code>],
+          [<Code key="p">@bionicjs/google</Code>, <Code key="s">Google Gemini SDK</Code>, <Code key="m">gemini-2.5-pro</Code>],
         ]}
       />
 
@@ -1020,12 +1020,12 @@ export default defineConfig({
       <H3 id="openai-provider">OpenAI</H3>
       <P>
         OpenAI's GPT models. The plugin hands you the official OpenAI Python SDK
-        client as <Code>ai</Code> on <Code>tspy/server</Code>. Supports
+        client as <Code>ai</Code> on <Code>@bionicjs/core/server</Code>. Supports
         chat completions, function calling, and vision.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { openai } from "@tspy/openai";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { openai } from "@bionicjs/openai";
 
 export default defineConfig({
   ai: openai({
@@ -1045,9 +1045,9 @@ export default defineConfig({
         Python SDK. Claude excels at long-context reasoning, coding, and
         analysis.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { anthropic } from "@tspy/anthropic";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { anthropic } from "@bionicjs/anthropic";
 
 export default defineConfig({
   ai: anthropic({
@@ -1066,9 +1066,9 @@ export default defineConfig({
         Google's Gemini models via the Google AI Python SDK. Gemini supports
         multimodal input (text, images, video) and has a generous free tier.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { google } from "@tspy/google";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { google } from "@bionicjs/google";
 
 export default defineConfig({
   ai: google({
@@ -1087,9 +1087,9 @@ export default defineConfig({
         Local models via Ollama. No API key needed — Ollama runs models on your
         machine. Great for development, testing, and privacy-sensitive workloads.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { ollama } from "@tspy/ollama";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { ollama } from "@bionicjs/ollama";
 
 export default defineConfig({
   ai: ollama({
@@ -1110,14 +1110,14 @@ export default defineConfig({
       <H3 id="systems">Job systems</H3>
       <P>
         A background-job system is a plugin package composed in{" "}
-        <Code>tspy.config.ts</Code> under the <Code>jobs</Code> key. The
+        <Code>bionicjs.config.ts</Code> under the <Code>jobs</Code> key. The
         enqueue client becomes the <Code>jobs</Code> export on{" "}
-        <Code>tspy/server</Code>, and the worker entrypoint is scaffolded under{" "}
+        <Code>@bionicjs/core/server</Code>, and the worker entrypoint is scaffolded under{" "}
         <Code>jobs/</Code>.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { celery } from "@tspy/celery";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { celery } from "@bionicjs/celery";
 
 export default defineConfig({
   jobs: celery({ broker: "redis://localhost:6379" }),
@@ -1126,9 +1126,9 @@ export default defineConfig({
       <Table
         head={["Package", "System", "Language"]}
         rows={[
-          [<Code key="p">@tspy/celery</Code>, <Code key="n">Celery</Code>, "Python"],
-          [<Code key="p">@tspy/rq</Code>, <Code key="n">RQ</Code>, "Python"],
-          [<Code key="p">@tspy/dramatiq</Code>, <Code key="n">Dramatiq</Code>, "Python"],
+          [<Code key="p">@bionicjs/celery</Code>, <Code key="n">Celery</Code>, "Python"],
+          [<Code key="p">@bionicjs/rq</Code>, <Code key="n">RQ</Code>, "Python"],
+          [<Code key="p">@bionicjs/dramatiq</Code>, <Code key="n">Dramatiq</Code>, "Python"],
         ]}
       />
 
@@ -1146,9 +1146,9 @@ export default defineConfig({
         RabbitMQ brokers, scheduled tasks, retries, and task chains. The plugin
         scaffolds a worker entrypoint under <Code>jobs/</Code>.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { celery } from "@tspy/celery";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { celery } from "@bionicjs/celery";
 
 export default defineConfig({
   jobs: celery({ broker: "redis://localhost:6379" }),
@@ -1157,7 +1157,7 @@ export default defineConfig({
       <P>
         Scaffolded under <Code>jobs/</Code>. Enqueue with{" "}
         <Code>jobs.enqueue("tasks.add", args=[1, 2])</Code> from{" "}
-        <Code>tspy/server</Code>.
+        <Code>@bionicjs/core/server</Code>.
       </P>
 
       <H3 id="rq-provider">RQ</H3>
@@ -1166,9 +1166,9 @@ export default defineConfig({
         workloads where you want minimal setup. No broker choice — it's always
         Redis.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { rq } from "@tspy/rq";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { rq } from "@bionicjs/rq";
 
 export default defineConfig({
   jobs: rq({ broker: "redis://localhost:6379" }),
@@ -1177,7 +1177,7 @@ export default defineConfig({
       <P>
         Redis-only. Enqueue with{" "}
         <Code>jobs.enqueue("my_func", arg1, arg2)</Code> from{" "}
-        <Code>tspy/server</Code>.
+        <Code>@bionicjs/core/server</Code>.
       </P>
 
       <H3 id="dramatiq-provider">Dramatiq</H3>
@@ -1186,9 +1186,9 @@ export default defineConfig({
         RabbitMQ, with built-in retries, rate limiting, and priority queues.
         Simpler API than Celery.
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { dramatiq } from "@tspy/dramatiq";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { dramatiq } from "@bionicjs/dramatiq";
 
 export default defineConfig({
   jobs: dramatiq({ broker: "redis://localhost:6379" }),
@@ -1196,7 +1196,7 @@ export default defineConfig({
       </CodeBlock>
       <P>
         Enqueue with <Code>jobs.enqueue("my_task", arg1)</Code> from{" "}
-        <Code>tspy/server</Code>.
+        <Code>@bionicjs/core/server</Code>.
       </P>
     </>
   ),
@@ -1209,7 +1209,7 @@ export default defineConfig({
         template package - nothing is installed until the project is written.
       </P>
       <CodeBlock>
-{`$ npx create-tspy-app@latest my-app
+{`$ npx create-bionicjs-app@latest my-app
 ? Auth provider -- None
 ? Database -- None
 ? AI capabilities (multi-select) -- llm/anthropic
@@ -1230,7 +1230,7 @@ Created my-app/ with 2 template(s): base + ai/llm/anthropic
         CI:
       </P>
       <CodeBlock>
-{`$ npx create-tspy-app@latest my-app \\
+{`$ npx create-bionicjs-app@latest my-app \\
     --auth better-auth \\
     --database sqlite --toolkit drizzle \\
     --ai llm/anthropic,rag,agents \\
@@ -1249,9 +1249,9 @@ Created my-app/ with 2 template(s): base + ai/llm/anthropic
       />
       <Callout>
         <Code>--database sqlite --toolkit drizzle</Code> becomes the package
-        <Code>@tspy/drizzle</Code> composed in <Code>tspy.config.ts</Code>.
+        <Code>@bionicjs/drizzle</Code> composed in <Code>bionicjs.config.ts</Code>.
         Likewise <Code>--jobs celery</Code> becomes{" "}
-        <Code>@tspy/celery</Code>, and so on.
+        <Code>@bionicjs/celery</Code>, and so on.
       </Callout>
 
       <H3 id="run">Install and run</H3>
@@ -1263,14 +1263,14 @@ Created my-app/ with 2 template(s): base + ai/llm/anthropic
 $ npm install
 $ npm run dev
 
-TSPY dev server
+BionicJS dev server
 - Local:   http://localhost:3000
 - Network: http://192.168.0.211:3000
 ✓ Ready in 255ms`}
       </CodeBlock>
       <P>
-        <Code>npm run dev</Code> starts the TSPY development runtime. The browser
-        talks to one origin at <Code>localhost:3000</Code>; internally TSPY keeps
+        <Code>npm run dev</Code> starts the BionicJS development runtime. The browser
+        talks to one origin at <Code>localhost:3000</Code>; internally BionicJS keeps
         Vite on client tooling and Nitro on the server runtime. No two-terminal
         dance, no public <Code>localhost:5173</Code>.
       </P>
@@ -1280,7 +1280,7 @@ TSPY dev server
   "structure": (
     <>
       <P>
-        A fresh tspy project is a single directory with four fixed top-level
+        A fresh bionicjs project is a single directory with four fixed top-level
         folders. Only the folders you asked for are generated:
       </P>
       <Tree className="my-6 rounded-xl border border-border p-4">
@@ -1305,7 +1305,7 @@ TSPY dev server
             <File name="..." type="Python, when selected" />
           </Folder>
           <Folder name="public" />
-          <File name="tspy.config.ts" type="config" />
+          <File name="bionicjs.config.ts" type="config" />
           <File name="package.json" />
           <File name="pyproject.toml" type="Python deps" />
         </Folder>
@@ -1347,16 +1347,16 @@ export default defineEventHandler(() => ({
 
       <H3 id="config">Config files</H3>
       <P>
-        <Code>tspy.config.ts</Code> is the single place the framework reads. It
+        <Code>bionicjs.config.ts</Code> is the single place the framework reads. It
         composes the plugin packages - auth, database, AI, jobs - into the
         project:
       </P>
-      <CodeBlock file="tspy.config.ts">
-{`import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";
-import { drizzle } from "@tspy/drizzle";
-import { anthropic } from "@tspy/anthropic";
-import { celery } from "@tspy/celery";
+      <CodeBlock file="bionicjs.config.ts">
+{`import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";
+import { drizzle } from "@bionicjs/drizzle";
+import { anthropic } from "@bionicjs/anthropic";
+import { celery } from "@bionicjs/celery";
 
 export default defineConfig({
   auth: betterAuth({ emailAndPassword: { enabled: true } }),
@@ -1376,7 +1376,7 @@ export default defineConfig({
       </P>
       <P>
         Provider packages stay independent - each integration (auth, database,
-        AI, jobs) is a plugin composed in <Code>tspy.config.ts</Code>, not a
+        AI, jobs) is a plugin composed in <Code>bionicjs.config.ts</Code>, not a
         framework abstraction you're locked into.
       </P>
     </>
@@ -1385,8 +1385,8 @@ export default defineConfig({
   "stack": (
     <>
       <P>
-        tspy deliberately owns no implementations. Every piece of the stack is
-        the real, mature library you would already use - tspy composes them, it
+        bionicjs deliberately owns no implementations. Every piece of the stack is
+        the real, mature library you would already use - bionicjs composes them, it
         does not reimplement them.
       </P>
       <Table
@@ -1467,9 +1467,9 @@ export default defineConfig({
 
       <H3 id="independence">Providers stay independent</H3>
       <P>
-        Every provider is its own package (<Code>@tspy/better-auth</Code>,{" "}
-        <Code>@tspy/drizzle</Code>, ...). Swap one for another by changing a
-        line in <Code>tspy.config.ts</Code> - nothing else in your app moves.
+        Every provider is its own package (<Code>@bionicjs/better-auth</Code>,{" "}
+        <Code>@bionicjs/drizzle</Code>, ...). Swap one for another by changing a
+        line in <Code>bionicjs.config.ts</Code> - nothing else in your app moves.
       </P>
     </>
   ),
@@ -1488,11 +1488,11 @@ export default defineConfig({
       <P>
         Nitro&apos;s deployment presets carry over unchanged. Set{" "}
         <Code>nitro.preset</Code> in your Nitro config to target any supported
-        platform. No tspy abstraction needed — it&apos;s standard Nitro.
+        platform. No bionicjs abstraction needed — it&apos;s standard Nitro.
       </P>
       <H3 id="platforms">Supported platforms</H3>
       <P>
-        One build, deploy anywhere. TSPY uses Nitro under the hood, which means
+        One build, deploy anywhere. BionicJS uses Nitro under the hood, which means
         you get first-class support for every major deployment target. Set the
         preset in your config and deploy.
       </P>
@@ -1503,7 +1503,7 @@ export default defineConfig({
         serverless functions, edge middleware, and static asset serving
         automatically. Push to git and Vercel builds and deploys your app.
       </P>
-      <CodeBlock>{`// tspy.config.ts or nitro.config.ts
+      <CodeBlock>{`// bionicjs.config.ts or nitro.config.ts
 export default defineNitroConfig({
   preset: "vercel"
 });`}</CodeBlock>
@@ -1531,7 +1531,7 @@ export default defineNitroConfig({
       <H3 id="platform-aws">AWS</H3>
       <P>
         Deploy to AWS Lambda, API Gateway, or ECS with the{" "}
-        <Code>aws-lambda</Code> or <Code>node-server</Code> preset. TSPY
+        <Code>aws-lambda</Code> or <Code>node-server</Code> preset. BionicJS
         generates a standard Node.js server that runs anywhere — containerize it
         with Docker for ECS or Fargate.
       </P>
@@ -1547,7 +1547,7 @@ export default defineNitroConfig({
 
       <H3 id="platform-deno">Deno Deploy</H3>
       <P>
-        Deploy to Deno Deploy with the <Code>deno</Code> preset. Your TSPY
+        Deploy to Deno Deploy with the <Code>deno</Code> preset. Your BionicJS
         server runs on Deno&apos;s edge runtime with native TypeScript support,
         no transpilation step needed.
       </P>
@@ -1575,7 +1575,7 @@ CMD ["node", "server/index.mjs"]`}</CodeBlock>
   "ci-cd": (
     <>
       <P>
-        Set up continuous integration and delivery for your tspy project. GitHub
+        Set up continuous integration and delivery for your bionicjs project. GitHub
         Actions, testing, and deployment pipelines.
       </P>
       <Callout>
@@ -1593,7 +1593,7 @@ CMD ["node", "server/index.mjs"]`}</CodeBlock>
       </P>
       <Callout>
         This section is coming soon. We&apos;ll cover agent architectures, tool
-        definitions, and how to wire Python agents into your tspy app.
+        definitions, and how to wire Python agents into your bionicjs app.
       </Callout>
     </>
   ),
@@ -1602,8 +1602,8 @@ CMD ["node", "server/index.mjs"]`}</CodeBlock>
     <>
       <P>
         Register services once, get typed callers, providers, middleware, and
-        database models. tspy integrations are plugin packages composed in{" "}
-        <Code>tspy.config.ts</Code>.
+        database models. bionicjs integrations are plugin packages composed in{" "}
+        <Code>bionicjs.config.ts</Code>.
       </P>
       <Callout>
         This section is a work in progress. Full integration guides are coming
@@ -1628,7 +1628,7 @@ CMD ["node", "server/index.mjs"]`}</CodeBlock>
   testing: (
     <>
       <P>
-        Unit tests, integration tests, and end-to-end testing for your tspy
+        Unit tests, integration tests, and end-to-end testing for your bionicjs
         project.
       </P>
       <Callout>
@@ -1641,7 +1641,7 @@ CMD ["node", "server/index.mjs"]`}</CodeBlock>
   cli: (
     <>
       <P>
-        The tspy CLI commands: <Code>dev</Code>, <Code>build</Code>, and more.
+        The bionicjs CLI commands: <Code>dev</Code>, <Code>build</Code>, and more.
       </P>
       <Callout>
         This section is coming soon. We&apos;ll document every CLI command and

@@ -19,7 +19,7 @@ app/
 
 ## Build-time discovery {#discovery}
 
-When you run `tspy dev` or `tspy build`, the framework scans `app/` for
+When you run `bionicjs dev` or `bionicjs build`, the framework scans `app/` for
 page and layout files and builds a route tree — a pure data structure
 that maps file paths to URL patterns.
 
@@ -27,9 +27,9 @@ Each node records its path segment and the files that back it, so
 dynamic segments like `[slug]` and route groups are resolved before any
 browser code runs. The browser never scans the filesystem.
 
-## virtual:tspy-routes & React Router {#react-router}
+## virtual:bionicjs-routes & React Router {#react-router}
 
-The route tree compiles to a virtual module (`virtual:tspy-routes`) that
+The route tree compiles to a virtual module (`virtual:bionicjs-routes`) that
 React Router consumes. Each route becomes a lazy-loaded component:
 
 ```ts

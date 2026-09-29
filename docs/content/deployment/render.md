@@ -1,12 +1,12 @@
-Deploy your tspy project to Render. Render runs your Nitro server as a web service out of a Git connection, with automatic deploys on every push, managed SSL, and internal service-to-service networking.
+Deploy your bionicjs project to Render. Render runs your Nitro server as a web service out of a Git connection, with automatic deploys on every push, managed SSL, and internal service-to-service networking.
 
 ## Configure
 
 Render runs the standard Node.js server output:
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
 
 export default defineConfig({
   nitro: { preset: "node_server" },

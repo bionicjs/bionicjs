@@ -5,7 +5,7 @@ export function TheDevServer() {
     <>
       <H3 id="orchestration">Orchestration</H3>
       <P>
-        When you run <Code>tspy dev</Code>, you are starting a master
+        When you run <Code>bionicjs dev</Code>, you are starting a master
         orchestrator. It spins up the Vite development server for the React
         frontend, the Nitro development server for the h3 backend, and (if
         Python features are enabled) the FastAPI/Uvicorn development server.
@@ -22,7 +22,7 @@ const vite = await createViteServer({
     strictPort: true,
     proxy: { "/api": \`http://localhost:\${nitroPort}\` },
   },
-  plugins: [tspyRoutesPlugin(cwd), react()],
+  plugins: [bionicjsRoutesPlugin(cwd), react()],
 });
 
 await vite.listen();`}
@@ -35,7 +35,7 @@ await vite.listen();`}
 
       <H3 id="ports">Ports</H3>
       <P>
-        The public origin is <Code>localhost:3000</Code>. TSPY uses{" "}
+        The public origin is <Code>localhost:3000</Code>. BionicJS uses{" "}
         <Code>strictPort</Code>, so port conflicts are visible immediately
         rather than silently moving the app to a different port.
       </P>
@@ -61,13 +61,13 @@ await vite.listen();`}
         server. The frontend simply fetches from <Code>/</Code>:
       </P>
       <CodeBlock file="app/page.tsx">
-{`const res = await api.users.sayHello({ name: "tspy" });
+{`const res = await api.users.sayHello({ name: "bionicjs" });
 // -> GET /api/users/sayHello (hosted on :3000)
 // -> proxied to Nitro on :3001 internally`}
       </CodeBlock>
       <Callout>
         Browsers enforce same-origin for cookies and authorization headers. By
-        proxying at the Vite layer, TSPY keeps everything on one origin - no
+        proxying at the Vite layer, BionicJS keeps everything on one origin - no
         CORS configuration, no <Code>withCredentials</Code> hacks, and cookies
         from auth providers flow naturally.
       </Callout>

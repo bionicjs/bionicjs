@@ -1,40 +1,64 @@
 {
-  "name": "@tspy/dev",
+  "name": "@bionicjs/dev",
   "version": "0.1.0",
-  "description": "Vite and Nitro powered dev server and build pipeline for TSPY",
+  "description": "Vite and Nitro powered dev server and build pipeline for BionicJS",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": ["src", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@vitejs/plugin-react": "^6.1.1",
     "fast-glob": "^3.3.3",
     "h3": "2.0.1-rc.31",
     "jiti": "^2.7.0",
     "nitropack": "^2.13.4",
-    "tspy": "workspace:*",
+    "@bionicjs/core": "workspace:*",
     "vite": "^8.3.0"
   },
   "license": "MIT",
   "keywords": [
-    "tspy",
+    "bionicjs",
     "vite",
     "nitro",
     "dev-server"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Atnatewoss/tspy.git",
+    "url": "git+https://github.com/bionicjs/bionicjs.git",
     "directory": "packages/dev"
   },
   "bugs": {
-    "url": "https://github.com/Atnatewoss/tspy/issues"
+    "url": "https://github.com/bionicjs/bionicjs/issues"
   },
-  "homepage": "https://github.com/Atnatewoss/tspy#readme",
+  "homepage": "https://github.com/bionicjs/bionicjs#readme",
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "@types/node": "^22"
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node20 --dts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
   }
 }

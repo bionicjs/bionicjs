@@ -5,7 +5,7 @@ export function FilesystemRouting() {
     <>
       <H3 id="the-convention">The convention</H3>
       <P>
-        TSPY routes map directly from the filesystem. The rule is simple:
+        BionicJS routes map directly from the filesystem. The rule is simple:
       </P>
       <CodeBlock title="Route mapping">
 {`app/page.tsx                    → /
@@ -43,7 +43,7 @@ app/dashboard/settings/page.tsx → /dashboard/settings`}
       <H3 id="discovery">Build-time discovery</H3>
       <P>
         Filesystem scanning is strictly a build-time and dev-server concern, owned
-        by <Code>tspyRoutesPlugin</Code>. The browser runtime never scans the
+        by <Code>bionicjsRoutesPlugin</Code>. The browser runtime never scans the
         filesystem or calls <Code>import.meta.glob</Code>.
       </P>
       <CodeBlock file="packages/dev/src/plugins/routes.ts" title="Plugin discovery">
@@ -53,26 +53,26 @@ return generateRouteModule(manifest);`}
       </CodeBlock>
       <P>
         During development, Vite's file watcher monitors <Code>app/</Code>. When a
-        route file is created or deleted, <Code>tspyRoutesPlugin</Code> invalidates
+        route file is created or deleted, <Code>bionicjsRoutesPlugin</Code> invalidates
         the virtual module graph entry, triggering instant HMR update.
       </P>
 
-      <H3 id="react-router">virtual:tspy-routes & React Router</H3>
+      <H3 id="react-router">virtual:bionicjs-routes & React Router</H3>
       <P>
-        TSPY's generator transforms the manifest tree into a virtual module string,{" "}
-        <Code>virtual:tspy-routes</Code>, exported directly to React Router. Each
+        BionicJS's generator transforms the manifest tree into a virtual module string,{" "}
+        <Code>virtual:bionicjs-routes</Code>, exported directly to React Router. Each
         route uses lazy dynamic imports for optimal code splitting.
       </P>
-      <CodeBlock title="Generated virtual:tspy-routes">
+      <CodeBlock title="Generated virtual:bionicjs-routes">
 {`import React from "react";
-import { TSPYLayoutAdapter } from "tspy/router";
+import { BionicJSLayoutAdapter } from "@bionicjs/core/router";
 
 export const routes = [
   {
     lazy: async () => {
       const mod = await import("/app/layout.tsx");
       return {
-        Component: () => React.createElement(TSPYLayoutAdapter, { Layout: mod.default })
+        Component: () => React.createElement(BionicJSLayoutAdapter, { Layout: mod.default })
       };
     },
     children: [
@@ -96,11 +96,11 @@ export const routes = [
       </CodeBlock>
       <P>
         Layouts use standard React <Code>{"{ children }"}</Code> syntax. The{" "}
-        <Code>TSPYLayoutAdapter</Code> injects React Router's <Code>{"<Outlet />"}</Code>{" "}
+        <Code>BionicJSLayoutAdapter</Code> injects React Router's <Code>{"<Outlet />"}</Code>{" "}
         transparently behind the scenes.
       </P>
       <P>
-        The developer mounts <Code>{"<TSPYRouter />"}</Code> at their application root.
+        The developer mounts <Code>{"<BionicJSRouter />"}</Code> at their application root.
         That is the entire router API surface exposed to them. React Router is an internal framework detail.
       </P>
     </>

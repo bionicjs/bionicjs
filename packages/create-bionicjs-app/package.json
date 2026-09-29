@@ -1,0 +1,48 @@
+{
+  "name": "create-bionicjs-app",
+  "version": "0.1.0",
+  "description": "Scaffold a new BionicJS application from composable templates",
+  "type": "module",
+  "bin": {
+    "create-bionicjs-app": "./dist/create-bionicjs-app.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup create-bionicjs-app.ts --format esm --target node20",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@clack/core": "^1.5.0",
+    "@clack/prompts": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5",
+    "tsup": "^8.5.1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "bionicjs",
+    "cli",
+    "scaffolding",
+    "create-app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bionicjs/bionicjs.git",
+    "directory": "packages/create-bionicjs-app"
+  },
+  "bugs": {
+    "url": "https://github.com/bionicjs/bionicjs/issues"
+  },
+  "homepage": "https://github.com/bionicjs/bionicjs#readme",
+  "engines": {
+    "node": ">=20"
+  }
+}

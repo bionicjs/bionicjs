@@ -28,9 +28,9 @@ export function TheHonestBaseline() {
         manual <Code>fetch</Code> calls, duplicated types, and a schema that
         drifts the moment someone touches the Python side.
       </P>
-      <H3 id="the-tspy-bridge">The TSPY bridge</H3>
+      <H3 id="the-bionicjs-bridge">The BionicJS bridge</H3>
       <P>
-        TSPY&apos;s long-term ambition is a true shared runtime, but we are
+        BionicJS&apos;s long-term ambition is a true shared runtime, but we are
         starting with an honest baseline: a beautifully orchestrated monorepo
         where TypeScript and Python live side-by-side, sharing a dev server, a
         build pipeline, and a generated RPC boundary.
@@ -41,7 +41,7 @@ export function TheHonestBaseline() {
 |-- server/     # Nitro API (TypeScript)
 |-- ai/         # models & agents (Python)
 |-- jobs/       # workers (Python)
-\-- tspy.config.ts`}
+\-- bionicjs.config.ts`}
       </CodeBlock>
       <P>
         The boundary stops being glue and becomes a contract: Python functions
@@ -54,8 +54,8 @@ export function TheHonestBaseline() {
         like a single, cohesive product.
       </P>
       <Callout>
-        This is the reason TSPY exists. If single-language frameworks (Next.js,
-        Rails, Django) solved your problem, you should use them. TSPY is for the
+        This is the reason BionicJS exists. If single-language frameworks (Next.js,
+        Rails, Django) solved your problem, you should use them. BionicJS is for the
         product that needs both worlds - the web surface and the intelligence -
         and does not want the seam to be the liability.
       </Callout>

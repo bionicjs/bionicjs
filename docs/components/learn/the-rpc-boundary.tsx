@@ -5,9 +5,9 @@ export function TheRpcBoundary() {
     <>
       <H3 id="communication">Communication</H3>
       <P>
-        The boundary between TypeScript and Python in TSPY is bridged using RPC.
+        The boundary between TypeScript and Python in BionicJS is bridged using RPC.
         Instead of manually writing fetch calls, developers define their Python
-        functions and TSPY automatically generates fully-typed TypeScript client
+        functions and BionicJS automatically generates fully-typed TypeScript client
         stubs.
       </P>
       <CodeBlock title="The journey of one call">
@@ -32,7 +32,7 @@ result returns with full types`}
       <H3 id="generation">Generation</H3>
       <P>
         The client stubs are generated, not maintained by hand. The Python
-        function signatures are the source of truth, and TSPY turns them into
+        function signatures are the source of truth, and BionicJS turns them into
         TypeScript types and callable functions:
       </P>
       <CodeBlock title="Python defines">
@@ -55,8 +55,8 @@ result returns with full types`}
 
       <H3 id="the-contract">The contract</H3>
       <P>
-        The RPC boundary is the product TSPY sells. Where the glued pair (Next.js
-        + FastAPI) has untyped JSON, TSPY has a contract checked both ways:
+        The RPC boundary is the product BionicJS sells. Where the glued pair (Next.js
+        + FastAPI) has untyped JSON, BionicJS has a contract checked both ways:
       </P>
       <Checklist
         items={[

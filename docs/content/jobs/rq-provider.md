@@ -3,9 +3,9 @@ RQ (Redis Queue) is a simple, lightweight Python task queue. Ideal for smaller w
 ## Compose the plugin
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { rq } from "@tspy/rq";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { rq } from "@bionicjs/rq";
 
 export default defineConfig({
   jobs: rq({ broker: "redis://localhost:6379" }),
@@ -18,7 +18,7 @@ Tasks live under `jobs/` in Python:
 
 ```python
 # jobs/tasks.py
-from tspy.jobs import task
+from bionicjs.jobs import task
 
 @task
 def send_welcome_email(user_email: str) -> None:
@@ -27,11 +27,11 @@ def send_welcome_email(user_email: str) -> None:
 
 ## Enqueue from the server
 
-The enqueue client is exposed as the `jobs` export on `tspy/server`:
+The enqueue client is exposed as the `jobs` export on `@bionicjs/core/server`:
 
 ```ts
 // server/api/signup.ts
-import { jobs } from "tspy/server";
+import { jobs } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const { email } = await readBody(event);

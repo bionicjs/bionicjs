@@ -234,23 +234,23 @@ export function ChatBubbleIcon(props: IconProps) {
 
 export function LogoIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" {...props}>
-      <g stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="5" y="12" width="22" height="10" transform="rotate(-8 5 12)" rx="2.5" />
-        <g transform="rotate(-8 16 17)">
-          <path d="M12 14v6c0 1.1.9 2 2 2h4" />
-          <path d="M12 14c0 .8.5 1.5 1 2" />
-          <path d="M20 19v3" />
-          <path d="M12 19v4c0 1.1.9 2 2 2" />
-        </g>
-        <g transform="rotate(-8 37 38)">
-          <rect x="26" y="32" width="22" height="12" rx="2.5" />
-          <path d="M33 36v3c0 1.4 1.1 2.5 2.5 2.5" />
-          <path d="M33 36c0 1-.6 1.8-1.3 2.2" />
-          <path d="M40 40.5h4" />
-          <path d="M33 40v1c0 2.2 1.8 4 4 4h1" />
-        </g>
-      </g>
+    <svg viewBox="18 18 46 40" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M36 24 A14 14 0 0 0 36 52"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M36 24 H48 V52 H36"
+        stroke="#0891B2"
+        strokeWidth="6"
+        strokeLinejoin="miter"
+        fill="none"
+      />
+      <path d="M48 38 H54" stroke="#0891B2" strokeWidth="6" fill="none" />
+      <circle cx="58" cy="38" r="4.5" fill="#0891B2" />
     </svg>
   );
 }

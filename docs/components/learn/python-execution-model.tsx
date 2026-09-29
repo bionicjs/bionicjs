@@ -5,12 +5,12 @@ export function PythonExecutionModel() {
     <>
       <H3 id="runtime">Runtime</H3>
       <P>
-        When a TSPY project includes Python capabilities (AI, Jobs),{" "}
-        <Code>tspy dev</Code> spawns a Python child process. This process runs a
+        When a BionicJS project includes Python capabilities (AI, Jobs),{" "}
+        <Code>bionicjs dev</Code> spawns a Python child process. This process runs a
         FastAPI server that handles RPC calls from the Nitro server.
       </P>
       <CodeBlock title="Process topology">
-{`tspy dev
+{`bionicjs dev
   |-- Vite (:3000)          # the React client
   |-- Nitro (:3001)         # the API / h3 handlers
   \`-- Python (internal)     # FastAPI RPC surface (only when ai//jobs/ exist)`}
@@ -34,7 +34,7 @@ export function PythonExecutionModel() {
       <Table
         head={["Concern", "Development", "Production"]}
         rows={[
-          ["Process", "Spawned by tspy dev", "Supervised (container / systemd)"],
+          ["Process", "Spawned by bionicjs dev", "Supervised (container / systemd)"],
           ["Channel", "Internal localhost", "Same container or private network"],
           ["Dependencies", "Installed on demand", "Locked in pyproject.toml / lockfile"],
           ["Failures", "Logged to unified terminal", "Container restart policy"],
@@ -50,7 +50,7 @@ export function PythonExecutionModel() {
       <P>
         In production, the deployment model can either run both Node.js and
         Python in the same container, or split them into separate microservices
-        communicating over a private network. TSPY generates the Dockerfiles and
+        communicating over a private network. BionicJS generates the Dockerfiles and
         configurations to support either model.
       </P>
       <CodeBlock title="Two deployment shapes">

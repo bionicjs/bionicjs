@@ -20,7 +20,7 @@ export const LEARN_PARTS: LearnPart[] = [
       {
         slug: "why-a-meta-framework",
         title: "Why a meta-framework",
-        blurb: "What React leaves to you, and the layer TSPY adds on top.",
+        blurb: "What React leaves to you, and the layer BionicJS adds on top.",
       },
       {
         slug: "the-honest-baseline",
@@ -57,7 +57,7 @@ export const LEARN_PARTS: LearnPart[] = [
   },
   {
     title: "Build and dev",
-    blurb: "The machinery behind `create-tspy-app`, `tspy dev`, and `tspy build`.",
+    blurb: "The machinery behind `create-bionicjs-app`, `bionicjs dev`, and `bionicjs build`.",
     chapters: [
       {
         slug: "project-generator",
@@ -67,7 +67,7 @@ export const LEARN_PARTS: LearnPart[] = [
       {
         slug: "vite-and-nitro",
         title: "Vite and Nitro",
-        blurb: "Why there is no index.html, and how the two engines sit inside TSPY.",
+        blurb: "Why there is no index.html, and how the two engines sit inside BionicJS.",
       },
       {
         slug: "the-dev-server",
@@ -80,8 +80,8 @@ export const LEARN_PARTS: LearnPart[] = [
         blurb: "Chokidar, invalidation, and what reloads when a file changes.",
       },
       {
-        slug: "tspy-config",
-        title: "tspy.config.ts",
+        slug: "bionicjs-config",
+        title: "bionicjs.config.ts",
         blurb: "The file, the plugins, and the runtime exports it drives.",
       },
       {

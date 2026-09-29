@@ -5,7 +5,7 @@ export function HmrAndWatchers() {
     <>
       <H3 id="chokidar">Chokidar</H3>
       <P>
-        TSPY relies on Vite&apos;s internal file watcher (Chokidar) to monitor
+        BionicJS relies on Vite&apos;s internal file watcher (Chokidar) to monitor
         the <Code>app/</Code> directory for structural changes. The watcher is
         not custom - it is the same <Code>server.watcher</Code> that Vite&apos;s
         own plugins and HMR pipeline use.
@@ -17,7 +17,7 @@ export function HmrAndWatchers() {
 }`}
       </CodeBlock>
       <P>
-        TSPY listens to <Code>add</Code> and <Code>unlink</Code> events - the
+        BionicJS listens to <Code>add</Code> and <Code>unlink</Code> events - the
         two that matter for route discovery. Creating a{" "}
         <Code>page.tsx</Code> fires <Code>add</Code>; deleting one fires{" "}
         <Code>unlink</Code>. Editing an existing file does not fire either, and
@@ -38,8 +38,8 @@ export function HmrAndWatchers() {
       <P>
         When a new <Code>page.tsx</Code> or <Code>layout.tsx</Code> is added or
         deleted, the Vite plugin intercepts the event and invalidates the{" "}
-        <Code>virtual:tspy-routes</Code> module in Vite&apos;s module graph. This
-        forces Vite to request the file again, triggering the TSPY generator to
+        <Code>virtual:bionicjs-routes</Code> module in Vite&apos;s module graph. This
+        forces Vite to request the file again, triggering the BionicJS generator to
         re-run and push the new route tree to the browser:
       </P>
       <CodeBlock title="The invalidation handler">
@@ -65,7 +65,7 @@ export function HmrAndWatchers() {
           <>Vite&apos;s watcher fires an <Code>add</Code> event.</>,
           <>The plugin detects the <Code>page.tsx</Code> suffix under <Code>app/</Code>.</>,
           <>The virtual module is invalidated and a <Code>full-reload</Code> is broadcast.</>,
-          <>The browser re-fetches <Code>virtual:tspy-routes</Code>, regenerating the route tree.</>,
+          <>The browser re-fetches <Code>virtual:bionicjs-routes</Code>, regenerating the route tree.</>,
           <>The new <Code>/contact</Code> route is live.</>,
         ]}
       />
@@ -76,7 +76,7 @@ export function HmrAndWatchers() {
       </P>
       <Callout>
         The watcher only reacts to structural changes (file added or removed).
-        TSPY uses a <Code>full-reload</Code>, not a fine-grained HMR update,
+        BionicJS uses a <Code>full-reload</Code>, not a fine-grained HMR update,
         because the entire route tree is regenerated - the browser needs a fresh
         copy of the module. Page content edits still get Vite&apos;s normal
         granular HMR.

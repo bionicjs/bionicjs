@@ -106,7 +106,7 @@ export function inferLang(file?: string): CodeLang {
     case "tsx":
       return "tsx";
     case "ts":
-    case "tspy":
+    case "bionicjs":
       return "ts";
     case "py":
       return "python";

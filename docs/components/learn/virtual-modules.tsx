@@ -5,14 +5,14 @@ export function VirtualModules() {
     <>
       <H3 id="generator">The Generator</H3>
       <P>
-        Once the <Code>RouteManifestNode</Code> tree is built, TSPY&apos;s
+        Once the <Code>RouteManifestNode</Code> tree is built, BionicJS&apos;s
         generator steps in. It traverses the AST and produces a JavaScript
         module string - not a binary bundle, not a compiled artifact, but a
         string of source code that Vite consumes as a virtual module.
       </P>
       <P>
         This string is served through a <Strong>virtual module</Strong> called{" "}
-        <Code>virtual:tspy-routes</Code>. Virtual modules exist only in
+        <Code>virtual:bionicjs-routes</Code>. Virtual modules exist only in
         Vite&apos;s module graph - they are never written to disk and never
         appear in the project directory. Vite resolves them through the plugin&apos;s{" "}
         <Code>resolveId</Code> and <Code>load</Code> hooks.
@@ -42,7 +42,7 @@ load(id) {
         The generator outputs an array of React Router route objects. Each route
         uses the <Code>lazy</Code> property with a dynamic import, returning
         either a page component or a layout wrapped in{" "}
-        <Code>TSPYLayoutAdapter</Code>. The output is clean, readable
+        <Code>BionicJSLayoutAdapter</Code>. The output is clean, readable
         JavaScript that looks hand-written.
       </P>
       <CodeBlock title="Generated route structure">
@@ -51,7 +51,7 @@ load(id) {
   lazy: async () => {
     const mod = await import("/app/users/layout.tsx");
     return {
-      Component: () => React.createElement(TSPYLayoutAdapter, { Layout: mod.default })
+      Component: () => React.createElement(BionicJSLayoutAdapter, { Layout: mod.default })
     };
   },
   children: [
@@ -73,7 +73,7 @@ load(id) {
 }`}
       </CodeBlock>
       <P>
-        Layout nodes use <Code>TSPYLayoutAdapter</Code> to wrap the
+        Layout nodes use <Code>BionicJSLayoutAdapter</Code> to wrap the
         user&apos;s layout component. Page nodes return the default export
         directly. The generator handles nesting automatically - child routes
         appear in the <Code>children</Code> array of their parent layout.
@@ -95,7 +95,7 @@ load(id) {
       </Callout>
       <P>
         This pattern is identical to what you would write by hand with React
-        Router - TSPY generates it automatically from the filesystem structure.
+        Router - BionicJS generates it automatically from the filesystem structure.
         The developer gets the same performance characteristics without
         thinking about code splitting at all.
       </P>

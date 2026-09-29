@@ -19,7 +19,7 @@ jobs/
 4. Results are stored or returned
 
 ```python # jobs/tasks.py
-from tspy import jobs
+from bionicjs import jobs
 
 @jobs.task
 def process_data(record_id: int) -> dict:

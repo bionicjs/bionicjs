@@ -1,6 +1,6 @@
-# TSPY Documentation
+# BionicJS Documentation
 
-This site hosts the TSPY documentation: guides, learn modules, and the changelog.
+This site hosts the BionicJS documentation: guides, learn modules, and the changelog.
 
 ## Stack
 

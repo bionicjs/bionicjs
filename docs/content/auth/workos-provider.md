@@ -2,12 +2,12 @@ WorkOS provides enterprise SSO and directory sync. It supports SAML, OIDC, and s
 
 ## Compose the plugin
 
-Add `@tspy/workos` under the `auth` key in `tspy.config.ts`.
+Add `@bionicjs/workos` under the `auth` key in `bionicjs.config.ts`.
 
 ```ts
-// tspy.config.ts
-import { defineConfig } from "tspy";
-import { workos } from "@tspy/workos";
+// bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { workos } from "@bionicjs/workos";
 
 export default defineConfig({
   auth: workos({
@@ -43,7 +43,7 @@ export const workos = new WorkOS(apiKey);
 Protected API routes verify the session through the same `auth` boundary:
 
 ```ts
-import { auth } from "tspy/server";
+import { auth } from "@bionicjs/core/server";
 
 export default defineEventHandler(async (event) => {
   const session = await auth.getSession(event);

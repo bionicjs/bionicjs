@@ -1,6 +1,6 @@
 ## The two worlds
 
-TSPY splits your project into two clear halves:
+BionicJS splits your project into two clear halves:
 
 ```
 my-app/
@@ -8,7 +8,7 @@ my-app/
 ├── server/       # Server — Nitro, h3, Node.js
 ├── ai/           # Python — AI, LLM calls, agents
 ├── jobs/         # Python — background tasks, queues
-└── tspy.config.ts
+└── bionicjs.config.ts
 ```
 
 This isn't arbitrary. Each folder maps to a runtime boundary:
@@ -49,15 +49,15 @@ Python lives at the top level, not buried under `server/`:
 These are Python files. They run in a separate process. The RPC boundary
 connects them to TypeScript.
 
-## tspy.config.ts — the single config
+## bionicjs.config.ts — the single config
 
 One file configures everything:
 
-```ts tspy.config.ts
-import { defineConfig } from "tspy";
-import { betterAuth } from "@tspy/better-auth";
-import { prisma } from "@tspy/prisma";
-import { anthropic } from "@tspy/anthropic";
+```ts bionicjs.config.ts
+import { defineConfig } from "@bionicjs/core";
+import { betterAuth } from "@bionicjs/better-auth";
+import { prisma } from "@bionicjs/prisma";
+import { anthropic } from "@bionicjs/anthropic";
 
 export default defineConfig({
   auth: betterAuth({ emailAndPassword: { enabled: true } }),
@@ -67,4 +67,4 @@ export default defineConfig({
 ```
 
 No separate `vite.config.ts`. No `nitro.config.ts`. No middleware files.
-TSPY manages all of it.
+BionicJS manages all of it.

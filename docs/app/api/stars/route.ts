@@ -9,7 +9,7 @@ export async function GET() {
   const token = process.env.GITHUB_TOKEN;
 
   try {
-    const res = await fetch("https://api.github.com/repos/pyrpc/tspy", {
+    const res = await fetch("https://api.github.com/repos/bionicjs/bionicjs", {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
     if (!res.ok) {
