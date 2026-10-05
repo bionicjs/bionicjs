@@ -1,6 +1,6 @@
 {
   "name": "@bionicjs/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The full-stack React framework for the AI era: React UI and Python intelligence in one codebase",
   "type": "module",
   "main": "./src/index.ts",
