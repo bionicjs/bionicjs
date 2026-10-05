@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check": "node scripts/check-docs.mjs",
+    "check:strict": "node scripts/check-docs.mjs --strict"
   },
   "dependencies": {
     "@react-symbols/icons": "^1.4.1",

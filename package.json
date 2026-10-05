@@ -9,6 +9,7 @@
     "build": "pnpm -r run build",
     "typecheck": "pnpm -r run typecheck",
     "test": "pnpm -r run test",
-    "check:cycles": "node scripts/check-cycles.mjs"
+    "check:cycles": "node scripts/check-cycles.mjs",
+    "check:docs": "node docs/scripts/check-docs.mjs"
   }
 }
