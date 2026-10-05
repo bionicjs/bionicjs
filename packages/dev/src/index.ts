@@ -1,7 +1,11 @@
 import { createServer as createViteServer } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import { createNitro, createDevServer as createNitroDevServer, build, prepare } from "nitropack";
+import type { NitroConfig } from "nitropack";
+import { existsSync } from "node:fs";
 import { networkInterfaces } from "node:os";
+import path from "node:path";
 
 import { bionicjsRoutesPlugin } from "./plugins/routes";
 import { generateAll } from "./generator";
@@ -20,21 +24,74 @@ function getNetworkUrl(port: number) {
   return null;
 }
 
-export async function runDevServer(options: { cwd?: string } = {}) {
+export interface DevServerPaths {
+  cwd: string;
+  serverDir: string;
+  publicDir: string;
+  generatedServer: string;
+}
+
+export interface DevServerHandle {
+  publicPort: number;
+  nitroPort: number;
+  close: () => Promise<void>;
+}
+
+/**
+ * Resolve the layout a BionicJS app is expected to have, and the Nitro options
+ * that make it work.
+ *
+ * Kept separate from `runDevServer` and free of side effects so the part that
+ * actually matters can be asserted in tests: `srcDir` decides whether Nitro
+ * finds `server/api` at all, and getting it wrong registers zero routes and
+ * 404s every endpoint with no warning from either package.
+ */
+export function resolveNitroConfig(cwd: string): {
+  paths: DevServerPaths;
+  nitroOptions: NitroConfig;
+} {
+  // Nitro scans `<srcDir>/api`, `<srcDir>/routes`, `<srcDir>/middleware` and
+  // `<srcDir>/plugins`. BionicJS puts all of those under `server/`, so srcDir
+  // has to be the server directory — pointing rootDir at the project would
+  // make Nitro look for `./api` and silently register no routes at all.
+  const paths: DevServerPaths = {
+    cwd,
+    serverDir: path.join(cwd, "server"),
+    publicDir: path.join(cwd, "public"),
+    generatedServer: path.join(cwd, ".bionicjs", "server.ts"),
+  };
+
+  return {
+    paths,
+    nitroOptions: {
+      rootDir: cwd,
+      srcDir: paths.serverDir,
+      dev: true,
+      compatibilityDate: "2026-09-14",
+      // public/ is a sibling of server/, so it cannot be resolved from srcDir.
+      publicAssets: existsSync(paths.publicDir) ? [{ dir: paths.publicDir }] : [],
+      // Server routes import the same generated interface the client does.
+      alias: existsSync(paths.generatedServer)
+        ? { "@bionicjs/core/server": paths.generatedServer }
+        : {},
+    },
+  };
+}
+
+export async function runDevServer(
+  options: { cwd?: string; ports?: { public?: number; nitro?: number } } = {},
+): Promise<DevServerHandle> {
   const cwd = options.cwd || process.cwd();
-  const publicPort = 3000;
-  const nitroPort = 3001;
+  const publicPort = options.ports?.public ?? 3000;
+  const nitroPort = options.ports?.nitro ?? 3001;
   const startedAt = performance.now();
 
   await generateAll(cwd);
 
   // 1. Start Nitro Programmatically
-  const nitro = await createNitro({
-    rootDir: cwd,
-    dev: true,
-    compatibilityDate: '2026-09-14'
-  });
-  
+  const { paths, nitroOptions } = resolveNitroConfig(cwd);
+  const nitro = await createNitro(nitroOptions);
+
   const nitroDevServer = createNitroDevServer(nitro);
   await nitroDevServer.listen(nitroPort);
   await prepare(nitro);
@@ -56,7 +113,7 @@ export async function runDevServer(options: { cwd?: string } = {}) {
         // Resolve @bionicjs/core/server to the generated .bionicjs/server.ts
         {
           find: /^@bionicjs\/core\/server$/,
-          replacement: `${cwd}/.bionicjs/server.ts`,
+          replacement: paths.generatedServer,
         },
       ],
     },
@@ -73,6 +130,10 @@ export async function runDevServer(options: { cwd?: string } = {}) {
     plugins: [
       bionicjsRoutesPlugin(cwd),
       react(),
+      // Tailwind is part of the base app (app/globals.css imports it), so the
+      // plugin is registered here rather than in a user-owned vite.config.ts.
+      // The user never writes a Vite config for BionicJS.
+      tailwindcss(),
       {
         name: "bionicjs-html",
         configureServer(server) {
@@ -123,12 +184,28 @@ export async function runDevServer(options: { cwd?: string } = {}) {
   }
   console.log(`✓ Ready in ${readyMs}ms`);
 
-  const cleanup = () => {
-    vite.close();
-    nitro.close();
-    process.exit(0);
+  // Returned so tests (and any embedder) can shut the server down. The CLI
+  // ignores it and simply stays alive on the open listeners.
+  const handle: DevServerHandle = {
+    publicPort,
+    nitroPort,
+    close: async () => {
+      await vite.close();
+      await nitro.close();
+    },
   };
 
-  process.on("SIGINT", cleanup);
-  process.on("SIGTERM", cleanup);
+  // Only wire up signal handling for a real `bionicjs dev` invocation, so
+  // repeated calls in a test process don't accumulate listeners.
+  if (options.ports === undefined) {
+    const cleanup = () => {
+      void handle.close();
+      process.exit(0);
+    };
+
+    process.on("SIGINT", cleanup);
+    process.on("SIGTERM", cleanup);
+  }
+
+  return handle;
 }
