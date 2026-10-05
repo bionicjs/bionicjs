@@ -100,6 +100,19 @@ test("writePackageManagerField: skips the corepack field for deno", async () => 
   await rm(dir, { recursive: true, force: true });
 });
 
+// A CI runner has no global git identity, so every `git commit` here fails on
+// the runner and passes on a developer machine. Pin one for the whole file:
+// these tests assert on git's behaviour, not on the machine's configuration.
+const GIT_IDENTITY: Record<string, string> = {
+  GIT_AUTHOR_NAME: "BionicJS Test",
+  GIT_AUTHOR_EMAIL: "test@bionicjs.dev",
+  GIT_COMMITTER_NAME: "BionicJS Test",
+  GIT_COMMITTER_EMAIL: "test@bionicjs.dev",
+};
+for (const [key, value] of Object.entries(GIT_IDENTITY)) {
+  process.env[key] = value;
+}
+
 async function git(dir: string, ...args: string[]): Promise<string> {
   const { execFileSync } = await import("node:child_process");
   return execFileSync("git", args, { cwd: dir, encoding: "utf8" });
