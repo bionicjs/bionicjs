@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "@libsql/client": "^0.14",
-    "drizzle-orm": "^0.44.0"
+    "drizzle-orm": "^0.45.2"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.0"
+    "drizzle-kit": "^0.31.4"
   },
   "scripts": {
     "db:generate": "drizzle-kit generate",
