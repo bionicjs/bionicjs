@@ -62,8 +62,8 @@ export function BuildPipeline() {
       <Table
         head={["File", "Contents"]}
         rows={[
-          [<Code key="h">.bionicjs/hono.ts</Code>, "The Hono router + AppRouter type built from server/api/*.ts"],
-          [<Code key="c">.bionicjs/api-client.ts</Code>, "The typed hc<AppRouter> client exported as api"],
+          [<Code key="h">.bionicjs/hono.ts</Code>, "A Hono router + AppRouter type built from server/api/*.ts — generated, but not mounted yet"],
+          [<Code key="c">.bionicjs/api-client.ts</Code>, "The typed hc<AppRouter> client exported as api — inert until the router is mounted"],
           [<Code key="s">.bionicjs/server.ts</Code>, "The generated auth / db / ai / jobs server exports"],
         ]}
       />

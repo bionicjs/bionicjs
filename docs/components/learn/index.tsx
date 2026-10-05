@@ -1,5 +1,6 @@
 import { WhyAMetaFramework } from "./why-a-meta-framework";
 import { TheHonestBaseline } from "./the-honest-baseline";
+import { HowMetaFrameworksWork } from "./how-meta-frameworks-work";
 import { FilesystemRouting } from "./filesystem-routing";
 import { TheParserAndManifest } from "./the-parser-and-manifest";
 import { VirtualModules } from "./virtual-modules";
@@ -11,6 +12,8 @@ import { HmrAndWatchers } from "./hmr-and-watchers";
 import { BionicJSConfig } from "./bionicjs-config";
 import { BuildPipeline } from "./build-pipeline";
 import { ServerAndHono } from "./server-and-hono";
+import { NitroAndH3 } from "./nitro-and-h3";
+import { HonoAndRpc } from "./hono-and-rpc";
 import { ApiProxying } from "./api-proxying";
 import { MiddlewareAndEdge } from "./middleware-and-edge";
 import { PythonExecutionModel } from "./python-execution-model";
@@ -25,6 +28,7 @@ import React from "react";
 export const LEARN_CONTENT: Record<string, React.ReactNode> = {
   "why-a-meta-framework": <WhyAMetaFramework />,
   "the-honest-baseline": <TheHonestBaseline />,
+  "how-meta-frameworks-work": <HowMetaFrameworksWork />,
   "filesystem-routing": <FilesystemRouting />,
   "the-parser-and-manifest": <TheParserAndManifest />,
   "virtual-modules": <VirtualModules />,
@@ -36,6 +40,8 @@ export const LEARN_CONTENT: Record<string, React.ReactNode> = {
   "bionicjs-config": <BionicJSConfig />,
   "build-pipeline": <BuildPipeline />,
   "server-and-hono": <ServerAndHono />,
+  "nitro-and-h3": <NitroAndH3 />,
+  "hono-and-rpc": <HonoAndRpc />,
   "api-proxying": <ApiProxying />,
   "middleware-and-edge": <MiddlewareAndEdge />,
   "python-execution-model": <PythonExecutionModel />,

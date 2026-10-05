@@ -27,6 +27,11 @@ export const LEARN_PARTS: LearnPart[] = [
         title: "The honest baseline",
         blurb: "The status quo of gluing two runtimes, and the bridge that replaces it.",
       },
+      {
+        slug: "how-meta-frameworks-work",
+        title: "How meta-frameworks work",
+        blurb: "The four questions every full-stack framework answers, and who answers them how.",
+      },
     ],
   },
   {
@@ -98,7 +103,17 @@ export const LEARN_PARTS: LearnPart[] = [
       {
         slug: "server-and-hono",
         title: "The server runtime",
-        blurb: "Nitro, the h3 handler layer, and the generated Hono RPC contract.",
+        blurb: "A map of the two halves: the live Nitro server, and the Hono contract.",
+      },
+      {
+        slug: "nitro-and-h3",
+        title: "Nitro and h3",
+        blurb: "The live request path, programmatic startup, and why srcDir decides whether your routes exist.",
+      },
+      {
+        slug: "hono-and-rpc",
+        title: "Hono and the RPC contract",
+        blurb: "The generated typed client, why it is not mounted yet, and the open design decision.",
       },
       {
         slug: "api-proxying",
