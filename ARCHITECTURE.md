@@ -60,11 +60,20 @@ BionicJS is a monorepo of small packages that together form a full-stack framewo
 ### Development
 
 1. `bionicjs dev` runs `generateAll` first: it loads `bionicjs.config.ts` with jiti, calls `setup` on every plugin, and writes the generated `.bionicjs/server.ts` (plugin server exports) plus the RPC artifacts `.bionicjs/hono.ts` and `.bionicjs/api-client.ts`.
-2. Nitro starts on port 3001 in dev mode; the `/api` prefix is proxied there from Vite.
-3. Vite starts on port 3000 with aliases that resolve `#bionicjs-api` to `.bionicjs/api-client.ts` and `@bionicjs/core/server` to `.bionicjs/server.ts` at dev time.
+2. Nitro is created programmatically with `rootDir: cwd` and `srcDir: cwd/server`, which is what makes `server/api/` visible to the route scanner. It starts on port 3001 in dev mode; the `/api` prefix is proxied there from Vite.
+3. Vite starts on port 3000 with aliases that resolve `#bionicjs-api` to `.bionicjs/api-client.ts` and `@bionicjs/core/server` to `.bionicjs/server.ts` at dev time. Nitro needs the `@bionicjs/core/server` alias passed separately, via the `alias` option on `createNitro`.
 4. The `bionicjs-routes` Vite plugin scans `app/**/{page,layout}.tsx` with fast-glob, hands the paths to `parseRoutes`, and serves the generated route module as `virtual:bionicjs-routes`. File creation, removal, and renames trigger HMR through the plugin's `configureServer` watcher.
 5. The `bionicjs-html` middleware injects the HTML shell (a `#root` div and the `entry-client` module), which hydrates the app with `createRoot` + `StrictMode` and a `BionicJSRouter`.
-6. Client RPC calls (`api.<path>.<method>(args)`) are generated from the Hono `AppRouter` type, POST to `/api/<path>`, are proxied to Nitro, and hit the compiled Hono router, which invokes the matching handler from `server/api/`.
+6. Requests to `/api/<path>` are proxied to Nitro, matched against the file tree in `server/api/`, and served by that file's h3 `defineEventHandler`. This is the live path; no Hono router is mounted.
+
+### Generated Hono artifacts (not yet mounted)
+
+`generateRPC` also reads `server/api/**/*.ts` and writes `.bionicjs/hono.ts` (a Hono router plus an `AppRouter` type) and `.bionicjs/api-client.ts` (an `hc<AppRouter>` client). Two things are unfinished here, and the intended design is not yet implemented:
+
+- Nothing mounts the generated router. Nitro serves `server/api/` through h3, so the typed client points at a router no server is running.
+- The generated bridge calls each handler as a plain function (`route_health(args)`) while `server/api/*.ts` default-exports h3 event handlers, which expect an `H3Event`. The two layers do not agree on the handler contract.
+
+`/api/health` returning `200` is therefore served entirely by Nitro + h3. The open design choice — mount Hono as a server entry, or rely on Nitro's own generated route types (`.nitro/types/nitro-routes.d.ts` and the typed `event.$fetch`) — is written up in `docs/content/hono/index.md`.
 
 The ai/auth/db/jobs exports under `@bionicjs/core/server` are provided at dev time by the generated `.bionicjs/server.ts`; the checked-in `server.ts` and `api-client.ts` stubs exist so imports resolve in source and are marked AUTO-GENERATED to signal the dev-time replacement.
 
