@@ -10,15 +10,19 @@
   },
   "files": [
     "dist",
+    "bin",
     "README.md"
   ],
+  "bin": {
+    "bionicjs": "./bin/bionicjs.js"
+  },
   "dependencies": {
+    "@bionicjs/core": "workspace:*",
+    "@tailwindcss/vite": "^4.0.0",
     "@vitejs/plugin-react": "^6.1.1",
     "fast-glob": "^3.3.3",
-    "h3": "2.0.1-rc.31",
     "jiti": "^2.7.0",
     "nitropack": "^2.13.4",
-    "@bionicjs/core": "workspace:*",
     "vite": "^8.3.0"
   },
   "license": "MIT",
@@ -43,7 +47,8 @@
   "devDependencies": {
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "@types/node": "^22"
+    "@types/node": "^22",
+    "tsx": "^4.23.15"
   },
   "publishConfig": {
     "main": "./dist/index.js",
@@ -59,6 +64,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm --target node20 --dts",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "tsx src/dev-server.test.ts"
   }
 }

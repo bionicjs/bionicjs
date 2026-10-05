@@ -14,19 +14,13 @@
   "files": [
     "dist",
     "src",
-    "bin",
     "README.md",
     "!src/**/*.test.ts"
   ],
   "imports": {
     "#bionicjs-api": "./src/api-client.ts"
   },
-  "bin": {
-    "bionicjs": "./bin/bionicjs.js"
-  },
   "dependencies": {
-    "@bionicjs/dev": "workspace:*",
-    "jiti": "^2.7.0",
     "react-router": "^7"
   },
   "peerDependencies": {
