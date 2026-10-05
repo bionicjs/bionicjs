@@ -13,8 +13,10 @@
     "jsx": "react-jsx",
     "types": ["vite/client", "node"],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@bionicjs/core/server": ["./.bionicjs/server.ts"],
+      "@bionicjs/api": ["./.bionicjs/api-client.ts"]
     }
   },
-  "include": ["main.tsx", "app", "server", "vite.config.ts", "nitro.config.ts", "bionicjs.config.ts"]
+  "include": ["main.tsx", "app", "server", "ai", "jobs", ".bionicjs", "bionicjs.config.ts"]
 }
