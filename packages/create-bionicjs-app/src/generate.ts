@@ -370,16 +370,29 @@ function selectedPluginDeps(selection: Selection): string[] {
   return deps;
 }
 
+const DEP_SECTIONS = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"] as const;
+
 async function finalizePluginDeps(destDir: string, selection: Selection): Promise<void> {
   const pkgPath = path.join(destDir, "package.json");
   const pkg = JSON.parse(await readFile(pkgPath, "utf8"));
 
-  pkg.dependencies = pkg.dependencies ?? {};
-  // Replace the workspace:* placeholder with the version this release pins.
-  pkg.dependencies["@bionicjs/core"] = BIONICJS_VERSION;
-
   for (const dep of selectedPluginDeps(selection)) {
+    pkg.dependencies = pkg.dependencies ?? {};
     pkg.dependencies[dep] = BIONICJS_VERSION;
+  }
+
+  // Every workspace:* placeholder must become a real version. pnpm's protocol
+  // is invalid outside the monorepo, so a single surviving placeholder makes
+  // the whole project uninstallable. This also covers @bionicjs/dev, which
+  // lives in devDependencies and was previously never rewritten.
+  for (const section of DEP_SECTIONS) {
+    const deps = pkg[section];
+    if (typeof deps !== "object" || deps === null) continue;
+    for (const [name, range] of Object.entries(deps)) {
+      if (typeof range === "string" && range.startsWith("workspace:")) {
+        deps[name] = BIONICJS_VERSION;
+      }
+    }
   }
 
   await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
@@ -469,12 +482,19 @@ async function applyTemplate(
   for (const entry of entries) {
     const source = path.join(sourceDir, entry);
     const statResult = await stat(source);
+    // npm strips `.gitignore` from published tarballs, so templates ship it
+    // without the leading dot and we restore the name on copy. A scaffolded
+    // app with no .gitignore would commit its generated output.
     const relative = path.posix.relative(rootDir, source);
+    const destRelative =
+      entry === "gitignore"
+        ? path.posix.join(path.dirname(relative), ".gitignore")
+        : relative;
     if (statResult.isDirectory()) {
       await applyTemplate(source, destDir, appName, report, rootDir);
     } else {
       const content = await readFile(source, "utf8");
-      const destPath = path.join(destDir, relative);
+      const destPath = path.join(destDir, destRelative);
       const destParent = path.dirname(destPath);
       await mkdir(destParent, { recursive: true });
 
@@ -487,7 +507,7 @@ async function applyTemplate(
 
       if (existing === undefined) {
         await writeFile(destPath, render(content, appName));
-        report.written.push(relative);
+        report.written.push(destRelative);
       } else if (entry === "package.json") {
         const merged = JSON.stringify(
           mergePackageJson(JSON.parse(existing), JSON.parse(render(content, appName))),
