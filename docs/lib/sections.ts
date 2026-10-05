@@ -60,13 +60,17 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Project Structure",
     group: "Get Started",
     intro:
-      "Each capability owns a fixed top-level directory: app/ for the web client, server/ for the Nitro backend, and ai/ and jobs/ for Python - generated only for what you selected. The folder structure is the contract.",
+      "A project has three top-level zones, split by runtime rather than by audience: app/ and server/ are yours to edit, ai/ and jobs/ are yours but run in Python, and .bionicjs/ is generated on every dev run. The layout is the contract, so here is why each directory is named the way it is.",
     subsections: [
-      { id: "app", title: "app - the web application" },
-      { id: "server", title: "server - the Nitro backend" },
-      { id: "ai-jobs", title: "ai and jobs - Python" },
-      { id: "config", title: "Config files" },
-      { id: "conventions", title: "Conventions" },
+      { id: "the-three-zones", title: "The three zones" },
+      { id: "why-ai-and-jobs-are-at-the-root", title: "Why ai/ and jobs/ are at the root" },
+      { id: "why-server-is-named-server", title: "Why server/ is named server/" },
+      {
+        id: "server-is-yours-and-server-auth-is-a-sibling-of-server-db",
+        title: "server/ is yours, and server/auth/ is a sibling of server/db/",
+      },
+      { id: "bionicjs-generated-and-yours-to-delete", title: ".bionicjs/ is generated, and yours to delete" },
+      { id: "bionicjs-config-ts-the-single-config", title: "bionicjs.config.ts is the single config" },
     ],
   },
 
