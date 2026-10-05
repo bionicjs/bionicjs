@@ -1,6 +1,5 @@
 export { BionicJSRouter } from "./router";
 export { api } from "./api-client";
-export { runDevServer } from "@bionicjs/dev";
 
 export { defineConfig, type BionicJSConfig, type BionicJSPlugin } from "./config";
 export {

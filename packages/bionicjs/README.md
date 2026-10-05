@@ -13,7 +13,11 @@ intelligence (AI and background jobs).
 - `BionicJSRouter` — mounts the app's filesystem routes
 - `@bionicjs/core/server` — generated server exports (`auth`, `db`, `ai`, `jobs`)
 - `@bionicjs/core/router` — route parser, generator, and layout adapter
-- `runDevServer` — starts Vite + Nitro programmatically
+
+The `bionicjs dev` CLI and `runDevServer` live in
+[`@bionicjs/dev`](https://www.npmjs.com/package/@bionicjs/dev), which depends on
+this package. Core itself has no workspace dependencies, keeping the package
+graph acyclic.
 
 ## Config
 

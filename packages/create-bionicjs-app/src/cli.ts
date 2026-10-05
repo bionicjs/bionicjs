@@ -3,6 +3,14 @@ import { basename } from "node:path";
 
 import { generateProject } from "./generate.ts";
 import {
+  detectPackageManager,
+  devCommand,
+  installCommand,
+  initializeGitRepository,
+  installDependencies,
+  writePackageManagerField,
+} from "./init.ts";
+import {
   aiTemplates,
   authTemplates,
   brokerTemplates,
@@ -42,11 +50,23 @@ Options:
   --jobs <system>       celery, rq, dramatiq
   --broker <broker>     redis, rabbitmq (default: redis when --jobs is used)
   --force               allow an existing, non-empty target directory
+  --skip-install        do not run the package manager's install step
+  --disable-git         do not run git init / git commit
 `;
 
-function parseArgs(argv: string[]): { name?: string; selection: Selection; force: boolean } {
+interface ParsedArgs {
+  name?: string;
+  selection: Selection;
+  force: boolean;
+  install: boolean;
+  git: boolean;
+}
+
+function parseArgs(argv: string[]): ParsedArgs {
   const selection: Selection = {};
   let force = false;
+  let install = true;
+  let git = true;
   let name: string | undefined;
 
   for (let i = 0; i < argv.length; i++) {
@@ -73,6 +93,12 @@ function parseArgs(argv: string[]): { name?: string; selection: Selection; force
       case "--force":
         force = true;
         break;
+      case "--skip-install":
+        install = false;
+        break;
+      case "--disable-git":
+        git = false;
+        break;
       case "-h":
       case "--help":
         stdout.write(USAGE);
@@ -87,7 +113,7 @@ function parseArgs(argv: string[]): { name?: string; selection: Selection; force
     }
   }
 
-  return { name, selection, force };
+  return { name, selection, force, install, git };
 }
 
 function selectOptions(choices: TemplateChoice[], withNone = false) {
@@ -192,8 +218,10 @@ async function generateAndReport(
   destDir: string,
   appName: string,
   selection: Selection,
-  force: boolean,
+  options: { force: boolean; install: boolean; git: boolean },
 ): Promise<void> {
+  const { force, install: shouldInstall, git: shouldGit } = options;
+
   if (destDir !== "." && isUnsafeDirName(destDir)) {
     stderr.write(`Invalid project name "${destDir}". Use a plain directory name.\n`);
     process.exit(1);
@@ -211,45 +239,56 @@ async function generateAndReport(
     force,
   });
 
+  const packageManager = detectPackageManager();
+  await writePackageManagerField(destDir, packageManager);
+
+  const installed: boolean = shouldInstall
+    ? await installDependencies(destDir, packageManager).then(
+        () => true,
+        (error: unknown) => {
+          const message = error instanceof Error ? error.message : String(error);
+          stderr.write(`\nDependency install failed: ${message}\n`);
+          return false;
+        },
+      )
+    : false;
+
+  const gitStatus = shouldGit ? await initializeGitRepository(destDir) : "skipped";
+
   stdout.write(`${BANNER}\n`);
   stdout.write(`  Success! Created ${destDir === "." ? "." : appName}\n\n`);
 
+  const nextSteps = installed
+    ? devCommand(packageManager.name)
+    : `${installCommand(packageManager.name)} && ${devCommand(packageManager.name)}`;
+
   if (stdin.isTTY) {
     const p = await import("@clack/prompts");
-    const summary = templates
-      .map((t) => `    · ${t}`)
-      .join("\n");
-    p.note(
-      `base\n${summary}`,
-      "Templates applied",
-    );
+    const summary = templates.map((t) => `    · ${t}`).join("\n");
+    p.note(`base\n${summary}`, "Templates applied");
     p.log.success(` ${report.written.length} files written, ${report.merged.length} files merged.`);
-    p.note(
-      destDir === "."
-        ? `  npm install\n  npm run dev`
-        : `  cd ${destDir}\n  npm install\n  npm run dev`,
-      "Next steps",
-    );
+    if (gitStatus === "created") p.log.info(" Initialized a git repository with one commit.");
+    p.note(`  ${nextSteps}`, "Next steps");
   } else {
-    const dirLabel = destDir === "." ? "." : `${destDir}/`;
     stdout.write(
       `  ${report.written.length} files written, ${report.merged.length} files merged.\n`,
     );
     stdout.write(
       `  Applied ${templates.length} template(s): base${templates.map((t) => ` + ${t}`).join("")}.\n`,
     );
+    if (gitStatus === "created") stdout.write("  Initialized a git repository with one commit.\n");
     stdout.write(`\n  Next steps:\n`);
     if (destDir === ".") {
-      stdout.write(`    npm install\n    npm run dev\n`);
+      stdout.write(`    ${nextSteps}\n`);
     } else {
-      stdout.write(`    cd ${destDir}\n    npm install\n    npm run dev\n`);
+      stdout.write(`    cd ${destDir}\n    ${nextSteps}\n`);
     }
   }
 }
 
 export async function run(argv: string[]): Promise<void> {
   try {
-    const { name, selection, force } = parseArgs(argv);
+    const { name, selection, force, install, git } = parseArgs(argv);
 
     const resolve = (rawName: string) =>
       rawName === "."
@@ -258,7 +297,7 @@ export async function run(argv: string[]): Promise<void> {
 
     if (!stdin.isTTY) {
       const { destDir, appName } = resolve(name ?? "my-app");
-      await generateAndReport(destDir, appName, selection, force);
+      await generateAndReport(destDir, appName, selection, { force, install, git });
       return;
     }
 
@@ -266,7 +305,7 @@ export async function run(argv: string[]): Promise<void> {
     const inputName = await promptAppName(p, name);
     const selected = await promptSelections(p, selection);
     const { destDir, appName } = resolve(inputName);
-    await generateAndReport(destDir, appName, selected, force);
+    await generateAndReport(destDir, appName, selected, { force, install, git });
   } catch (error) {
     stderr.write(`Error: ${error instanceof Error ? error.message : String(error)}\n`);
     process.exit(1);

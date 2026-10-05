@@ -48,7 +48,6 @@ const BASE_FILES = [
   ".env.example",
   "README.md",
   "bionicjs.config.ts",
-  "vite.config.ts",
   "app/layout.tsx",
   "app/page.tsx",
   "server/api/health.ts",
@@ -174,7 +173,13 @@ test("generate: base project only, no extraneous directories", async () => {
   assert.equal(await hasFile(dir, "index.html"), false, "BionicJS manages index.html internally");
   assert.equal(await hasFile(dir, "main.tsx"), false, "BionicJS manages the entry point internally");
   assert.equal(await hasDir(dir, "app/routes"), false, "BionicJS uses app/page.tsx convention, not app/routes/");
-  assert.equal(await hasFile(dir, "nitro.config.ts"), false, "BionicJS manages nitro config internally");
+
+  // No user-facing bundler or server config. `bionicjs dev` owns the Vite and
+  // Nitro setup, so exposing these would invite the user to edit machinery
+  // that the framework owns and would silently break when it changes.
+  for (const internal of ["nitro.config.ts", "vite.config.ts", "tsup.config.ts"]) {
+    assert.equal(await hasFile(dir, internal), false, `${internal} is managed by bionicjs, not the user`);
+  }
 
   for (const absent of ["ai", "jobs"]) {
     assert.equal(await hasDir(dir, absent), false, `${absent} should not exist`);
@@ -182,9 +187,18 @@ test("generate: base project only, no extraneous directories", async () => {
 
   const packageJson = JSON.parse(await readFile(path.join(dir, "package.json"), "utf8"));
   assert.equal(packageJson.dependencies["next"], undefined, "base must not depend on next");
-  assert.ok(packageJson.dependencies["nitropack"], "base must depend on nitropack");
   assert.ok(packageJson.dependencies["react-router"], "base must depend on react-router");
-  assert.ok(packageJson.devDependencies["vite"], "base must depend on vite");
+
+  // The server runtime is an implementation detail of @bionicjs/dev. Only
+  // `bionicjs dev` may exist as a script, and the bundler/server packages must
+  // not be spelled out in the user's package.json — the same rule that keeps
+  // nitro.config.ts and vite.config.ts out of the scaffold.
+  assert.deepEqual(Object.keys(packageJson.scripts), ["dev"], "only `dev` should be exposed");
+  assert.equal(packageJson.scripts.dev, "bionicjs dev", "dev must delegate to bionicjs");
+  for (const internal of ["nitropack", "vite", "@vitejs/plugin-react", "@tailwindcss/vite"]) {
+    assert.equal(packageJson.dependencies[internal], undefined, `${internal} is internal, not a user dependency`);
+    assert.equal(packageJson.devDependencies[internal], undefined, `${internal} is internal, not a user devDependency`);
+  }
 
   // Layout uses { children } — BionicJS adapts this to React Router via BionicJSLayoutAdapter
   const layout = await readFile(path.join(dir, "app/layout.tsx"), "utf8");
@@ -200,6 +214,51 @@ test("generate: base renders app name tokens", async () => {
   assert.equal(packageJson.name, "my-cool-app");
   // bionicjs.config.ts is generated from the selection (not a template), verify package name
   assert.equal(packageJson.name, "my-cool-app");
+});
+
+test("generate: ships a .gitignore that ignores generated output", async () => {
+  const { dir } = await makeProject([]);
+
+  // The template file is named `gitignore` because npm strips `.gitignore`
+  // from published tarballs. It must land under its real name, or a scaffolded
+  // app has no .gitignore at all and commits .bionicjs/.
+  const gitignore = await readFile(path.join(dir, ".gitignore"), "utf8");
+  assert.match(gitignore, /^\/\.bionicjs\/$/m, "must ignore the generated .bionicjs/ directory");
+  assert.doesNotMatch(
+    gitignore,
+    /^\/generated\/$/m,
+    "/generated/ is stale — the generator writes .bionicjs/, not generated/",
+  );
+  assert.equal(
+    await hasFile(dir, "gitignore"),
+    false,
+    "the dotless template name must never reach the scaffolded project",
+  );
+});
+
+test("generate: resolves every workspace: protocol, in deps and devDeps", async () => {
+  const { dir } = await makeProject(["auth/better-auth", "ai/llm/anthropic"]);
+
+  const raw = await readFile(path.join(dir, "package.json"), "utf8");
+  assert.doesNotMatch(
+    raw,
+    /workspace:/,
+    "workspace: is invalid outside the monorepo and makes the project uninstallable",
+  );
+
+  const packageJson = JSON.parse(raw);
+  // devDependencies must be rewritten too — @bionicjs/dev used to keep its
+  // workspace:* placeholder, so no scaffolded app could ever run npm install.
+  assert.ok(packageJson.devDependencies["@bionicjs/dev"], "@bionicjs/dev must stay a devDependency");
+  assert.notEqual(packageJson.devDependencies["@bionicjs/dev"], "workspace:*");
+  assert.match(packageJson.devDependencies["@bionicjs/dev"], /^\d+\.\d+\.\d+/);
+
+  for (const [name, range] of Object.entries(packageJson.dependencies)) {
+    if (name.startsWith("@bionicjs/")) assert.match(String(range), /^\d+\.\d+\.\d+/, `${name} not pinned`);
+  }
+  for (const [name, range] of Object.entries(packageJson.devDependencies)) {
+    if (name.startsWith("@bionicjs/")) assert.match(String(range), /^\d+\.\d+\.\d+/, `${name} not pinned`);
+  }
 });
 
 test("generate: no templates leaves no feature directories", async () => {

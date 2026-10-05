@@ -11,9 +11,20 @@ export function TheDevServer() {
         Python features are enabled) the FastAPI/Uvicorn development server.
       </P>
       <CodeBlock file="packages/dev/src/index.ts" title="runDevServer">
-{`const nitro = await createNitro({ rootDir: cwd, dev: true });
+{`await generateAll(cwd);
+
+const nitro = await createNitro({
+  rootDir: cwd,
+  srcDir: path.join(cwd, "server"),   // without this, /api/* 404s
+  dev: true,
+  publicAssets: existsSync(publicDir) ? [{ dir: publicDir }] : [],
+  alias: { "@bionicjs/core/server": generatedServer },
+});
+
 const nitroDevServer = createNitroDevServer(nitro);
 await nitroDevServer.listen(nitroPort);
+await prepare(nitro);
+build(nitro).catch(/* logged */);
 
 const vite = await createViteServer({
   root: cwd,
@@ -22,7 +33,7 @@ const vite = await createViteServer({
     strictPort: true,
     proxy: { "/api": \`http://localhost:\${nitroPort}\` },
   },
-  plugins: [bionicjsRoutesPlugin(cwd), react()],
+  plugins: [bionicjsRoutesPlugin(cwd), react(), tailwindcss()],
 });
 
 await vite.listen();`}
@@ -32,6 +43,15 @@ await vite.listen();`}
         terminal output. The orchestrator handles process lifecycle - when the
         dev server exits, it tears down every child process cleanly.
       </P>
+      <Callout>
+        The one line that is easy to get wrong is <Code>srcDir</Code>. Nitro
+        scans <Code>&lt;srcDir&gt;/api</Code>, not{" "}
+        <Code>&lt;srcDir&gt;/server/api</Code>, so without it Nitro looks for{" "}
+        <Code>./api</Code>, registers zero routes, and every endpoint 404s with
+        no error at all. <A href="/learn/nitro-and-h3#srcdir">Nitro and h3</A>{" "}
+        covers the full story, including the <Code>publicAssets</Code> side
+        effect and what changes in Nitro v3.
+      </Callout>
 
       <H3 id="ports">Ports</H3>
       <P>

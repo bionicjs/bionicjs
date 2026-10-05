@@ -1,6 +1,6 @@
 {
   "name": "@bionicjs/prisma",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Prisma database plugin for BionicJS",
   "type": "module",
   "main": "src/index.ts",

@@ -1,7 +1,5 @@
 packages:
   - "packages/*"
 
-ignoreWorkspaceCycles: true
-
 allowBuilds:
   esbuild: true

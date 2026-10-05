@@ -60,13 +60,17 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     title: "Project Structure",
     group: "Get Started",
     intro:
-      "Each capability owns a fixed top-level directory: app/ for the web client, server/ for the Nitro backend, and ai/ and jobs/ for Python - generated only for what you selected. The folder structure is the contract.",
+      "A project has three top-level zones, split by runtime rather than by audience: app/ and server/ are yours to edit, ai/ and jobs/ are yours but run in Python, and .bionicjs/ is generated on every dev run. The layout is the contract, so here is why each directory is named the way it is.",
     subsections: [
-      { id: "app", title: "app - the web application" },
-      { id: "server", title: "server - the Nitro backend" },
-      { id: "ai-jobs", title: "ai and jobs - Python" },
-      { id: "config", title: "Config files" },
-      { id: "conventions", title: "Conventions" },
+      { id: "the-three-zones", title: "The three zones" },
+      { id: "why-ai-and-jobs-are-at-the-root", title: "Why ai/ and jobs/ are at the root" },
+      { id: "why-server-is-named-server", title: "Why server/ is named server/" },
+      {
+        id: "server-is-yours-and-server-auth-is-a-sibling-of-server-db",
+        title: "server/ is yours, and server/auth/ is a sibling of server/db/",
+      },
+      { id: "bionicjs-generated-and-yours-to-delete", title: ".bionicjs/ is generated, and yours to delete" },
+      { id: "bionicjs-config-ts-the-single-config", title: "bionicjs.config.ts is the single config" },
     ],
   },
 
@@ -324,6 +328,41 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     subsections: [],
   },
   {
+    slug: "nitro-h3",
+    title: "Nitro & h3",
+    group: "Runtime",
+    intro:
+      "The server that actually answers your requests. Nitro owns the HTTP server, the build, and the deploy presets; h3 is the handler shape your route files are written in. Neither is a bionicjs API — you write plain files and both stay implementation details.",
+    subsections: [
+      { id: "a-file-is-an-endpoint", title: "A file is an endpoint" },
+      { id: "what-each-layer-owns", title: "What each layer owns" },
+      { id: "h3-the-handler-shape", title: "h3: the handler shape" },
+      { id: "whose-h3-version-is-it", title: "Whose h3 version is it" },
+      { id: "programmatic-startup", title: "Programmatic startup" },
+      { id: "srcdir-decides-what-gets-scanned", title: "srcDir decides what gets scanned" },
+      { id: "the-request-lifecycle", title: "The request lifecycle" },
+      { id: "ports-and-the-api-proxy", title: "Ports and the /api proxy" },
+      { id: "the-generated-server-interface", title: "The generated server interface" },
+      { id: "related", title: "Related" },
+    ],
+  },
+  {
+    slug: "hono",
+    title: "Hono",
+    group: "Runtime",
+    intro:
+      "Hono is a standards-based web framework, independent of Nitro and h3. bionicjs generates a Hono router and a typed client from your server/api tree — and today that generated router is not mounted. This page explains the idea, the current state, and the open decision.",
+    subsections: [
+      { id: "what-hono-is", title: "What Hono is" },
+      { id: "the-idea-types-without-codegen", title: "The idea: types without codegen" },
+      { id: "what-gets-generated", title: "What gets generated" },
+      { id: "current-state-not-mounted", title: "Current state: not mounted" },
+      { id: "the-hono-integration-in-nitro", title: "The Hono integration in Nitro" },
+      { id: "native-typing-in-nitro", title: "Native typing in Nitro" },
+      { id: "the-open-decision", title: "The open decision" },
+    ],
+  },
+  {
     slug: "middleware-and-edge",
     title: "Middleware & Edge",
     group: "Runtime",
@@ -398,9 +437,13 @@ export const DOCS_SECTION_DEFS: SectionDef[] = [
     intro:
       "Established tools, no bionicjs abstractions: React and Vite for the client, Nitro for the server, and Python with the mature libraries for AI and jobs.",
     subsections: [
-      { id: "client", title: "Client - React + Vite" },
-      { id: "server", title: "Server - Nitro" },
-      { id: "python", title: "Python - AI and jobs" },
+      { id: "established-tools-no-abstractions", title: "Established tools, no abstractions" },
+      { id: "client-react-vite", title: "Client - React + Vite" },
+      { id: "server-nitro-h3", title: "Server - Nitro + h3" },
+      { id: "hono-the-generated-client-not-the-server", title: "Hono - the generated client, not the server" },
+      { id: "python-ai-and-jobs", title: "Python - AI and jobs" },
+      { id: "why-this-combination", title: "Why this combination" },
+      { id: "how-this-compares", title: "How this compares" },
     ],
   },
   {

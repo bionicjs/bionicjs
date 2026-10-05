@@ -4,7 +4,16 @@ import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { bionicjsRoutesPlugin } from "../../../dev/src/plugins/routes";
 
-const testAppDir = path.resolve(process.cwd(), "scratch/test-app");
+// Anchor every path to this file rather than process.cwd(), so the test behaves
+// the same whether it runs from the repo root or from the package directory.
+const testDir = path.dirname(fileURLToPath(import.meta.url));
+const pkgRoot = path.resolve(testDir, "../..");
+const testAppDir = path.join(pkgRoot, "scratch/test-app");
+const bionicjsRouterPath = path.join(testDir, "index.ts");
+
+if (!fs.existsSync(bionicjsRouterPath)) {
+  throw new Error(`Alias target does not exist: ${bionicjsRouterPath}`);
+}
 
 function setupTestApp() {
   console.log("📁 Setting up temporary test application in:", testAppDir);
@@ -39,7 +48,6 @@ async function runViteE2ETest() {
   
   const reactPath = fileURLToPath(import.meta.resolve("react"));
   const reactRouterPath = fileURLToPath(import.meta.resolve("react-router"));
-  const bionicjsRouterPath = path.resolve(process.cwd(), "packages/bionicjs/src/router/index.ts");
 
   const vite = await createViteServer({
     root: testAppDir,
@@ -54,7 +62,7 @@ async function runViteE2ETest() {
       middlewareMode: true,
       watch: null, // Disable filesystem chokidar watcher to avoid inotify ENOSPC limits during test
       fs: {
-        allow: [process.cwd(), testAppDir],
+        allow: [pkgRoot, testAppDir],
       },
     },
     appType: "custom",
