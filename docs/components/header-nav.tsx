@@ -7,6 +7,7 @@ import { GITHUB_URL } from "@/lib/sections";
 const NAV: { label: string; href: string; match: string }[] = [
   { label: "Docs", href: "/docs/why-bionicjs", match: "/docs" },
   { label: "Learn", href: "/learn/why-a-meta-framework", match: "/learn" },
+  { label: "Blog", href: "/blog", match: "/blog" },
   { label: "Changelog", href: "/changelog", match: "/changelog" },
 ];
 
@@ -46,6 +47,7 @@ export function MobileNavLinks({ onNavigate }: { onNavigate?: () => void }) {
   const links = [
     { label: "Docs", href: "/docs/why-bionicjs", match: "/docs", external: false },
     { label: "Learn", href: "/learn/why-a-meta-framework", match: "/learn", external: false },
+    { label: "Blog", href: "/blog", match: "/blog", external: false },
     { label: "Changelog", href: "/changelog", match: "/changelog", external: false },
     {
       label: "Releases",
